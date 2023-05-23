@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 'use client';
 
 import Script from 'next/script';
@@ -11,7 +12,7 @@ const KakaoMap = () => {
       <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       <Map
         center={{ lat: 33.450701, lng: 126.570667 }}
-        style={{ width: '500px', height: '500px' }}
+        style={{ minWidth: '360px', minHeight: '100vh' }}
       ></Map>
     </>
   );
