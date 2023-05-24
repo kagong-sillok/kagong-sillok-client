@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 const pretendard = localFont({
-  src: '../assets/fonts/PretendardVariable.woff2',
+  src: '../../public/assets/fonts/PretendardVariable.woff2',
   display: 'swap',
   fallback: [
     'Pretendard',
