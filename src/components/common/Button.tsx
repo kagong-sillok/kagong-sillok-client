@@ -1,5 +1,5 @@
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type: 'Default' | 'Round_Default';
+  type: 'DEFAULT' | 'ROUND_DEFAULT';
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
@@ -12,9 +12,9 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const buttonStyle = {
-    Default:
+    DEFAULT:
       'bg-black py-4 text-button1 text-white active:bg-opacity-80 disabled:bg-opacity-10 disabled:text-black',
-    Round_Default:
+    ROUND_DEFAULT:
       'rounded-full border border-black bg-white py-[11px] text-button2 text-black active:bg-opacity-10 disabled:bg-opacity-20 disabled:border-opacity-20',
   }[type];
 
