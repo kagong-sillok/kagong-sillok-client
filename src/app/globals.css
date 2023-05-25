@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.circle:before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 4px;
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
