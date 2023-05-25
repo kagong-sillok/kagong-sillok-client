@@ -1,3 +1,5 @@
+import { formatTime } from '@/utils/formatTime';
+
 import type { DayType, PlaceType } from '@/types/place';
 
 interface TimeInfoProps {
@@ -5,11 +7,6 @@ interface TimeInfoProps {
 }
 
 export default function TimeInfo({ businessHours }: TimeInfoProps) {
-  const formatTime = (timeString: string) => {
-    const [hours, minutes] = timeString.split(':');
-    return `${hours}:${minutes}`;
-  };
-
   const daysOfWeek = {
     monday: '월',
     tuesday: '화',

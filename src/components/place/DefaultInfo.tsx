@@ -1,10 +1,11 @@
 'use client';
 
-import IconFlex from './IconFlex';
-import TimeInfo from './TimeInfo';
-import { PlaceType } from '@/types/place';
+import IconFlex from '@/components/place/IconFlex';
+import TimeInfo from '@/components/place/TimeInfo';
 import Image from 'next/image';
 import { useState } from 'react';
+
+import type { PlaceType } from '@/types/place';
 
 interface DefaultInfoProps {
   place: PlaceType;

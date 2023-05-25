@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/common/Button';
 import DefaultInfo from '@/components/place/DefaultInfo';
 import Header from '@/components/place/Header';
@@ -54,9 +56,9 @@ const place: PlaceType = {
 
 export default function Page() {
   return (
-    <div className="relative overflow-y-scroll">
+    <div className="w-full overflow-y-scroll">
       <Header name={place.name} />
-      <div className="flex h-[219px] items-center justify-center bg-[#eee]">지도</div>
+      <div className="flex h-[219px] items-center justify-center bg-[#ddd]">지도</div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
@@ -155,12 +157,17 @@ export default function Page() {
           리뷰 작성하기
         </Button>
         <h5 className="mb-4 text-sub1">갤러리</h5>
-        <div className="mb-[60px] flex justify-between">
+        <div className="mb-[100px] flex justify-between">
           <div className="h-[120px] w-[120px] bg-black"></div>
           <div className="h-[120px] w-[120px] bg-black"></div>
           <div className="h-[120px] w-[120px] bg-black"></div>
         </div>
       </section>
+      <footer>
+        <Button type="DEFAULT" className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]">
+          카공 기록하기
+        </Button>
+      </footer>
     </div>
   );
 }
