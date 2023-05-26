@@ -71,8 +71,8 @@ export default function Page() {
           <Tag.OpenClosed type={place.isOpen ? 'OPEN' : 'CLOSED'} />
         </div>
         <h3 className="mb-2 text-head3">{place.name}</h3>
-        <p className="text-body2 text-black text-opacity-60">{place.address}</p>
-        <hr className="my-8 text-black text-opacity-10" />
+        <p className="text-body2 text-bk60">{place.address}</p>
+        <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
         <DefaultInfo place={place} />
@@ -87,7 +87,7 @@ export default function Page() {
         </div>
         <a
           href=""
-          className="cursor-pointer text-[14px] font-normal leading-6 text-black text-opacity-60 underline underline-offset-2"
+          className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
         >
           해당 카페에 자세히 알고 싶다면?
         </a>
@@ -95,13 +95,14 @@ export default function Page() {
           <h5 className="text-sub1">
             리뷰 <span className="text-violet/default">14</span>
           </h5>
-          <div className="flex items-center gap-0.5 text-[14px] font-normal leading-5 text-black text-opacity-60">
+          <div className="flex items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60">
             리뷰 더보기
             <Image
               src="/assets/icons/16/Arrow-right.svg"
               alt="Arrow-right"
               width={16}
               height={16}
+              className="invert-[40%] filter"
             />
           </div>
         </div>
@@ -146,7 +147,7 @@ export default function Page() {
           />
         </div>
 
-        <hr className="mb-6 text-black text-opacity-10" />
+        <hr className="mb-6 text-bk10" />
         <div className="mb-6 flex flex-col gap-5">
           <ReviewBox />
           <ReviewBox />

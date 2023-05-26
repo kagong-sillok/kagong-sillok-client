@@ -16,7 +16,7 @@ export default function IconFlex({ icon, children, ...props }: IconFlexProps) {
         alt={icon.alt}
         width={icon.size}
         height={icon.size}
-        className="mr-1.5 pt-0.5 invert-[40%] filter"
+        className="mr-1.5 pt-0.5 invert-[60%] filter"
       />
       <div>{children}</div>
     </div>

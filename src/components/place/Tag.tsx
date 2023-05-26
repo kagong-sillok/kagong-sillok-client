@@ -17,7 +17,7 @@ const Tag = {
       },
       CLOSED: {
         text: '영업종료',
-        color: 'text-black border-opacity-40 text-opacity-40',
+        color: 'border-bk40 text-bk40',
       },
     }[type];
 

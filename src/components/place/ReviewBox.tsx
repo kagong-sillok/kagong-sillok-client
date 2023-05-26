@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function ReviewBox() {
   return (
     <div className="flex gap-3.5">
-      <div className="h-10 w-10 shrink-0 rounded-full bg-black bg-opacity-40"></div>
+      <div className="h-10 w-10 shrink-0 rounded-full bg-bk20"></div>
       <div className="flex flex-grow flex-col gap-4">
         <div className="flex h-10 justify-between">
           <div>
@@ -15,12 +15,10 @@ export default function ReviewBox() {
                 width={16}
                 height={16}
               />
-              <p className="circle relative pl-2.5 text-[12px] font-normal  text-black text-opacity-40">
-                별로예요
-              </p>
+              <p className="circle relative pl-2.5 text-[12px] font-normal text-bk40">별로예요</p>
             </div>
           </div>
-          <p className="text-caption text-black text-opacity-40">23.01.14</p>
+          <p className="text-caption text-bk40">23.01.14</p>
         </div>
         <p className="text-body2">
           카공보다는 감성 카페에 더 가까워요. 테이블이 낮아서 공부하는데 불편했습니다. 장시간
