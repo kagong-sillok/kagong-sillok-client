@@ -63,7 +63,7 @@ export default function KagongBox({ type, isFirst }: KagongBoxProps) {
         className={`filter ${isFirst ? 'invert' : ''}`}
       />
       <div>
-        <p className="text-body2">{status.text}</p>
+        <p className={`text-body2 ${isFirst ? '' : 'text-violet/default'}`}>{status.text}</p>
         <p className="text-sub1">{status.title}</p>
       </div>
     </div>
