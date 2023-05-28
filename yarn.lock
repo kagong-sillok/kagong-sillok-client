@@ -167,6 +167,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/swc-darwin-arm64@npm:^13.4.3":
+  version: 13.4.3
+  resolution: "@next/swc-darwin-arm64@npm:13.4.3"
+  checksum: 2acaddfb38fc7e6581db9f6a5101f1e13fa70df2d116559b6842304e70eeb132bb4c76840d2a32a5763f12884d4bbf591993968f85500464ef692e643cd75fd9
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@next/swc-darwin-x64@npm:13.4.2":
   version: 13.4.2
   resolution: "@next/swc-darwin-x64@npm:13.4.2"
@@ -1915,6 +1923,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:."
   dependencies:
+    "@next/swc-darwin-arm64": ^13.4.3
     "@tanstack/react-query": ^4.29.5
     "@tanstack/react-query-devtools": ^4.29.6
     "@types/node": 20.1.3
