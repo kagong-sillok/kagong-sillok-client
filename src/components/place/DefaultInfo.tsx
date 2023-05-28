@@ -43,7 +43,8 @@ export default function DefaultInfo({ place }: DefaultInfoProps) {
         icon={{
           src: '/assets/icons/16/Location-1.svg',
           alt: 'Location',
-          size: 16,
+          width: 16,
+          height: 16,
         }}
       >
         <p>{place.address}</p>
@@ -52,7 +53,8 @@ export default function DefaultInfo({ place }: DefaultInfoProps) {
         icon={{
           src: '/assets/icons/16/Time.svg',
           alt: 'Time',
-          size: 16,
+          width: 16,
+          height: 16,
         }}
       >
         <div className="flex" onClick={() => setIsToggleOpen((prev) => !prev)}>
@@ -73,7 +75,8 @@ export default function DefaultInfo({ place }: DefaultInfoProps) {
         icon={{
           src: '/assets/icons/16/Call.svg',
           alt: 'Call',
-          size: 16,
+          width: 16,
+          height: 16,
         }}
       >
         {place.phone}
@@ -82,7 +85,8 @@ export default function DefaultInfo({ place }: DefaultInfoProps) {
         icon={{
           src: '/assets/icons/16/Site.svg',
           alt: 'Site',
-          size: 16,
+          width: 16,
+          height: 16,
         }}
       >
         {place.links.map(({ linkType, url }) => (
