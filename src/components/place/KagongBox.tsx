@@ -1,53 +1,17 @@
+import { CONDITION_LIST } from '@/constants/place';
 import Image from 'next/image';
 
+import type { PlaceConditionType } from '@/types/place';
+
 interface KagongBoxProps {
-  type: 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TABLE' | 'QUIET';
-  isFirst: boolean;
+  type: PlaceConditionType;
+  isFirst?: boolean;
 }
 
-const statusList = [
-  {
-    type: 'CLEAN',
-    text: '청결',
-    title: '호텔급 청결',
-    iconSrc: '/assets/icons/32/Cleaning.svg',
-  },
-  {
-    type: 'WIFI',
-    text: '와이파이',
-    title: '빵빵 터짐',
-    iconSrc: '/assets/icons/32/Internet.svg',
-  },
-  {
-    type: 'SEAT',
-    text: '좌석',
-    title: '편안한 의자',
-    iconSrc: '/assets/icons/32/Livingroom.svg',
-  },
-  {
-    type: 'TEMPERATURE',
-    text: '온도',
-    title: '쾌적상쾌',
-    iconSrc: '/assets/icons/32/Aircon.svg',
-  },
-  {
-    type: 'TABLE',
-    text: '테이블',
-    title: '넓은 테이블',
-    iconSrc: '/assets/icons/32/table.svg',
-  },
-  {
-    type: 'QUIET',
-    text: '소음',
-    title: '조용한 공간',
-    iconSrc: '/assets/icons/32/Quait.svg',
-  },
-];
+export default function KagongBox({ type, isFirst = false }: KagongBoxProps) {
+  const condition = CONDITION_LIST.find((item) => item.type === type);
 
-export default function KagongBox({ type, isFirst }: KagongBoxProps) {
-  const status = statusList.find((item) => item.type === type);
-
-  if (!status) return null;
+  if (!condition) return null;
 
   return (
     <div
@@ -56,15 +20,15 @@ export default function KagongBox({ type, isFirst }: KagongBoxProps) {
       }`}
     >
       <Image
-        src={status.iconSrc}
-        alt={status.text}
+        src={condition.iconSrc}
+        alt={condition.text}
         width={32}
         height={32}
         className={`filter ${isFirst ? 'invert' : ''}`}
       />
       <div>
-        <p className={`text-body2 ${isFirst ? '' : 'text-violet/default'}`}>{status.text}</p>
-        <p className="text-sub1">{status.title}</p>
+        <p className={`text-body2 ${isFirst ? '' : 'text-violet/default'}`}>{condition.text}</p>
+        <p className="text-sub1">{condition.title}</p>
       </div>
     </div>
   );

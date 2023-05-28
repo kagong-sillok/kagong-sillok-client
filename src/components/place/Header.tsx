@@ -1,3 +1,4 @@
+import { MAP_SIZE } from '@/constants/place';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 
@@ -6,7 +7,7 @@ interface HeaderProps {
 }
 
 export default function Header({ name }: HeaderProps) {
-  const isScrolled = useDetectScroll(219);
+  const isScrolled = useDetectScroll(MAP_SIZE);
 
   const style = {
     SCROLLED: {

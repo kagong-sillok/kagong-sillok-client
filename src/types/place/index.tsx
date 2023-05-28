@@ -66,11 +66,8 @@ export type LineType =
   | '에버라인'
   | '경강선';
 
-export type DayType =
-  | 'monday'
-  | 'tuesday'
-  | 'wednesday'
-  | 'thursday'
-  | 'friday'
-  | 'saturday'
-  | 'sunday';
+export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TABLE' | 'QUIET';
+
+export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
+
+export type DayType = keyof PlaceType['businessHours'];

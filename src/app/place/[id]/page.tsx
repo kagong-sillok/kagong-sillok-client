@@ -1,15 +1,11 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import DefaultInfo from '@/components/place/DefaultInfo';
-import Header from '@/components/place/Header';
-import KagongBox from '@/components/place/KagongBox';
-import ReviewBox from '@/components/place/ReviewBox';
-import Tag from '@/components/place/Tag';
-import Tooltip from '@/components/place/Tooltip';
+import { DefaultInfo, Header, KagongBox, ReviewBox, Tag, Tooltip } from '@/components/place';
+import { MAP_HEIGHT } from '@/constants/place';
 import Image from 'next/image';
 
-import type { PlaceType } from '@/types/place';
+import type { PlaceConditionType, PlaceType } from '@/types/place';
 
 const place: PlaceType = {
   id: 1,
@@ -58,7 +54,7 @@ export default function Page() {
   return (
     <div className="w-full overflow-y-scroll">
       <Header name={place.name} />
-      <div className="flex h-[219px] items-center justify-center bg-[#ddd]">지도</div>
+      <div className={`flex h-[${MAP_HEIGHT}px] items-center justify-center bg-[#ddd]`}>지도</div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
@@ -78,12 +74,9 @@ export default function Page() {
         <DefaultInfo place={place} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
         <div className="flex gap-2 overflow-hidden overflow-x-scroll pb-5">
-          <KagongBox type="CLEAN" isFirst={true} />
-          <KagongBox type="QUIET" isFirst={false} />
-          <KagongBox type="SEAT" isFirst={false} />
-          <KagongBox type="TABLE" isFirst={false} />
-          <KagongBox type="TEMPERATURE" isFirst={false} />
-          <KagongBox type="WIFI" isFirst={false} />
+          {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
+            <KagongBox key={index} type={type as PlaceConditionType} isFirst={index === 0} />
+          ))}
         </div>
         <a
           href=""
@@ -106,45 +99,19 @@ export default function Page() {
             />
           </div>
         </div>
-        <div className="relative mb-10 flex justify-center gap-2">
+        <div className="relative mb-10 flex cursor-pointer justify-center gap-2">
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
           </Tooltip>
-          <Image
-            src="/assets/icons/40/emoji-rating1_off.svg"
-            alt="emoji-rating1"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
-          <Image
-            src="/assets/icons/40/emoji-rating2_off.svg"
-            alt="emoji-rating2"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
-          <Image
-            src="/assets/icons/40/emoji-rating3_off.svg"
-            alt="emoji-rating3"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
-          <Image
-            src="/assets/icons/40/emoji-rating4_off.svg"
-            alt="emoji-rating4"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
-          <Image
-            src="/assets/icons/40/emoji-rating5_off.svg"
-            alt="emoji-rating5"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
+          {[1, 2, 3, 4, 5].map((item) => (
+            <Image
+              key={item}
+              src={`/assets/icons/40/emoji-rating${item}_off.svg`}
+              alt={`emoji-rating${item}_off`}
+              width={40}
+              height={40}
+            />
+          ))}
         </div>
 
         <hr className="mb-6 text-bk10" />
