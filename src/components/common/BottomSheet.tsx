@@ -6,11 +6,12 @@ import type { SheetRef } from 'react-modal-sheet';
 import type { SheetProps } from 'react-modal-sheet/dist/types';
 
 interface BottomSheetProps extends SheetProps {
+  className?: string;
   hasBackDropOpacity?: boolean;
 }
 
 function BottomSheet(
-  { isOpen, onClose, children, hasBackDropOpacity = false, ...props }: BottomSheetProps,
+  { isOpen, onClose, children, className, hasBackDropOpacity = false, ...props }: BottomSheetProps,
   ref: React.ForwardedRef<SheetRef | undefined | null>
 ) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ function BottomSheet(
     <Sheet
       ref={ref}
       isOpen={isOpen}
-      className="mx-auto w-full min-w-[360px] max-w-[448px]"
+      className={`mx-auto w-full min-w-[360px] max-w-[448px] ${className ?? ''}`}
       onClose={onClose}
       {...props}
     >
@@ -31,7 +32,7 @@ function BottomSheet(
             <div className="h-1 w-10 rounded-full bg-bk10" />
           </div>
         </Sheet.Header>
-        <Sheet.Content>{children}</Sheet.Content>
+        <Sheet.Content className="scrollbar-hide">{children}</Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop
         className={`${hasBackDropOpacity ? '!bg-[rgba(0,0,0,0.6)]' : '!bg-[rgba(0,0,0,0)]'}`}
