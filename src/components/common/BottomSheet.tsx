@@ -35,7 +35,9 @@ function BottomSheet(
           <Sheet.Content>{children}</Sheet.Content>
         </Sheet.Container>
       </div>
-      <Sheet.Backdrop className={`${hasBackDropOpacity ? '!bg-[rgba(0,0,0,0.6)]' : ''}`} />
+      <Sheet.Backdrop
+        className={`${hasBackDropOpacity ? '!bg-[rgba(0,0,0,0.6)]' : '!bg-[rgba(0,0,0,0)]'}`}
+      />
     </Sheet>
   );
 }
