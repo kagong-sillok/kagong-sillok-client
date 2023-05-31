@@ -17,7 +17,7 @@ function BottomSheet(
     <Sheet
       ref={ref}
       isOpen={isOpen}
-      className="!z-[100] mx-auto w-full min-w-[360px] max-w-[448px]"
+      className="!z-[999] mx-auto w-full min-w-[360px] max-w-[448px]"
       onClose={onClose}
       {...props}
     >
@@ -29,7 +29,7 @@ function BottomSheet(
         </Sheet.Header>
         <Sheet.Content className={`scrollbar-hide ${className ?? ''}`}>{children}</Sheet.Content>
       </Sheet.Container>
-      {isBackDrop && <Sheet.Backdrop onTap={onClose} className="!bg-[rgba(0,0,0,0.6)]" />}
+      {isBackDrop ? <Sheet.Backdrop onTap={onClose} className="!bg-[rgba(0,0,0,0.6)]" /> : <></>}
     </Sheet>
   );
 }
