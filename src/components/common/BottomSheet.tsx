@@ -1,5 +1,4 @@
-import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-import { forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
 import Sheet from 'react-modal-sheet';
 
 import type { SheetRef } from 'react-modal-sheet';
@@ -14,10 +13,6 @@ function BottomSheet(
   { isOpen, onClose, children, className, hasBackDropOpacity = false, ...props }: BottomSheetProps,
   ref: React.ForwardedRef<SheetRef | undefined | null>
 ) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(containerRef, onClose);
-
   return (
     <Sheet
       ref={ref}
@@ -26,7 +21,7 @@ function BottomSheet(
       onClose={onClose}
       {...props}
     >
-      <Sheet.Container ref={containerRef}>
+      <Sheet.Container>
         <Sheet.Header>
           <div className="flex h-4 items-center justify-center">
             <div className="h-1 w-10 rounded-full bg-bk10" />
@@ -35,6 +30,7 @@ function BottomSheet(
         <Sheet.Content className="scrollbar-hide">{children}</Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop
+        onTap={onClose}
         className={`${hasBackDropOpacity ? '!bg-[rgba(0,0,0,0.6)]' : '!bg-[rgba(0,0,0,0)]'}`}
       />
     </Sheet>
