@@ -2,8 +2,10 @@
 
 import Button from '@/components/common/Button';
 import { DefaultInfo, Header, KagongBox, ReviewBox, Tag, Tooltip } from '@/components/place';
+import ReviewSheet from '@/components/place/ReviewSheet';
 import { MAP_HEIGHT } from '@/constants/place';
 import Image from 'next/image';
+import { useRef, useState } from 'react';
 
 import type { PlaceConditionType, PlaceType } from '@/types/place';
 
@@ -51,6 +53,8 @@ const place: PlaceType = {
 };
 
 export default function Page() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="w-full overflow-y-scroll">
       <Header name={place.name} />
@@ -99,7 +103,10 @@ export default function Page() {
             />
           </div>
         </div>
-        <div className="relative mb-10 flex cursor-pointer justify-center gap-2">
+        <div
+          className="relative mb-10 flex cursor-pointer justify-center gap-2"
+          onClick={() => setIsOpen(true)}
+        >
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
           </Tooltip>
@@ -121,7 +128,7 @@ export default function Page() {
           <ReviewBox />
           <ReviewBox />
         </div>
-        <Button type="ROUND_DEFAULT" className="mb-10">
+        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsOpen(true)}>
           리뷰 작성하기
         </Button>
         <h5 className="mb-4 text-sub1">갤러리</h5>
@@ -136,6 +143,7 @@ export default function Page() {
           카공 기록하기
         </Button>
       </footer>
+      <ReviewSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }
