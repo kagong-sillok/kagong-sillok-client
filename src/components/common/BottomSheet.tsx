@@ -17,7 +17,7 @@ function BottomSheet(
     <Sheet
       ref={ref}
       isOpen={isOpen}
-      className="mx-auto w-full min-w-[360px] max-w-[448px]"
+      className="!z-[100] mx-auto w-full min-w-[360px] max-w-[448px]"
       onClose={onClose}
       {...props}
     >
