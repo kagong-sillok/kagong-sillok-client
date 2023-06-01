@@ -3,56 +3,19 @@
 import Button from '@/components/common/Button';
 import { DefaultInfo, Header, KagongBox, ReviewBox, Tag, Tooltip } from '@/components/place';
 import ReviewSheet from '@/components/place/ReviewSheet';
+import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import type { PlaceConditionType, PlaceType } from '@/types/place';
-
-const place: PlaceType = {
-  id: 1,
-  name: '스타벅스 동대문공원점',
-  address: '서울 중구 장충단로 229',
-  latitude: 37.565289,
-  longitude: 127.001285,
-  images: [],
-  tags: ['#조용한', '#나만알고싶은', '#노트북'],
-  isOpen: true,
-  phone: '02-1234-1234',
-  links: [{ linkType: 'WEB', url: 'https://www.starbucks.co.kr/' }],
-  businessHours: {
-    monday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    tuesday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    wednesday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    thursday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    friday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    saturday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    sunday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-  },
-};
+import type { PlaceConditionType } from '@/types/place';
 
 export default function Page() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data: place, isLoading, isError } = useGetPlace();
+
+  if (isLoading) return null;
+  if (isError) return null;
 
   return (
     <div className="w-full overflow-y-scroll">
@@ -70,7 +33,7 @@ export default function Page() {
           <Tag.OpenClosed type={place.isOpen ? 'OPEN' : 'CLOSED'} />
         </div>
         <h3 className="mb-2 text-head3">{place.name}</h3>
-        <p className="text-body2 text-bk60">{place.address}</p>
+        <p className="text-body2 text-bk60">{place?.address}</p>
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
