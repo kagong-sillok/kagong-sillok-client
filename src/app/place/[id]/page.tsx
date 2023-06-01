@@ -3,9 +3,8 @@
 import Button from '@/components/common/Button';
 import { DefaultInfo, Header, KagongBox, ReviewBox, Tag, Tooltip } from '@/components/place';
 import ReviewSheet from '@/components/place/ReviewSheet';
-import { MAP_HEIGHT } from '@/constants/place';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import type { PlaceConditionType, PlaceType } from '@/types/place';
 
@@ -58,7 +57,7 @@ export default function Page() {
   return (
     <div className="w-full overflow-y-scroll">
       <Header name={place.name} />
-      <div className={`flex h-[${MAP_HEIGHT}px] items-center justify-center bg-[#ddd]`}>지도</div>
+      <div className={`flex h-[219px] items-center justify-center bg-[#ddd]`}>지도</div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
@@ -77,7 +76,7 @@ export default function Page() {
         <h5 className="mb-4 text-sub1">기본 정보</h5>
         <DefaultInfo place={place} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
-        <div className="flex gap-2 overflow-hidden overflow-x-scroll pb-5">
+        <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
           {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
             <KagongBox key={index} type={type as PlaceConditionType} isFirst={index === 0} />
           ))}
