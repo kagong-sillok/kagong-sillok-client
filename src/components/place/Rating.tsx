@@ -9,7 +9,7 @@ export default function Rating({ rating, onClick }: RatingProps) {
   const ratingText = ['별로에요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex h-24 flex-col items-center gap-3">
       <div className="flex h-[60px] items-end justify-center gap-2">
         {[1, 2, 3, 4, 5].map((item) => (
           <Image
