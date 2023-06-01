@@ -1,7 +1,6 @@
-import Tabs from './Tabs';
-import BottomSheet from '../common/BottomSheet';
+import BottomSheet from '@/components/common/BottomSheet';
 import Button from '@/components/common/Button';
-import Rating from '@/components/place/Rating';
+import { Rating, Tabs } from '@/components/place';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 

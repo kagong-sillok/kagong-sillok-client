@@ -1,4 +1,4 @@
-import Tab from '../common/Tab';
+import Tab from '@/components/common/Tab';
 import { INITIAL_TABS } from '@/constants/place';
 import { useEffect, useState } from 'react';
 
