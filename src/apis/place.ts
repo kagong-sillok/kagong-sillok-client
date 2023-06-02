@@ -1,7 +1,9 @@
-import axios from 'axios';
+import ky from 'ky';
+
+import type { PlaceType } from '@/types/place';
 
 export const getPlace = async () => {
-  const { data } = await axios('/db/place.json');
+  const data = await ky.get('/db/place.json');
 
-  return data;
+  return data.json<PlaceType>();
 };
