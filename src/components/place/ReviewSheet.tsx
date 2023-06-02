@@ -1,7 +1,6 @@
 import BottomSheet from '@/components/common/BottomSheet';
 import Button from '@/components/common/Button';
-import { Rating, Tabs } from '@/components/place';
-import Image from 'next/image';
+import { ImageUpload, Rating, Tabs } from '@/components/place';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
@@ -17,6 +16,7 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
   const [rating, setRating] = useState<number | null>(null);
   const [selectedTabIds, setSelectedTabIds] = useState<number[]>([]);
   const [text, setText] = useState('');
+  const [images, setImages] = useState<File[]>([]);
 
   const ref = useRef<SheetRef>();
 
@@ -41,7 +41,7 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
         isBackDrop={true}
         className={`${currentSnap === 1 ? '!overflow-hidden' : ''}`}
       >
-        <div className="px-6 py-8">
+        <div className="h-full px-6 pb-24 pt-8">
           <h3 className="mb-5 text-head3">
             스타벅스 동대문점은
             <br />
@@ -72,21 +72,7 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
             <p className="mb-4 text-center text-body2 text-bk60">
               사진도 등록하고 카공을 공유해요!
             </p>
-            <div className="mb-24 flex w-[calc(100%+1.5rem)] gap-2 pr-6">
-              <div className="flex h-[72px] w-[72px] shrink-0 flex-col items-center justify-center bg-background">
-                <Image src="/assets/icons/32/Camera.svg" alt="camera" width={32} height={32} />
-                <p>
-                  4<span className="text-bk40">/5</span>
-                </p>
-              </div>
-              <div className="flex gap-2 overflow-hidden overflow-x-scroll">
-                <div className="h-[72px] w-[72px] shrink-0 bg-black"></div>
-                <div className="h-[72px] w-[72px] shrink-0 bg-black"></div>
-                <div className="h-[72px] w-[72px] shrink-0 bg-black"></div>
-                <div className="h-[72px] w-[72px] shrink-0 bg-black"></div>
-                <div className="h-[72px] w-[72px] shrink-0 bg-black"></div>
-              </div>
-            </div>
+            <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
           </div>
         </div>
       </BottomSheet>
