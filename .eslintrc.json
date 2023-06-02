@@ -18,6 +18,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "import/no-unresolved": "off",
     "react/no-unescaped-entities": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "prettier/prettier": [
       "error",
       {
