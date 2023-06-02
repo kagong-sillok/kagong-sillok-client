@@ -10,16 +10,16 @@ import {
   Tag,
   Tooltip,
 } from '@/components/place';
-import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
+import { useGetPlaceById } from '@/hooks/queries/place/useGetPlaceById';
 import Image from 'next/image';
 import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
 
-export default function Page() {
+export default function Page({ searchParams }: { searchParams: { id: string } }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data: place, isLoading, isError } = useGetPlace();
+  const { data: place, isLoading, isError } = useGetPlaceById(searchParams.id);
 
   if (isLoading) return null;
   if (isError) return null;
