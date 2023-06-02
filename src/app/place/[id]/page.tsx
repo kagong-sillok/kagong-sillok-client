@@ -5,6 +5,7 @@ import {
   DefaultInfo,
   Header,
   KagongBox,
+  TimeLogSheet,
   ReviewBox,
   ReviewSheet,
   Tag,
@@ -17,7 +18,8 @@ import { useState } from 'react';
 import type { PlaceConditionType } from '@/types/place';
 
 export default function Page({ searchParams }: { searchParams: { id: string } }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
+  const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
 
   const { data: place, isLoading, isError } = useGetPlaceById(searchParams.id);
 
@@ -41,6 +43,7 @@ export default function Page({ searchParams }: { searchParams: { id: string } })
         </div>
         <h3 className="mb-2 text-head3">{place.name}</h3>
         <p className="text-body2 text-bk60">{place?.address}</p>
+
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
@@ -74,7 +77,7 @@ export default function Page({ searchParams }: { searchParams: { id: string } })
         </div>
         <div
           className="relative mb-10 flex cursor-pointer justify-center gap-2"
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsReviewSheetOpen(true)}
         >
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
@@ -97,7 +100,7 @@ export default function Page({ searchParams }: { searchParams: { id: string } })
           <ReviewBox />
           <ReviewBox />
         </div>
-        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsOpen(true)}>
+        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsReviewSheetOpen(true)}>
           리뷰 작성하기
         </Button>
         <h5 className="mb-4 text-sub1">갤러리</h5>
@@ -108,11 +111,16 @@ export default function Page({ searchParams }: { searchParams: { id: string } })
         </div>
       </section>
       <footer>
-        <Button type="DEFAULT" className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]">
+        <Button
+          type="DEFAULT"
+          className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]"
+          onClick={() => setIsLogTimeSheetOpen(true)}
+        >
           카공 기록하기
         </Button>
       </footer>
-      <ReviewSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
+      <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
     </div>
   );
 }
