@@ -17,11 +17,11 @@ import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
 
-export default function Page({ searchParams }: { searchParams: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
 
-  const { data: place, isLoading, isError } = useGetPlaceById(searchParams.id);
+  const { data: place, isLoading, isError } = useGetPlaceById(params.id);
 
   if (isLoading) return null;
   if (isError) return null;
