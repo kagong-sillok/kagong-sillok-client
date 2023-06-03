@@ -5,3 +5,25 @@
 .filter-bk40 {
   filter: invert(71%) sepia(5%) saturate(194%) hue-rotate(202deg) brightness(87%) contrast(80%);
 }
+
+.circle:before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 4px;
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.react-modal-sheet-backdrop {
+  min-width: 360px;
+  max-width: 448px;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.react-modal-sheet-container {
+  border-radius: 0 !important;
+}

@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/swc-darwin-arm64", "npm:13.4.3"],\
             ["@tanstack/react-query", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:4.29.6"],\
+            ["@toss/ky", "npm:1.1.2"],\
             ["@types/node", "npm:20.1.3"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["@types/react", "npm:18.2.6"],\
@@ -639,6 +640,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-ad87447820.zip/node_modules/@tootallnate/once/",\
           "packageDependencies": [\
             ["@tootallnate/once", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@toss/ky", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/@toss-ky-npm-1.1.2-de7ab7d5c2-81925d5b7f.zip/node_modules/@toss/ky/",\
+          "packageDependencies": [\
+            ["@toss/ky", "npm:1.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2772,6 +2782,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/swc-darwin-arm64", "npm:13.4.3"],\
             ["@tanstack/react-query", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:4.29.6"],\
+            ["@toss/ky", "npm:1.1.2"],\
             ["@types/node", "npm:20.1.3"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["@types/react", "npm:18.2.6"],\
