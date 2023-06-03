@@ -85,13 +85,7 @@ export default function Home() {
                 {places.map((place) => (
                   <PlaceItem
                     key={place.id}
-                    id={place.id}
-                    name={place.name}
-                    tags={place.tags}
-                    rating={place.rating}
-                    latitude={place.latitude}
-                    longitude={place.longitude}
-                    isOpen={place.isOpen}
+                    place={place}
                     snapTo={snapTo}
                   />
                 ))}
