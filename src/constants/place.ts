@@ -83,3 +83,5 @@ export const INITIAL_TABS: TabType[] = [
     children: '넓은 테이블',
   },
 ];
+
+export const RATING_TEXT = ['별로예요', '그저 그래요', '괜찮아요', '괜찮아요', '최고예요'];
