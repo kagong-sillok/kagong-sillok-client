@@ -1,42 +1,44 @@
 {
-  "id": 1,
-  "name": "스타벅스 동대문공원점",
-  "address": "서울 중구 장충단로 229",
-  "latitude": 37.565289,
-  "longitude": 127.001285,
-  "images": [],
-  "tags": ["#조용한", "#나만알고싶은", "#노트북"],
-  "isOpen": true,
-  "phone": "02-1234-1234",
-  "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
-  "businessHours": {
-    "monday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "tuesday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "wednesday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "thursday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "friday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "saturday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
-    },
-    "sunday": {
-      "open": "09:00:00",
-      "close": "23:00:00"
+  "data": {
+    "id": 1,
+    "name": "스타벅스 동대문공원점",
+    "address": "서울 중구 장충단로 229",
+    "latitude": 37.565289,
+    "longitude": 127.001285,
+    "images": [],
+    "tags": ["#조용한", "#나만알고싶은", "#노트북"],
+    "isOpen": true,
+    "phone": "02-1234-1234",
+    "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
+    "businessHours": {
+      "monday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "tuesday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "wednesday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "thursday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "friday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "saturday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      },
+      "sunday": {
+        "open": "09:00:00",
+        "close": "23:00:00"
+      }
     }
   }
 }

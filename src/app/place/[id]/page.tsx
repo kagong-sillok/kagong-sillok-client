@@ -11,7 +11,9 @@ import {
   Tag,
   Tooltip,
 } from '@/components/place';
-import { useGetPlaceById } from '@/hooks/queries/place/useGetPlaceById';
+import { MAP_HEIGHT } from '@/constants/place';
+import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
+import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -21,33 +23,52 @@ export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
 
-  const { data: place, isLoading, isError } = useGetPlaceById(params.id);
+  const { data: place, isLoading, isError } = useGetPlace(params.id);
+
+  const isScrolled = useDetectScroll(MAP_HEIGHT);
 
   if (isLoading) return null;
   if (isError) return null;
 
   return (
     <div className="w-full overflow-y-scroll">
-      <Header name={place.name} />
+      <Header
+        name={isScrolled ? place.data.name : ''}
+        className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
+        rightIcons={[
+          {
+            src: '/assets/icons/28/Bookmark.svg',
+            alt: 'Bookmark',
+            width: 28,
+            height: 28,
+          },
+          {
+            src: '/assets/icons/28/Share.svg',
+            alt: 'Share',
+            width: 28,
+            height: 28,
+          },
+        ]}
+      />
       <div className={`flex h-[219px] items-center justify-center bg-[#ddd]`}>지도</div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
-            {place.tags.map((tag) => (
+            {place.data.tags.map((tag) => (
               <span key={tag} className="mr-1.5 text-caption text-violet/default">
                 {tag}
               </span>
             ))}
           </div>
-          <Tag.OpenClosed type={place.isOpen ? 'OPEN' : 'CLOSED'} />
+          <Tag.OpenClosed type={place.data.isOpen ? 'OPEN' : 'CLOSED'} />
         </div>
-        <h3 className="mb-2 text-head3">{place.name}</h3>
-        <p className="text-body2 text-bk60">{place?.address}</p>
+        <h3 className="mb-2 text-head3">{place.data.name}</h3>
+        <p className="text-body2 text-bk60">{place.data.address}</p>
 
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
-        <DefaultInfo place={place} />
+        <DefaultInfo place={place.data} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
         <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
           {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
