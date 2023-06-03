@@ -86,9 +86,9 @@ module.exports = {
         },
       ],
       sub2: [
-        '1.5rem',
+        '0.875rem',
         {
-          lineHeight: '2rem',
+          lineHeight: '1.25rem',
           fontWeight: '700',
         },
       ],
