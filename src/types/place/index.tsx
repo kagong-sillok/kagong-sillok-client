@@ -77,3 +77,21 @@ export type TabType = {
   isSelected: boolean;
   children: string;
 };
+
+export type PlaceShortItem = {
+  id: number;
+  name: string;
+  tags: string[];
+  rating: number;
+  latitude: number;
+  longitude: number;
+  isOpen: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlaceShortData = {
+  data: {
+    places: PlaceShortItem[];
+  };
+};
