@@ -1,4 +1,4 @@
-import ky from '@toss/ky';
+import ky from 'ky';
 
 import type { PlaceType } from '@/types/place';
 
