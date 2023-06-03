@@ -1,60 +1,33 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import { DefaultInfo, Header, KagongBox, ReviewBox, Tag, Tooltip } from '@/components/place';
-import { MAP_HEIGHT } from '@/constants/place';
+import {
+  DefaultInfo,
+  Header,
+  KagongBox,
+  ReviewBox,
+  ReviewSheet,
+  Tag,
+  Tooltip,
+} from '@/components/place';
+import { useGetPlaceById } from '@/hooks/queries/place/useGetPlaceById';
 import Image from 'next/image';
+import { useState } from 'react';
 
-import type { PlaceConditionType, PlaceType } from '@/types/place';
+import type { PlaceConditionType } from '@/types/place';
 
-const place: PlaceType = {
-  id: 1,
-  name: '스타벅스 동대문공원점',
-  address: '서울 중구 장충단로 229',
-  latitude: 37.565289,
-  longitude: 127.001285,
-  images: [],
-  tags: ['#조용한', '#나만알고싶은', '#노트북'],
-  isOpen: true,
-  phone: '02-1234-1234',
-  links: [{ linkType: 'WEB', url: 'https://www.starbucks.co.kr/' }],
-  businessHours: {
-    monday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    tuesday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    wednesday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    thursday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    friday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    saturday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-    sunday: {
-      open: '09:00:00',
-      close: '23:00:00',
-    },
-  },
-};
+export default function Page({ searchParams }: { searchParams: { id: string } }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-export default function Page() {
+  const { data: place, isLoading, isError } = useGetPlaceById(searchParams.id);
+
+  if (isLoading) return null;
+  if (isError) return null;
+
   return (
     <div className="w-full overflow-y-scroll">
       <Header name={place.name} />
-      <div className={`flex h-[${MAP_HEIGHT}px] items-center justify-center bg-[#ddd]`}>지도</div>
+      <div className={`flex h-[219px] items-center justify-center bg-[#ddd]`}>지도</div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
@@ -67,13 +40,13 @@ export default function Page() {
           <Tag.OpenClosed type={place.isOpen ? 'OPEN' : 'CLOSED'} />
         </div>
         <h3 className="mb-2 text-head3">{place.name}</h3>
-        <p className="text-body2 text-bk60">{place.address}</p>
+        <p className="text-body2 text-bk60">{place?.address}</p>
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
         <DefaultInfo place={place} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
-        <div className="flex gap-2 overflow-hidden overflow-x-scroll pb-5">
+        <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
           {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
             <KagongBox key={index} type={type as PlaceConditionType} isFirst={index === 0} />
           ))}
@@ -99,7 +72,10 @@ export default function Page() {
             />
           </div>
         </div>
-        <div className="relative mb-10 flex cursor-pointer justify-center gap-2">
+        <div
+          className="relative mb-10 flex cursor-pointer justify-center gap-2"
+          onClick={() => setIsOpen(true)}
+        >
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
           </Tooltip>
@@ -121,7 +97,7 @@ export default function Page() {
           <ReviewBox />
           <ReviewBox />
         </div>
-        <Button type="ROUND_DEFAULT" className="mb-10">
+        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsOpen(true)}>
           리뷰 작성하기
         </Button>
         <h5 className="mb-4 text-sub1">갤러리</h5>
@@ -136,6 +112,7 @@ export default function Page() {
           카공 기록하기
         </Button>
       </footer>
+      <ReviewSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }

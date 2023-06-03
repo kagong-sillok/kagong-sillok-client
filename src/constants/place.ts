@@ -1,4 +1,4 @@
-import type { DayType } from '@/types/place';
+import type { DayType, TabType } from '@/types/place';
 
 export const MAP_HEIGHT = 219;
 
@@ -48,5 +48,38 @@ export const CONDITION_LIST = [
     text: '소음',
     title: '조용한 공간',
     iconSrc: '/assets/icons/32/Quait.svg',
+  },
+];
+
+export const INITIAL_TABS: TabType[] = [
+  {
+    id: 1,
+    isSelected: false,
+    children: '호텔급 청결',
+  },
+  {
+    id: 2,
+    isSelected: false,
+    children: '와이파이',
+  },
+  {
+    id: 3,
+    isSelected: false,
+    children: '편안한 좌석',
+  },
+  {
+    id: 4,
+    isSelected: false,
+    children: '조용한 공간',
+  },
+  {
+    id: 5,
+    isSelected: false,
+    children: '적정 온도',
+  },
+  {
+    id: 6,
+    isSelected: false,
+    children: '넓은 테이블',
   },
 ];

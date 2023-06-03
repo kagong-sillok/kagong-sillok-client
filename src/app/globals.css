@@ -13,6 +13,13 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-::-webkit-scrollbar {
-  display: none;
+.react-modal-sheet-backdrop {
+  min-width: 360px;
+  max-width: 448px;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.react-modal-sheet-container {
+  border-radius: 0 !important;
 }

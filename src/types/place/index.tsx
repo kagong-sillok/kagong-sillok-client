@@ -71,3 +71,9 @@ export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TA
 export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
 
 export type DayType = keyof PlaceType['businessHours'];
+
+export type TabType = {
+  id: number;
+  isSelected: boolean;
+  children: string;
+};
