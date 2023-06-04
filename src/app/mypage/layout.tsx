@@ -9,13 +9,13 @@ import type { PropsWithChildren } from 'react';
 type TabItems = { [key in PageType]: { label: string; key: ViewType }[] };
 
 const views: TabItems = {
-  place: [
-    { label: '찜한카페', key: 'bookmarks' },
-    { label: '작성한 리뷰', key: 'reviews' },
+  PLACE: [
+    { label: '찜한카페', key: 'BOOKMARKS' },
+    { label: '작성한 리뷰', key: 'REVIEWS' },
   ],
-  record: [
-    { label: '타임라인 보기', key: 'timeline' },
-    { label: '카공지도 보기', key: 'map' },
+  RECORD: [
+    { label: '타임라인 보기', key: 'TIMELINE' },
+    { label: '카공지도 보기', key: 'MAP' },
   ],
 };
 
@@ -25,24 +25,26 @@ const userData: UserData = { name: '카페처돌이', time: '2023-06-01T01:20:00
 export default function MypageLayout({ children }: PropsWithChildren) {
   const segments = useSelectedLayoutSegments();
   const router = useRouter();
+  const page = segments[0].toUpperCase();
 
   return (
     <div className="h-screen">
       <Gnb
-        title={segments[0] === 'record' ? '카공기록' : ''}
+        title={page === 'RECORD' ? '카공기록' : ''}
         onBackClick={() => router.back()}
         onCloseClick={() => console.log('close')}
       />
-      <Header page={segments[0] as PageType} user={userData} />
+      <Header page={page as PageType} user={userData} />
       <TabGroup>
         {segments.length > 0 &&
-          views[segments[0] as PageType].map((el) => {
+          views[page as PageType].map((el) => {
+            const key = el.key.toLowerCase();
             return (
               <Tab
                 key={el.key}
                 label={el.label}
-                active={segments.includes(el.key)}
-                href={`/mypage/${segments[0]}/${el.key}`}
+                active={segments.includes(key)}
+                href={`/mypage/${segments[0]}/${key}`}
               />
             );
           })}

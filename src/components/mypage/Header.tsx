@@ -8,9 +8,9 @@ interface HeaderProps {
 
 const getHeader = (page: PageType, time: string) => {
   switch (page) {
-    case 'place':
+    case 'PLACE':
       return '카공실록 기록 확인해보세요.';
-    case 'record':
+    case 'RECORD':
       return (
         <>
           카공
