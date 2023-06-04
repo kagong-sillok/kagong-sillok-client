@@ -2,7 +2,12 @@ import Dot from './Dot';
 import { PlaceShortItem } from '@/types/place';
 import Image from 'next/image';
 
-export default function BookmarkItem({ data, isLast }: { data: PlaceShortItem; isLast: boolean }) {
+interface BookmarkItemProps {
+  data: PlaceShortItem;
+  isLast: boolean;
+}
+
+export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
   const { name, tags, rating, isOpen } = data;
   return (
     <>

@@ -6,7 +6,12 @@ import { ReviewItem } from '@/types/mypage';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-export default function ReviewItem({ data, isLast }: { data: ReviewItem; isLast: boolean }) {
+interface ReviewItemProps {
+  data: ReviewItem;
+  isLast: boolean;
+}
+
+export default function ReviewItem({ data, isLast }: ReviewItemProps) {
   const { id, rating, createdAt, content } = data;
   const date = format(new Date(createdAt), 'yyyy.MM.dd');
   return (

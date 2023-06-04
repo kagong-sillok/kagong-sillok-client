@@ -2,7 +2,11 @@ import Dot from '@/components/mypage/Dot';
 import { RecordItem } from '@/types/mypage';
 import { format } from 'date-fns';
 
-export default function RecordItem({ data }: { data: RecordItem }) {
+interface RecordItemProps {
+  data: RecordItem;
+}
+
+export default function RecordItem({ data }: RecordItemProps) {
   const { name, content, time } = data;
   const date = format(new Date(time), "h'시간' m'분'");
   return (

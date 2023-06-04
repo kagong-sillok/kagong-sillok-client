@@ -1,6 +1,11 @@
 import { PageType, UserData } from '@/types/mypage';
 import { format } from 'date-fns';
 
+interface HeaderProps {
+  page: PageType;
+  user: UserData;
+}
+
 const getHeader = (page: PageType, time: string) => {
   switch (page) {
     case 'place':
@@ -15,7 +20,7 @@ const getHeader = (page: PageType, time: string) => {
   }
 };
 
-function Header({ page, user }: { page: PageType; user: UserData }) {
+function Header({ page, user }: HeaderProps) {
   const time = format(new Date(user.time), "h'시간' m'분'");
   return (
     <div className="pb-8 pl-6 pt-5 text-head3">
