@@ -20,7 +20,7 @@ export default function GalleryModal({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    setCurrentImageIndex(images.findIndex((image) => image.url === selectedImageUrl));
+    setCurrentImageIndex(images.findIndex(({ url }) => url === selectedImageUrl));
   }, [selectedImageUrl, images]);
 
   if (!isOpen) return null;
@@ -32,7 +32,7 @@ export default function GalleryModal({
         <span className="mr-1 text-body2 text-white">{currentImageIndex + 1}</span>
         <span className="text-caption text-bk50">/ {images.length}</span>
       </div>
-      <div className="relative w-full pb-[100%] ">
+      <div className="relative w-full before:block before:pb-[100%]">
         {images[currentImageIndex]?.url && (
           <Image
             src={images[currentImageIndex].url}

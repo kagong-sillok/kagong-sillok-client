@@ -5,7 +5,26 @@
     "address": "서울 중구 장충단로 229",
     "latitude": 37.565289,
     "longitude": 127.001285,
-    "images": [],
+    "images": [
+      {
+        "url": "https://cdn.pixabay.com/photo/2023/05/22/18/17/insect-8011258_640.jpg",
+        "width": 640,
+        "height": 426,
+        "extension": "jpg"
+      },
+      {
+        "url": "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_640.jpg",
+        "width": 640,
+        "height": 426,
+        "extension": "jpg"
+      },
+      {
+        "url": "https://cdn.pixabay.com/photo/2023/04/10/08/02/girl-7913052_1280.jpg",
+        "width": 1280,
+        "height": 853,
+        "extension": "jpg"
+      }
+    ],
     "tags": ["#조용한", "#나만알고싶은", "#노트북"],
     "isOpen": true,
     "phone": "02-1234-1234",

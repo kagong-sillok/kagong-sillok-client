@@ -26,7 +26,7 @@ export default function Header({ name, className, onLeftClick, rightIcons }: Hea
         />
         {name && <p className="ml-3 text-button1">{name}</p>}
       </div>
-      <div className={`flex items-center gap-3`}>
+      <div className="flex items-center gap-3">
         {rightIcons?.map((icon, index) => (
           <Image key={index} {...icon} className="cursor-pointer" />
         ))}
