@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
+interface SideMenuProps {
+  open: boolean;
+  onClose: () => void;
+}
+
 const IconButton = ({
   label,
   icon,
@@ -27,7 +32,7 @@ const pages: { label: string; link: string }[] = [
   { label: '작성한 기록', link: '3' },
 ];
 
-export default function SideMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function SideMenu({ open, onClose }: SideMenuProps) {
   if (!open) return <></>;
   return (
     <>
@@ -111,6 +116,11 @@ export default function SideMenu({ open, onClose }: { open: boolean; onClose: ()
             <div className="text-caption text-bk40">1.3.6</div>
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-5 left-6 z-50 flex w-full items-center justify-start gap-3 text-body2 text-bk40">
+        <div className="cursor-pointer">로그아웃</div>
+        <div className="h-3 w-px bg-bk20" />
+        <div className="cursor-pointer">탈퇴하기</div>
       </div>
     </>
   );
