@@ -4,6 +4,7 @@ import { Gnb, Header, Tab, TabGroup } from '@/components/mypage';
 import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
 
 import type { PageType, UserData, ViewType } from '@/types/mypage';
+import type { PropsWithChildren } from 'react';
 
 type TabItems = { [key in PageType]: { label: string; key: ViewType }[] };
 
@@ -21,7 +22,7 @@ const views: TabItems = {
 // 아직 유저 데이터가 없어 임시로 만든 데이터임
 const userData: UserData = { name: '카페처돌이', time: '2023-06-01T01:20:00' };
 
-export default function MypageLayout({ children }: { children: React.ReactNode }) {
+export default function MypageLayout({ children }: PropsWithChildren) {
   const segments = useSelectedLayoutSegments();
   const router = useRouter();
 

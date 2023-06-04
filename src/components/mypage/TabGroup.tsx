@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
-export default function TabGroup({ children }: { children: ReactNode }) {
+export default function TabGroup({ children }: PropsWithChildren) {
   return (
     <div className="relative grid grid-cols-2 px-[24px] pt-3">
       {children}
