@@ -1,6 +1,6 @@
 'use client';
 
-import Dot from './Dot';
+import Dot from '@/components/mypage/Dot';
 import { RATING_TEXT } from '@/constants/place';
 import { ReviewItem } from '@/types/mypage';
 import { format } from 'date-fns';

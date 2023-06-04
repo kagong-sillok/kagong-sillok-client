@@ -1,4 +1,4 @@
-import Dot from './Dot';
+import Dot from '@/components/mypage/Dot';
 import { RecordItem } from '@/types/mypage';
 import { format } from 'date-fns';
 
