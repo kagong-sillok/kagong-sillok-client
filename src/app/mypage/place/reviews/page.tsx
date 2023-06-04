@@ -1,5 +1,6 @@
 import { ReviewItem } from '@/components/mypage';
-import { ReviewData } from '@/types/mypage';
+
+import type { ReviewData } from '@/types/mypage';
 
 const reviewList: ReviewData = {
   data: [

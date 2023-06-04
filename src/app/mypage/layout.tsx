@@ -1,8 +1,9 @@
 'use client';
 
 import { Gnb, Header, Tab, TabGroup } from '@/components/mypage';
-import { PageType, UserData, ViewType } from '@/types/mypage';
 import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
+
+import type { PageType, UserData, ViewType } from '@/types/mypage';
 
 type TabItems = { [key in PageType]: { label: string; key: ViewType }[] };
 

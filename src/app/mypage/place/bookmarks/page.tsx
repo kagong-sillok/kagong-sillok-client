@@ -1,5 +1,6 @@
 import { BookmarkItem } from '@/components/mypage';
-import { PlaceShortData } from '@/types/place';
+
+import type { PlaceShortData } from '@/types/place';
 
 const bookmarkList: PlaceShortData = {
   data: {

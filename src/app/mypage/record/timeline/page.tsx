@@ -1,5 +1,6 @@
 import RecordItem from '@/components/mypage/RecordItem';
-import { RecordData } from '@/types/mypage';
+
+import type { RecordData } from '@/types/mypage';
 
 const recordList: RecordData = {
   data: [
