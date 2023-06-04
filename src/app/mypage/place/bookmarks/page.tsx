@@ -44,13 +44,17 @@ const bookmarkList: PlaceShortData = {
 
 function Bookmarks() {
   return (
-    <>
+    <div className="px-6">
       {bookmarkList.data.places.map((item, i) => {
         return (
-          <BookmarkItem key={i} data={item} isLast={bookmarkList.data.places.length - 1 === i} />
+          <BookmarkItem
+            key={item.id}
+            data={item}
+            isLast={bookmarkList.data.places.length - 1 === i}
+          />
         );
       })}
-    </>
+    </div>
   );
 }
 

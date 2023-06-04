@@ -11,7 +11,7 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
   const { name, tags, rating, isOpen } = data;
   return (
     <>
-      <div className="flex w-full items-center justify-between gap-4 p-6">
+      <div className="flex w-full items-center justify-between gap-4 py-6">
         <div className="flex flex-col justify-start gap-0.5">
           <div className="text-sub1">{name}</div>
 
