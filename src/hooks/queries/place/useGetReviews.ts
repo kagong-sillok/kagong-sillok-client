@@ -1,6 +1,13 @@
 import { getReviews } from '@/apis/place';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
-export function useGetReviews(placeId: string) {
-  return useQuery(['reviews', placeId], () => getReviews(placeId));
+export function useGetReviews(placeId: string, size = 5) {
+  return useInfiniteQuery(
+    ['reviews', placeId],
+    ({ pageParam = 0 }) => getReviews(placeId, size, pageParam),
+    {
+      enabled: !!placeId,
+      getNextPageParam: (lastPage) => lastPage.pageParam + size,
+    }
+  );
 }
