@@ -84,4 +84,4 @@ export const INITIAL_TABS: TabType[] = [
   },
 ];
 
-export const RATING_TEXT = ['별로예요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];
+export const RATING_TEXT = ['별로에요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];

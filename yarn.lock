@@ -445,13 +445,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@toss/ky@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@toss/ky@npm:1.1.2"
-  checksum: 81925d5b7ffd7ce8cb7a6263354b537e720d64a38277176ebcaf4e1d2be3ab462f07e2eba46d1b7cee1ffbc27a691b0e7dea71ef8008f15fd5acf78abe8e3d5b
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -2050,7 +2043,6 @@ __metadata:
     "@next/swc-darwin-arm64": ^13.4.3
     "@tanstack/react-query": ^4.29.5
     "@tanstack/react-query-devtools": ^4.29.6
-    "@toss/ky": ^1.1.2
     "@types/node": 20.1.3
     "@types/prettier": ^2
     "@types/react": 18.2.6
@@ -2065,6 +2057,7 @@ __metadata:
     eslint-plugin-import: ^2.27.5
     eslint-plugin-prettier: ^4.2.1
     framer-motion: ^10.12.16
+    ky: ^0.33.3
     next: 13.4.2
     postcss: ^8.4.23
     prettier: ^2.8.8
@@ -2898,6 +2891,13 @@ __metadata:
   version: 0.1.38
   resolution: "kakao.maps.d.ts@npm:0.1.38"
   checksum: 4033de2f1aa23d0d10c2585b4297aab0a0203b76bac63584f3833bdcdb8baf79ea23d77eeaaefa570128a2fd947f5f29ea7e66038b1bc8609c34c8887296951b
+  languageName: node
+  linkType: hard
+
+"ky@npm:^0.33.3":
+  version: 0.33.3
+  resolution: "ky@npm:0.33.3"
+  checksum: d1869e1f33c0165355f621b6726fcc1a9de20a31f4a826ca0cfd5753d83b9cba8723402d554a00194e0ee3959e0dda0638f4b99d54a3a7de928b55ff870b0bcc
   languageName: node
   linkType: hard
 
