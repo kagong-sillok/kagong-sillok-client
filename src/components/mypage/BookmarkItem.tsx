@@ -16,9 +16,9 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
           <div className="text-sub1">{name}</div>
 
           <div className="flex items-center gap-1.5">
-            {tags.map((el, idx) => {
+            {tags.map((el) => {
               return (
-                <div key={idx} className="text-caption text-bk50">
+                <div key={el} className="text-caption text-bk50">
                   {el}
                 </div>
               );
