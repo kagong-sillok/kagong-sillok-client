@@ -14,8 +14,7 @@ const getHeader = (page: PageType, time: string) => {
     case 'RECORD':
       return (
         <>
-          카공
-          <span className="text-violet/default">{time}</span>째 기록중
+          카공<span className="text-violet/default"> {time}</span>째 기록중
         </>
       );
   }
