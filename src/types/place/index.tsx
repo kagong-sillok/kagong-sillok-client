@@ -4,7 +4,7 @@ export type PlaceType = {
   address: string;
   latitude: number;
   longitude: number;
-  images: string[];
+  images: ImageType[];
   tags: string[]; // ['#조용한', '#나만알고싶은', '#노트북']
   isOpen: boolean;
   phone: string; // 02-1234-1234
@@ -50,6 +50,18 @@ export type CompactPlaceType = {
   tags: string[];
   rating: number;
   isOpen: boolean;
+}
+
+export type ReviewType = {
+  id: number;
+  rating: number;
+  content: string;
+  images: ImageType[];
+  tags: PlaceConditionType;
+  userId: number;
+  userNickname: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type LineType =
@@ -84,4 +96,11 @@ export type TabType = {
   id: number;
   isSelected: boolean;
   children: string;
+};
+
+export type ImageType = {
+  url: string;
+  width: number;
+  height: number;
+  extension: string;
 };

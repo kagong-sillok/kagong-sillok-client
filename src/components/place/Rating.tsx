@@ -1,3 +1,4 @@
+import { RATING_TEXT } from '@/constants/place';
 import Image from 'next/image';
 
 interface RatingProps {
@@ -6,8 +7,6 @@ interface RatingProps {
 }
 
 export default function Rating({ rating, onClick }: RatingProps) {
-  const ratingText = ['별로에요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];
-
   return (
     <div className="flex h-24 flex-col items-center gap-3">
       <div className="flex h-[60px] items-end justify-center gap-2">
@@ -23,7 +22,7 @@ export default function Rating({ rating, onClick }: RatingProps) {
           />
         ))}
       </div>
-      {rating !== null && <p className="text-body1">{ratingText[rating - 1]}</p>}
+      {rating !== null && <p className="text-body1">{RATING_TEXT[rating - 1]}</p>}
     </div>
   );
 }

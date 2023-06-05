@@ -12,6 +12,7 @@
     "@next/swc-darwin-arm64": "^13.4.3",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/react-query-devtools": "^4.29.6",
+    "date-fns": "^2.30.0",
     "ky": "^0.33.3",
     "next": "13.4.2",
     "react": "18.2.0",
