@@ -27,15 +27,12 @@ const filterItems = [
 ];
 
 interface navProps {
-  isListClicked: boolean;
+  isBottomSheetUp: boolean;
 }
 
-export default function Nav({ isListClicked }: navProps) {
+export default function Nav({ isBottomSheetUp }: navProps) {
   const [selectedTab, setSelectedTab] = useState(1);
   const router = useRouter();
-  function handleClick() {
-    router.push('/search');
-  }
 
   return (
     <nav className="fixed top-0 z-50 max-h-[112px] w-full max-w-[448px] bg-white text-bk100">
@@ -46,10 +43,10 @@ export default function Nav({ isListClicked }: navProps) {
           className="ml-3 w-full bg-background text-body1 outline-none placeholder:text-bk30"
           placeholder="어느 지역의 카페를 보여드릴까요?"
           readOnly={true}
-          onClick={handleClick}
+          onClick={() => router.push('/search')}
         />
       </div>
-      {!isListClicked && (
+      {!isBottomSheetUp && (
         <div className="mb-3 flex !w-full flex-row gap-1 overflow-scroll px-4 scrollbar-hide">
           {filterItems.map((tab) => (
             <Tab

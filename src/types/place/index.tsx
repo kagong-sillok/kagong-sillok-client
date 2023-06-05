@@ -44,6 +44,14 @@ export type PlaceType = {
   };
 };
 
+export type CompactPlaceType = {
+  id: number;
+  name: string;
+  tags: string[];
+  rating: number;
+  isOpen: boolean;
+};
+
 export type LineType =
   | '1'
   | '2'

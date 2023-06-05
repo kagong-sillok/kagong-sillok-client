@@ -1,18 +1,14 @@
+import { CompactPlaceType } from '@/types/place';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface PlaceItemProps {
-  id: number;
-  name: string;
-  tags: string[];
-  rating: number;
-  latitude: number;
-  longitude: number;
-  isOpen: boolean;
-  snapTo: (i: number) => void;
+  place: CompactPlaceType;
+  // snapTo: (i: number) => void;
 }
 
-export default function PlaceItem({ id, name, tags, rating, isOpen }: PlaceItemProps) {
+export default function PlaceItem({ place }: PlaceItemProps) {
+  const { id, name, tags, rating, isOpen } = place;
   return (
     <li className="h-[115px] w-full">
       <Link href={`/place/${id}`} className="flex h-full justify-between p-6">
