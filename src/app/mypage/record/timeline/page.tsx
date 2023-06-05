@@ -32,8 +32,8 @@ const recordList: RecordData = {
 function Timeline() {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-6 p-6">
-      {recordList.data.map((item, i) => {
-        return <RecordItem key={i} data={item} />;
+      {recordList.data.map((item) => {
+        return <RecordItem key={item.id} data={item} />;
       })}
     </div>
   );
