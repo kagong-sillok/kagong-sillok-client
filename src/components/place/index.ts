@@ -11,3 +11,4 @@ export { default as Tabs } from './Tabs';
 export { default as Rating } from './Rating';
 export { default as TimeLogSheet } from './TimeLogSheet';
 export { default as ImageUpload } from './ImageUpload';
+export { default as ShareSheet } from './ShareSheet';
