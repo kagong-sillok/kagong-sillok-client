@@ -1,12 +1,19 @@
 import Image from 'next/image';
 
 interface SearchHistoryItemProps {
+  id: number;
   keyword: string;
   date: string;
+  handleHistoryDelete: (id: number) => void;
 }
 
 Image;
-export default function SearchHistoryItem({ keyword, date }: SearchHistoryItemProps) {
+export default function SearchHistoryItem({
+  id,
+  keyword,
+  date,
+  handleHistoryDelete,
+}: SearchHistoryItemProps) {
   return (
     <li className="flex w-full items-center justify-between px-6 py-[1.375rem] transition-colors active:bg-[#F7F7F8]">
       <div className="text-body2 text-bk100">{keyword}</div>
@@ -18,6 +25,7 @@ export default function SearchHistoryItem({ keyword, date }: SearchHistoryItemPr
           height={16}
           alt="close"
           className="filter-bk40 ml-1"
+          onClick={() => handleHistoryDelete(id)}
         />
       </div>
     </li>

@@ -3,19 +3,28 @@ import SearchHistoryItem from '@/components/search/SearchHistoryItem';
 import { SearchHistoryType } from '@/types/search';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-
-const searchHistory: SearchHistoryType[] = [
-  { keyword: '스타벅스 한국 프레스점', date: '05.20' },
-  { keyword: '스타벅스 환구단점', date: '05.20' },
-];
+import { useEffect, useRef, useState } from 'react';
 
 export default function Search() {
   const [keyword, setKeyword] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [searchHistory, setHistoryList] = useState<SearchHistoryType[]>([
+    { id: 1, keyword: '스타벅스 한국 프레스점', date: '05.20' },
+    { id: 2, keyword: '스타벅스 환구단점', date: '05.20' },
+  ]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setKeyword(event.target.value);
   }
+
+  const handleHistoryDelete = (id: number) => {
+    setHistoryList(searchHistory.filter((item) => item.id != id));
+  };
+
   return (
     <div className="h-screen bg-white">
       <div className="flex h-14 items-center px-6">
@@ -28,6 +37,7 @@ export default function Search() {
           placeholder="어느 지역의 카페를 보여드릴까요?"
           value={keyword}
           onChange={handleChange}
+          ref={inputRef}
         />
       </div>
       {searchHistory.length === 0 ? (
@@ -40,9 +50,11 @@ export default function Search() {
           <ul>
             {searchHistory.map((item) => (
               <SearchHistoryItem
-                key={item.keyword + item.date}
+                key={item.id}
+                id={item.id}
                 keyword={item.keyword}
                 date={item.date}
+                handleHistoryDelete={handleHistoryDelete}
               />
             ))}
           </ul>
