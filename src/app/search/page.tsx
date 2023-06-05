@@ -3,23 +3,24 @@ import SearchHistoryItem from '@/components/search/SearchHistoryItem';
 import { SearchHistoryType } from '@/types/search';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 const searchHistory: SearchHistoryType[] = [
   { keyword: '스타벅스 한국 프레스점', date: '05.20' },
   { keyword: '스타벅스 환구단점', date: '05.20' },
 ];
+
 export default function Search() {
   const [keyword, setKeyword] = useState('');
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setKeyword(event.target.value);
   }
   return (
     <div className="h-screen bg-white">
       <div className="flex h-14 items-center px-6">
         <Link href="/">
-          <Image src="/assets/icons/28/Back.svg" width={28} height={28} alt="back"></Image>
+          <Image src="/assets/Icons/28/Back.svg" width={28} height={28} alt="back" />
         </Link>
         <input
           type="text"

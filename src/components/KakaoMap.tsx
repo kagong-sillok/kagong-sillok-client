@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 'use client';
 
+import { DEFAULT_COORDINATES } from '@/constants/map';
 import useGeoLocation from '@/hooks/useGeolocation';
 import { usePlacesStore } from '@/store/PlacesState';
 import Script from 'next/script';
@@ -24,12 +25,8 @@ const KakaoMap = () => {
     <>
       <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       <Map
-        center={
-          coordinates
-            ? { lat: coordinates.lat, lng: coordinates.lng }
-            : { lat: 37.5642135, lng: 127.0016985 }
-        }
-        style={{ minWidth: '360px', minHeight: '100vh', width: '100%' }}
+        center={coordinates ? { lat: coordinates.lat, lng: coordinates.lng } : DEFAULT_COORDINATES}
+        className="h-screen w-full min-w-[360px]"
       >
         {places.map((place) => (
           <MapMarker
@@ -39,7 +36,7 @@ const KakaoMap = () => {
               lng: place.longitude,
             }}
             image={{
-              src: '/assets/icons/marker.svg',
+              src: '/assets/Icons/marker.svg',
               size: {
                 width: 36,
                 height: 45,

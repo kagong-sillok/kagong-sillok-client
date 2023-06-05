@@ -32,7 +32,6 @@ interface navProps {
 
 export default function Nav({ isListClicked }: navProps) {
   const [selectedTab, setSelectedTab] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   function handleClick() {
     router.push('/search');
@@ -41,7 +40,7 @@ export default function Nav({ isListClicked }: navProps) {
   return (
     <nav className="fixed top-0 z-50 max-h-[112px] w-full max-w-[448px] bg-white text-bk100">
       <div className="mx-4 my-3 flex items-center bg-background px-3.5 py-2">
-        <Image src={'/assets/icons/28/Menu.svg'} alt="menu" width={28} height={28} />
+        <Image src={'/assets/Icons/28/Menu.svg'} alt="menu" width={28} height={28} />
         <input
           type="text"
           className="ml-3 w-full bg-background text-body1 outline-none placeholder:text-bk30"

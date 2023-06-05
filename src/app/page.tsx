@@ -1,12 +1,13 @@
 'use client';
 
+import BottomSheet from '@/components/common/BottomSheet';
 import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
 import KakaoMap from '@/components/KakaoMap';
 import { usePlacesStore } from '@/store/PlacesState';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import Sheet, { type SheetRef } from 'react-modal-sheet';
+import { type SheetRef } from 'react-modal-sheet';
 
 export default function Home() {
   const ref = useRef<SheetRef>();
@@ -17,11 +18,11 @@ export default function Home() {
 
   useEffect(() => {
     setIsServer(true);
-    setMaxSnap(window.innerHeight - 88);
+    setMaxSnap(-88);
   }, []);
 
   const snapPoints = [
-    maxSnap === 0 ? 550 : maxSnap,
+    maxSnap,
     500,
     475,
     450,
@@ -60,11 +61,11 @@ export default function Home() {
         목록보기
       </button>
       <button className="fixed bottom-[81px] right-6 z-30 rounded-full bg-white p-3 drop-shadow-md transition-colors active:bg-bk20">
-        <Image src="/assets/icons/16/Location.svg" width={16} height={16} alt="location" />
+        <Image src="/assets/Icons/16/Location.svg" width={16} height={16} alt="location" />
       </button>
       <KakaoMap />
       {isServer && (
-        <Sheet
+        <BottomSheet
           ref={ref}
           isOpen={true}
           snapPoints={snapPoints}
@@ -72,27 +73,23 @@ export default function Home() {
             return;
           }}
           initialSnap={snapPoints.length - 1}
-          className="flex justify-center"
         >
-          <Sheet.Container style={{ maxWidth: '448px', left: 'calc(50%-448px)' }}>
-            <Sheet.Header>
-              <div className="flex h-6 items-center justify-center bg-white">
-                <div className="h-1 w-10 rounded-full bg-bk10" />
-              </div>
-            </Sheet.Header>
-            <Sheet.Content className="scrollbar-hide">
-              <ul>
-                {places.map((place) => (
-                  <PlaceItem
-                    key={place.id}
-                    place={place}
-                    snapTo={snapTo}
-                  />
-                ))}
-              </ul>
-            </Sheet.Content>
-          </Sheet.Container>
-        </Sheet>
+          <ul>
+            {places.map((place) => (
+              <PlaceItem
+                key={place.id}
+                id={place.id}
+                name={place.name}
+                tags={place.tags}
+                rating={place.rating}
+                latitude={place.latitude}
+                longitude={place.longitude}
+                isOpen={place.isOpen}
+                snapTo={snapTo}
+              />
+            ))}
+          </ul>
+        </BottomSheet>
       )}
     </>
   );

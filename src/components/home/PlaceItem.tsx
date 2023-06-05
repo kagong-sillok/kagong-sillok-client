@@ -12,23 +12,9 @@ interface PlaceItemProps {
   snapTo: (i: number) => void;
 }
 
-export default function PlaceItem({
-  id,
-  name,
-  tags,
-  rating,
-  // latitude,
-  // longitude,
-  isOpen,
-}: PlaceItemProps) {
+export default function PlaceItem({ id, name, tags, rating, isOpen }: PlaceItemProps) {
   return (
-    <li
-      className="h-[115px] w-full"
-      // onClick={() => {
-      //   setCenterCoordinate({ latitude, longitude });
-      //   snapTo(15);
-      // }}
-    >
+    <li className="h-[115px] w-full">
       <Link href={`/place/${id}`} className="flex h-full justify-between p-6">
         <div className="flex flex-col">
           <p className="mb-0.5 text-sub1">{name}</p>
@@ -41,7 +27,7 @@ export default function PlaceItem({
           </div>
           <div className="flex gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/icons/40/emoji-rating${Math.round(rating)}_on.svg`}
+              src={`/assets/Icons/40/emoji-rating${Math.round(rating)}_on.svg`}
               height={16}
               width={16}
               alt="emoji"
@@ -52,7 +38,7 @@ export default function PlaceItem({
             <span>{isOpen ? '영업중' : '영업종료'}</span>
           </div>
         </div>
-        <Image src="/assets/icons/null.svg" width={64} height={64} alt="default"></Image>
+        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
       </Link>
     </li>
   );
