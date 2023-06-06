@@ -88,7 +88,10 @@ export default function Page({ params }: { params: { id: string } }) {
           <h5 className="text-sub1">
             리뷰 <span className="text-violet/default">14</span>
           </h5>
-          <div className="flex items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60">
+          <Link
+            href={`/place/${params.id}/review`}
+            className="flex cursor-pointer items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60"
+          >
             리뷰 더보기
             <Image
               src="/assets/icons/16/Arrow-right.svg"
@@ -97,7 +100,7 @@ export default function Page({ params }: { params: { id: string } }) {
               height={16}
               className="invert-[40%] filter"
             />
-          </div>
+          </Link>
         </div>
         <div
           className="relative mb-10 flex cursor-pointer justify-center gap-2"
