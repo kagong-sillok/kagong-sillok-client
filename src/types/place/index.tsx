@@ -90,6 +90,24 @@ export type TabType = {
   children: string;
 };
 
+export type PlaceShortItem = {
+  id: number;
+  name: string;
+  tags: string[];
+  rating: number;
+  latitude: number;
+  longitude: number;
+  isOpen: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlaceShortData = {
+  data: {
+    places: PlaceShortItem[];
+  };
+}
+
 export type ImageType = {
   url: string;
   width: number;
