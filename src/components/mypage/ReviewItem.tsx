@@ -2,9 +2,10 @@
 
 import Dot from '@/components/mypage/Dot';
 import { RATING_TEXT } from '@/constants/place';
-import { ReviewItem } from '@/types/mypage';
 import { format } from 'date-fns';
 import Image from 'next/image';
+
+import type { ReviewItem } from '@/types/mypage';
 
 interface ReviewItemProps {
   data: ReviewItem;
@@ -16,7 +17,7 @@ export default function ReviewItem({ data, isLast }: ReviewItemProps) {
   const date = format(new Date(createdAt), 'yy.MM.dd');
   return (
     <>
-      <div className="flex flex-col justify-start gap-3 p-6">
+      <div className="flex flex-col justify-start gap-3 py-6">
         <div className="flex w-full items-center justify-between gap-4">
           <div className="flex flex-col justify-start gap-1">
             <div className="flex flex-col justify-start">
@@ -36,7 +37,7 @@ export default function ReviewItem({ data, isLast }: ReviewItemProps) {
               <div>{RATING_TEXT[rating - 1]}</div>
             </div>
           </div>
-          <div className="h-16 w-16 bg-bk30">이미지</div>
+          <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
         </div>
         <div className="text-body2">{content}</div>
         <div

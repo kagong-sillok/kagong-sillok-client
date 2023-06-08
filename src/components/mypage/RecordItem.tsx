@@ -1,6 +1,8 @@
 import Dot from '@/components/mypage/Dot';
-import { RecordItem } from '@/types/mypage';
 import { format } from 'date-fns';
+import Image from 'next/image';
+
+import type { RecordItem } from '@/types/mypage';
 
 interface RecordItemProps {
   data: RecordItem;
@@ -20,7 +22,7 @@ export default function RecordItem({ data }: RecordItemProps) {
             <div>{date}</div>
           </div>
         </div>
-        <div className="h-16 w-16 bg-bk30">이미지</div>
+        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
       </div>
     </>
   );
