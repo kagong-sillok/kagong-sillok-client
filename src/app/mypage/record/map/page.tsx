@@ -1,5 +1,7 @@
+import KakaoMap from '@/components/KakaoMap';
+
 function Map() {
-  return <div>Map</div>;
+  return <KakaoMap />;
 }
 
 export default Map;
