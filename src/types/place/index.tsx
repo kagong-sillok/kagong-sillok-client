@@ -50,7 +50,7 @@ export type CompactPlaceType = {
   tags: string[];
   rating: number;
   isOpen: boolean;
-}
+};
 
 export type ReviewType = {
   id: number;
@@ -114,7 +114,7 @@ export type PlaceShortData = {
   data: {
     places: PlaceShortItem[];
   };
-}
+};
 
 export type ImageType = {
   url: string;

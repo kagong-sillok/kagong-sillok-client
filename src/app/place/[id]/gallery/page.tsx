@@ -33,7 +33,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }, [reviews]);
 
   return (
-    <div className="h-full">
+    <>
       <Header
         name={place?.name}
         onLeftClick={() => router.push(`/place/${params.id}`)}
@@ -93,6 +93,6 @@ export default function Page({ params }: { params: { id: string } }) {
         images={images ?? []}
         selectedImageUrl={selectedImageUrl}
       />
-    </div>
+    </>
   );
 }
