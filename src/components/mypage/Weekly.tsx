@@ -38,7 +38,7 @@ function Weekly({ onViewChange }: { onViewChange: (type: CalendarType) => void }
       <div className="relative flex w-full items-center justify-between">
         {koDays.map((el) => {
           return (
-            <div key={el} className="h-5 w-[45px] text-center text-caption text-background">
+            <div key={el} className="h-5 w-[45px] text-center text-body2 text-background">
               {el}
             </div>
           );

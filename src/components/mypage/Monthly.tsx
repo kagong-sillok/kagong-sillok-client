@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
-import '@/app/timeline/calendar.css';
+import '@/components/mypage/calendar.css';
 
 import type { CalendarType } from '@/types/mypage';
 
