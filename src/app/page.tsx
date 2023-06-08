@@ -4,6 +4,7 @@ import BottomSheet from '@/components/common/BottomSheet';
 import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
 import KakaoMap from '@/components/KakaoMap';
+import SideMenu from '@/components/SideMenu';
 import { usePlacesStore } from '@/store/PlacesState';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
@@ -14,6 +15,7 @@ export default function Home() {
   const [isBottomSheetUp, setIsBottomSheetUp] = useState(false);
   const [maxSnap, setMaxSnap] = useState(0);
   const [isServer, setIsServer] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const { places } = usePlacesStore();
 
   const snapPoints = [
@@ -50,11 +52,12 @@ export default function Home() {
   const snapTo = (i: number) => ref.current?.snapTo(i);
 
   return (
-    <>
-      <Nav isBottomSheetUp={isBottomSheetUp} />
+    <div className="relative">
+      <Nav isBottomSheetUp={isBottomSheetUp} onMenuClick={() => setIsMenuVisible(true)} />
+      {isMenuVisible && <SideMenu open={isMenuVisible} onClose={() => setIsMenuVisible(false)} />}
       {isBottomSheetUp ? (
         <button
-          className="fixed bottom-[16px] left-[calc(50%-42px)] z-[1000] w-[84px] rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
+          className="fixed bottom-[16px] left-[calc(50%-42px)] z-[45] w-[84px] rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
           onClick={() => {
             snapTo(snapPoints.length - 1);
             setIsBottomSheetUp(false);
@@ -64,7 +67,7 @@ export default function Home() {
         </button>
       ) : (
         <>
-          <button className="fixed left-[calc(50%-69px)] top-[7.75rem] z-50 w-[138px] rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10">
+          <button className="fixed left-[calc(50%-69px)] top-[7.75rem] z-40 w-[138px] rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10">
             이 지역에서 재검색
           </button>
           <button
@@ -99,6 +102,6 @@ export default function Home() {
           </ul>
         </BottomSheet>
       )}
-    </>
+    </div>
   );
 }

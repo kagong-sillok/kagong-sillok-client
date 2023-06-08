@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ReactNode } from 'react';
+import Link from 'next/link';
 
 interface SideMenuProps {
   open: boolean;
@@ -9,46 +9,34 @@ interface SideMenuProps {
 const IconButton = ({
   label,
   icon,
-  onClick,
+  link,
 }: {
   label: string;
-  icon: ReactNode;
-  onClick: () => void;
+  icon: React.ReactNode;
+  link: string;
 }) => {
   return (
-    <div
+    <Link
+      href={link}
       className="flex w-20 cursor-pointer flex-col items-center justify-center gap-2"
-      onClick={onClick}
     >
       {icon}
       <div>{label}</div>
-    </div>
+    </Link>
   );
 };
 
 const pages: { label: string; link: string }[] = [
-  { label: '카공기록', link: '1' },
-  { label: '찜한 카페', link: '2' },
-  { label: '작성한 기록', link: '3' },
+  { label: '카공기록', link: '/mypage/record' },
+  { label: '찜한 카페', link: '/mypage/place/bookmarks' },
+  { label: '작성한 리뷰', link: '/mypage/place/reviews' },
 ];
 
 export default function SideMenu({ open, onClose }: SideMenuProps) {
   if (!open) return <></>;
   return (
-    <>
-      <Image
-        src="/assets/icons/28/Close.svg"
-        alt="Close"
-        width={28}
-        height={28}
-        className="absolute left-[308px] top-[14px] z-50 cursor-pointer invert filter"
-        onClick={onClose}
-      />
-      <div
-        className="absolute left-0 top-0 z-40 h-full w-full cursor-pointer bg-bk100 opacity-60"
-        onClick={onClose}
-      />
-      <div className="absolute left-0 top-0 z-50 h-full w-72 bg-background px-6 py-5">
+    <div className="absolute left-0 top-0 z-50 flex h-full w-full items-start justify-start">
+      <div className="h-full w-72 bg-background px-6 py-5">
         <div className="mt-5 flex flex-col items-center justify-center gap-5">
           <div className="flex w-full items-center justify-start gap-3">
             <div className="h-[52px] w-[52px] rounded-full bg-bk40" />
@@ -82,7 +70,7 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
                       height={28}
                     />
                   }
-                  onClick={() => console.log(item.link)}
+                  link={item.link}
                 />
               );
             })}
@@ -122,6 +110,17 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
         <div className="h-3 w-px bg-bk20" />
         <div className="cursor-pointer">탈퇴하기</div>
       </div>
-    </>
+      <div className="relative h-full w-full">
+        <Image
+          src="/assets/icons/28/Close.svg"
+          alt="Close"
+          width={28}
+          height={28}
+          className="absolute left-5 top-[14px] z-10 cursor-pointer invert filter"
+          onClick={onClose}
+        />
+        <div className={`h-full w-full cursor-pointer bg-bk100 opacity-60`} onClick={onClose} />
+      </div>
+    </div>
   );
 }
