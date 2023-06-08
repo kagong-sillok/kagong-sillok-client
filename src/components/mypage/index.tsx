@@ -6,3 +6,5 @@ export { default as BookmarkItem } from './BookmarkItem';
 export { default as ReviewItem } from './ReviewItem';
 export { default as RecordItem } from './RecordItem';
 export { default as Dot } from './Dot';
+export { default as Monthly } from './Monthly';
+export { default as Weekly } from './Weekly';

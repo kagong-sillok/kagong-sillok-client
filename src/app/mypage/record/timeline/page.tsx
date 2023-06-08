@@ -1,6 +1,10 @@
-import RecordItem from '@/components/mypage/RecordItem';
+'use client';
 
-import type { RecordData } from '@/types/mypage';
+import { Monthly, Weekly } from '@/components/mypage';
+import RecordItem from '@/components/mypage/RecordItem';
+import { useState } from 'react';
+
+import type { CalendarType, RecordData } from '@/types/mypage';
 
 const recordList: RecordData = {
   data: [
@@ -30,11 +34,20 @@ const recordList: RecordData = {
 };
 
 function Timeline() {
+  const [viewType, setViewType] = useState<CalendarType>('MONTH');
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-6 p-6">
-      {recordList.data.map((item) => {
-        return <RecordItem key={item.id} data={item} />;
-      })}
+    <div>
+      {viewType === 'MONTH' ? (
+        <Monthly onViewChange={setViewType} />
+      ) : (
+        <Weekly onViewChange={setViewType} />
+      )}
+
+      <div className="flex w-full flex-col items-center justify-center gap-6 p-6">
+        {recordList.data.map((item) => {
+          return <RecordItem key={item.id} data={item} />;
+        })}
+      </div>
     </div>
   );
 }
