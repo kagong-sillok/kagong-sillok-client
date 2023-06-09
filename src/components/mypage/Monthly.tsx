@@ -3,20 +3,17 @@
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { useState } from 'react';
-import Calendar from 'react-calendar';
+import { Calendar } from 'react-calendar';
 import '@/components/mypage/calendar.css';
 
 import type { CalendarType } from '@/types/mypage';
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import type { LooseValue } from 'react-calendar/dist/cjs/shared/types';
 
 // 임시 데이터
 const marks = ['2023.06.01', '2023.06.11', '2023.06.14'];
 
 function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void }) {
-  const [value, setValue] = useState<Value>(new Date());
+  const [value, setValue] = useState<LooseValue>(new Date());
 
   return (
     <div className="relative">
@@ -51,10 +48,11 @@ function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void 
         prev2Label={null}
         nextLabel={null}
         prevLabel={null}
-        navigationLabel={({ label }) => {
+        navigationLabel={({ label, date }) => {
+          const [year, month] = format(date, 'yyyy-MM-dd').split('-');
           return (
             <div className="flex cursor-pointer gap-0.5 text-sub1 text-background">
-              {label}
+              {year}년 {month}월
               <Image
                 src={`/assets/icons/16/Arrow-down.svg`}
                 alt={`Arrow-down`}

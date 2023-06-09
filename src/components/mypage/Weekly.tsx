@@ -9,10 +9,8 @@ const koDays = ['일', '월', '화', '수', '목', '금', '토'];
 
 function Weekly({ onViewChange }: { onViewChange: (type: CalendarType) => void }) {
   const today = new Date();
-  const year = Number(format(startOfWeek(today), 'yyyy'));
-  const month = Number(format(startOfWeek(today), 'MM'));
-  const start = Number(format(startOfWeek(today), 'dd'));
-  const days = [...new Array(7)].map((_, i) => i + start);
+  const [year, month, day] = format(startOfWeek(today), 'yyyy-MM-dd').split('-');
+  const days = Array.from({ length: 7 }, (_, i) => Number(day) + i);
 
   return (
     <div className="relative flex h-40 w-full flex-col items-center justify-center gap-[15px] bg-violet/default px-6 py-5">
