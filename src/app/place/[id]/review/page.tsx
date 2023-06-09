@@ -7,13 +7,13 @@ import { useRouter } from 'next/navigation';
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
 
-  const { data: reviews } = useGetReviews(params.id);
+  const { data: reviewsData } = useGetReviews(params.id);
 
   return (
     <div className="h-full pt-14">
       <Header
         name="리뷰더보기"
-        onLeftClick={() => router.push(`/place/${params.id}`)}
+        onBackClick={() => router.push(`/place/${params.id}`)}
         rightIcons={[
           {
             src: '/assets/icons/28/Close.svg',
@@ -25,8 +25,8 @@ export default function Page({ params }: { params: { id: string } }) {
         ]}
       />
       <div className="my-6 flex flex-col gap-5 px-6">
-        {reviews?.pages.map(({ data }) =>
-          data.map((review) => <ReviewBox key={review.id} review={review} />)
+        {reviewsData?.pages.map(({ data }) =>
+          data.reviews.map((review) => <ReviewBox key={review.id} review={review} />)
         )}
       </div>
     </div>

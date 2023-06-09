@@ -1,13 +1,17 @@
 import { RATING_TEXT } from '@/constants/place';
-import { ReviewType } from '@/types/place';
+import { useGetImages } from '@/hooks/queries/place/useGetImages';
 import { format } from 'date-fns';
 import Image from 'next/image';
+
+import type { ReviewType } from '@/types/place';
 
 interface ReviewBoxProps {
   review: ReviewType;
 }
 
 export default function ReviewBox({ review }: ReviewBoxProps) {
+  const { data: imagesData } = useGetImages(review.imageIds || []);
+
   return (
     <div className="flex gap-3.5">
       <div className="h-10 w-10 shrink-0 rounded-full bg-bk20"></div>
@@ -31,10 +35,10 @@ export default function ReviewBox({ review }: ReviewBoxProps) {
         </div>
         <div
           className={`mb-2.5 flex items-center gap-0.5 overflow-x-scroll ${
-            review.images.length ? 'hidden' : ''
+            imagesData?.images?.length ? '' : 'hidden'
           }`}
         >
-          {/* {review.images?.map((image, index) => (
+          {imagesData?.images?.map((image, index) => (
             <div key={image.url + index} className="relative h-24 w-24 flex-shrink-0">
               <Image
                 src={image.url}
@@ -44,7 +48,7 @@ export default function ReviewBox({ review }: ReviewBoxProps) {
                 fill
               />
             </div>
-          ))} */}
+          ))}
         </div>
         <p className="text-body2">{review.content}</p>
       </div>

@@ -2,6 +2,7 @@
 
 import IconFlex from '@/components/place/IconFlex';
 import TimeInfo from '@/components/place/TimeInfo';
+import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -60,7 +61,8 @@ export default function DefaultInfo({ place }: DefaultInfoProps) {
         <div className="flex" onClick={() => setIsToggleOpen((prev) => !prev)}>
           <span className={placeStatus.color}>{placeStatus.text}</span>
           <p className="circle relative pl-2.5 text-[13px]">
-            {place.businessHours.monday.close} 영업종료
+            {/* TODO: 현재 요일에 맞게 종료 시간 보이게 하기 */}
+            {formatTime(place.businessHours[0].close)} 영업종료
           </p>
           <Image
             src={`/assets/icons/16/Arrow-${isToggleOpen ? 'down' : 'up'}.svg`}

@@ -4,7 +4,7 @@ export type PlaceType = {
   address: string;
   latitude: number;
   longitude: number;
-  images: ImageType[];
+  imageIds: number[];
   tags: string[]; // ['#조용한', '#나만알고싶은', '#노트북']
   isOpen: boolean;
   phone: string; // 02-1234-1234
@@ -12,36 +12,43 @@ export type PlaceType = {
     linkType: 'INSTAGRAM' | 'BLOG' | 'WEB';
     url: string;
   }[];
-  businessHours: {
-    monday: {
-      open: string; // 09:00:00
-      close: string; // 23:00:00
-    };
-    tuesday: {
-      open: string;
-      close: string;
-    };
-    wednesday: {
-      open: string;
-      close: string;
-    };
-    thursday: {
-      open: string;
-      close: string;
-    };
-    friday: {
-      open: string;
-      close: string;
-    };
-    saturday: {
-      open: string;
-      close: string;
-    };
-    sunday: {
-      open: string;
-      close: string;
-    };
-  };
+  businessHours: [
+    {
+      dayOfWeek: 'MONDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'TUESDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'WEDNESDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'THURSDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'FRIDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'SATURDAY';
+      open: 'string';
+      close: 'string';
+    },
+    {
+      dayOfWeek: 'SUNDAY';
+      open: 'string';
+      close: 'string';
+    }
+  ];
 };
 
 export type CompactPlaceType = {
@@ -50,13 +57,13 @@ export type CompactPlaceType = {
   tags: string[];
   rating: number;
   isOpen: boolean;
-}
+};
 
 export type ReviewType = {
   id: number;
   rating: number;
   content: string;
-  images: ImageType[];
+  imageIds: number[];
   tags: PlaceConditionType;
   userId: number;
   userNickname: string;
@@ -114,7 +121,7 @@ export type PlaceShortData = {
   data: {
     places: PlaceShortItem[];
   };
-}
+};
 
 export type ImageType = {
   url: string;

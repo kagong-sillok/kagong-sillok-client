@@ -1,58 +1,28 @@
 {
-  "data": [
-    {
-      "id": 1,
-      "rating": 1,
-      "content": "싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요",
-      "images": [
-        {
-          "url": "https://cdn.pixabay.com/photo/2023/05/22/18/17/insect-8011258_640.jpg",
-          "width": 640,
-          "height": 426,
-          "extension": "jpg"
-        },
-        {
-          "url": "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_640.jpg",
-          "width": 640,
-          "height": 426,
-          "extension": "jpg"
-        },
-        {
-          "url": "https://cdn.pixabay.com/photo/2023/04/10/08/02/girl-7913052_1280.jpg",
-          "width": 1280,
-          "height": 853,
-          "extension": "jpg"
-        },
-        {
-          "url": "https://cdn.pixabay.com/photo/2020/02/07/21/12/everest-4828404_1280.png",
-          "width": 1280,
-          "height": 853,
-          "extension": "png"
-        }
-      ],
-      "tags": ["CLEAN", "WIFI", "SEAT"],
-      "userId": 1,
-      "userNickname": "카공실록",
-      "createdAt": "2023-06-01T00:00:00",
-      "updatedAt": "2023-06-01T00:00:00"
-    },
-    {
-      "id": 2,
-      "rating": 5,
-      "content": "좋아요",
-      "images": [
-        {
-          "url": "https://cdn.pixabay.com/photo/2023/05/16/09/17/andean-bear-7997056_640.jpg",
-          "width": 640,
-          "height": 426,
-          "extension": "jpg"
-        }
-      ],
-      "tags": ["SEAT"],
-      "userId": 2,
-      "userNickname": "라떼처돌이",
-      "createdAt": "2023-06-02T00:00:00",
-      "updatedAt": "2023-06-02T00:00:00"
-    }
-  ]
+  "data": {
+    "reviews": [
+      {
+        "id": 1,
+        "rating": 1,
+        "content": "싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요",
+        "imageIds": [],
+        "tags": ["CLEAN", "WIFI", "SEAT"],
+        "userId": 1,
+        "userNickname": "카공실록",
+        "createdAt": "2023-06-01T00:00:00",
+        "updatedAt": "2023-06-01T00:00:00"
+      },
+      {
+        "id": 2,
+        "rating": 5,
+        "content": "좋아요",
+        "imageIds": [1, 2, 3],
+        "tags": ["SEAT"],
+        "userId": 2,
+        "userNickname": "라떼처돌이",
+        "createdAt": "2023-06-02T00:00:00",
+        "updatedAt": "2023-06-02T00:00:00"
+      }
+    ]
+  }
 }
