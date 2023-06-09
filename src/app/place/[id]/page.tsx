@@ -10,6 +10,7 @@ import {
   ReviewSheet,
   Tag,
   Tooltip,
+  ShareSheet,
 } from '@/components/place';
 import { MAP_HEIGHT } from '@/constants/place';
 import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
@@ -17,6 +18,7 @@ import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
@@ -24,10 +26,12 @@ import type { PlaceConditionType } from '@/types/place';
 export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
+  const [isShareSheetOpen, setIsShareSheetOpen] = useState(false);
 
   const { data: place, isLoading, isError } = useGetPlace(params.id);
   const { data: reviews } = useGetReviews(params.id);
 
+  const router = useRouter();
   const isScrolled = useDetectScroll(MAP_HEIGHT);
 
   if (isLoading) return null;
@@ -38,6 +42,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <Header
         name={isScrolled ? place.name : ''}
         className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
+        onBackClick={() => router.push('/')}
         rightIcons={[
           {
             src: '/assets/icons/28/Bookmark.svg',
@@ -50,6 +55,7 @@ export default function Page({ params }: { params: { id: string } }) {
             alt: 'Share',
             width: 28,
             height: 28,
+            onClick: () => setIsShareSheetOpen(true),
           },
         ]}
       />
@@ -162,6 +168,7 @@ export default function Page({ params }: { params: { id: string } }) {
           카공 기록하기
         </Button>
       </footer>
+      <ShareSheet isOpen={isShareSheetOpen} onClose={() => setIsShareSheetOpen(false)} />
       <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
       <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
     </>
