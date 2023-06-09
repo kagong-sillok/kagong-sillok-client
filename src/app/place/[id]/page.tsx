@@ -167,7 +167,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <footer>
         <Button
           type="DEFAULT"
-          className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]"
+          className="fixed bottom-0 z-20 w-full min-w-[360px] max-w-[448px]"
           onClick={() => setIsLogTimeSheetOpen(true)}
         >
           카공 기록하기
