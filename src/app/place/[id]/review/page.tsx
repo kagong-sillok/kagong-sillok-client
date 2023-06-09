@@ -10,7 +10,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const { data: reviews } = useGetReviews(params.id);
 
   return (
-    <div className="h-full pt-14">
+    <div className="pt-14">
       <Header
         name="리뷰더보기"
         onLeftClick={() => router.push(`/place/${params.id}`)}
