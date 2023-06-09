@@ -1,5 +1,5 @@
 import { DEFAULT_COORDINATES } from '@/constants/map';
-import useGeoLocation from '@/hooks/useGeolocation';
+// import useGeoLocation from '@/hooks/useGeolocation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 import type { Coordinates } from '@/types/coordinates';
@@ -12,21 +12,9 @@ interface KakaoMapProps {
 }
 
 const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {
-  const { loaded, error, coordinates } = useGeoLocation();
-
-  const center = customCoordinates ?? coordinates ?? DEFAULT_COORDINATES;
-
-  if (!loaded) {
-    // TODO: 로딩 Lottie 추가
-  }
-
-  if (error) {
-    return <div>에러</div>;
-  }
-
   return (
     <>
-      <Map center={center} className={className}>
+      <Map center={customCoordinates ?? DEFAULT_COORDINATES} className={className}>
         {places?.map((place) => (
           <MapMarker
             key={place.id}
