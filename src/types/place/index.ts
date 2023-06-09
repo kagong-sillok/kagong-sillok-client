@@ -6,6 +6,7 @@ export type PlaceType = {
   longitude: number;
   imageIds: number[];
   tags: string[]; // ['#조용한', '#나만알고싶은', '#노트북']
+  rating: number;
   isOpen: boolean;
   phone: string; // 02-1234-1234
   links: {
@@ -128,4 +129,11 @@ export type ImageType = {
   width: number;
   height: number;
   extension: string;
+};
+
+export type PlacesAroundType = {
+  latitude: number;
+  longitude: number;
+  latitudeBound: number;
+  longitudeBound: number;
 };

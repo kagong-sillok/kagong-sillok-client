@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ky from 'ky';
 
-import type { ImageType, PlaceType, ReviewType } from '@/types/place';
+import type { ImageType, PlaceType, PlacesAroundType, ReviewType } from '@/types/place';
 
 export const getPlace = async (id: string) => {
   const data = await ky.get(`http://3.37.38.169:8080/api/v1/places/${id}`);
   // const data = await ky.get('/db/place.json');
   const json = await data.json<{ data: PlaceType }>();
+
+  return json.data;
+};
+
+export const getPlacesAround = async (params: PlacesAroundType) => {
+  const data = await ky.get('/db/places.json');
+  const json = await data.json<{ data: { places: PlaceType[] } }>();
 
   return json.data;
 };

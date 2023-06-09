@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/common/Button';
+import KakaoMap from '@/components/KakaoMap';
 import {
   DefaultInfo,
   Header,
@@ -62,7 +63,17 @@ export default function Page({ params }: { params: { id: string } }) {
           },
         ]}
       />
-      <div className={`flex h-[219px] items-center justify-center bg-[#ddd]`}>지도</div>
+      <div className="relative h-[219px]">
+        <KakaoMap
+          className="h-full"
+          customCoordinates={{
+            lat: placeData.latitude,
+            lng: placeData.longitude,
+          }}
+          places={[placeData]}
+        />
+        <div className="absolute left-0 top-0 z-10 h-[219px] w-full bg-black bg-gradient-to-b from-bk100 to-white opacity-40"></div>
+      </div>
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>

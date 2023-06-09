@@ -5,51 +5,33 @@ import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
 import KakaoMap from '@/components/KakaoMap';
 import SideMenu from '@/components/SideMenu';
-import { usePlacesStore } from '@/store/PlacesState';
+import { useGetPlacesAround } from '@/hooks/queries/place/useGetPlacesAround';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { type SheetRef } from 'react-modal-sheet';
+
+import type { SheetRef } from 'react-modal-sheet';
 
 export default function Home() {
   const ref = useRef<SheetRef>();
   const [isBottomSheetUp, setIsBottomSheetUp] = useState(false);
-  const [maxSnap, setMaxSnap] = useState(0);
-  const [isServer, setIsServer] = useState(false);
+  const [isServer, setIsServer] = useState(true);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const { places } = usePlacesStore();
+  const { data: placesAroundData } = useGetPlacesAround({
+    latitude: 37.5665,
+    longitude: 126.978,
+    latitudeBound: 0.01,
+    longitudeBound: 0.01,
+  });
 
   const snapPoints = [
-    maxSnap,
-    500,
-    475,
-    450,
-    425,
-    400,
-    375,
-    350,
-    325,
-    300,
-    275,
-    250,
-    225,
-    200,
-    170,
-    140,
-    125,
-    100,
-    65,
+    -88, 500, 475, 450, 425, 400, 375, 350, 325, 300, 275, 250, 225, 200, 170, 140, 125, 100, 65,
   ];
 
-  useEffect(() => {
-    setIsServer(true);
-    setMaxSnap(-88);
-  }, []);
-
-  useEffect(() => {
-    console.log(ref.current?.y);
-  }, [ref.current?.y]);
-
   const snapTo = (i: number) => ref.current?.snapTo(i);
+
+  useEffect(() => {
+    setIsServer(false);
+  }, []);
 
   return (
     <div className="relative">
@@ -84,24 +66,22 @@ export default function Home() {
           </button>
         </>
       )}
-      <KakaoMap />
-      {isServer && (
-        <BottomSheet
-          ref={ref}
-          isOpen={true}
-          snapPoints={snapPoints}
-          onClose={() => {
-            return;
-          }}
-          initialSnap={snapPoints.length - 1}
-        >
-          <ul>
-            {places.map((place) => (
-              <PlaceItem key={place.id} place={place} />
-            ))}
-          </ul>
-        </BottomSheet>
-      )}
+      <KakaoMap className="h-screen w-full min-w-[360px]" places={placesAroundData?.places} />
+      <BottomSheet
+        ref={ref}
+        isOpen={!isServer}
+        snapPoints={snapPoints}
+        onClose={() => {
+          return;
+        }}
+        initialSnap={snapPoints.length - 1}
+      >
+        <ul>
+          {placesAroundData?.places.map((place) => (
+            <PlaceItem key={place.id} place={place} />
+          ))}
+        </ul>
+      </BottomSheet>
     </div>
   );
 }
