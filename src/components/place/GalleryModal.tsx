@@ -27,7 +27,7 @@ export default function GalleryModal({
 
   return (
     <div className="fixed bottom-0 top-0 z-[51] flex w-full min-w-[360px] max-w-[448px] flex-col justify-center bg-black pb-6">
-      <Header name={name} onLeftClick={onClose} className="bg-opacity-0 invert filter" />
+      <Header name={name} onBackClick={onClose} className="bg-opacity-0 invert filter" />
       <div className="absolute right-6 top-4">
         <span className="mr-1 text-body2 text-white">{currentImageIndex + 1}</span>
         <span className="text-caption text-bk50">/ {images.length}</span>

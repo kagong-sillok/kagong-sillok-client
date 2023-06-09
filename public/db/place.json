@@ -5,59 +5,19 @@
     "address": "서울 중구 장충단로 229",
     "latitude": 37.565289,
     "longitude": 127.001285,
-    "images": [
-      {
-        "url": "https://cdn.pixabay.com/photo/2023/05/22/18/17/insect-8011258_640.jpg",
-        "width": 640,
-        "height": 426,
-        "extension": "jpg"
-      },
-      {
-        "url": "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_640.jpg",
-        "width": 640,
-        "height": 426,
-        "extension": "jpg"
-      },
-      {
-        "url": "https://cdn.pixabay.com/photo/2023/04/10/08/02/girl-7913052_1280.jpg",
-        "width": 1280,
-        "height": 853,
-        "extension": "jpg"
-      }
-    ],
+    "imageIds": [1, 2, 3],
     "tags": ["#조용한", "#나만알고싶은", "#노트북"],
     "isOpen": true,
     "phone": "02-1234-1234",
     "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
-    "businessHours": {
-      "monday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "tuesday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "wednesday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "thursday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "friday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "saturday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      },
-      "sunday": {
-        "open": "09:00:00",
-        "close": "23:00:00"
-      }
-    }
+    "businessHours": [
+      { "id": 8, "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 9, "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 10, "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 11, "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 12, "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 13, "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
+      { "id": 14, "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
+    ]
   }
 }

@@ -1,0 +1,27 @@
+{
+  "data": {
+    "images": [
+      {
+        "id": 1,
+        "url": "https://cdn.pixabay.com/photo/2023/05/22/18/17/insect-8011258_640.jpg",
+        "width": 640,
+        "height": 426,
+        "extension": "jpg"
+      },
+      {
+        "id": 2,
+        "url": "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_640.jpg",
+        "width": 640,
+        "height": 426,
+        "extension": "jpg"
+      },
+      {
+        "id": 3,
+        "url": "https://cdn.pixabay.com/photo/2023/04/10/08/02/girl-7913052_1280.jpg",
+        "width": 1280,
+        "height": 853,
+        "extension": "jpg"
+      }
+    ]
+  }
+}

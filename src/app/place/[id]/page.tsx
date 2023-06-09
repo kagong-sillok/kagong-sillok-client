@@ -10,13 +10,16 @@ import {
   ReviewSheet,
   Tag,
   Tooltip,
+  ShareSheet,
 } from '@/components/place';
 import { MAP_HEIGHT } from '@/constants/place';
+import { useGetImages } from '@/hooks/queries/place/useGetImages';
 import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
 import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
@@ -24,10 +27,13 @@ import type { PlaceConditionType } from '@/types/place';
 export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
+  const [isShareSheetOpen, setIsShareSheetOpen] = useState(false);
 
-  const { data: place, isLoading, isError } = useGetPlace(params.id);
-  const { data: reviews } = useGetReviews(params.id);
+  const { data: placeData, isLoading, isError } = useGetPlace(params.id);
+  const { data: reviewsData } = useGetReviews(params.id);
+  const { data: imagesData } = useGetImages(placeData?.imageIds || []); // TODO: 장소 이미지 페이징 api 나오면 수정
 
+  const router = useRouter();
   const isScrolled = useDetectScroll(MAP_HEIGHT);
 
   if (isLoading) return null;
@@ -36,20 +42,23 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <Header
-        name={isScrolled ? place.name : ''}
+        name={isScrolled ? placeData.name : ''}
         className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
+        onBackClick={() => router.push('/')}
         rightIcons={[
           {
             src: '/assets/icons/28/Bookmark.svg',
             alt: 'Bookmark',
             width: 28,
             height: 28,
+            onClick: () => console.log('북마크 클릭'),
           },
           {
             src: '/assets/icons/28/Share.svg',
             alt: 'Share',
             width: 28,
             height: 28,
+            onClick: () => setIsShareSheetOpen(true),
           },
         ]}
       />
@@ -57,21 +66,21 @@ export default function Page({ params }: { params: { id: string } }) {
       <section className="px-6 pt-[30px]">
         <div className="flex items-center justify-between">
           <div>
-            {place.tags.map((tag) => (
+            {placeData.tags?.map((tag) => (
               <span key={tag} className="mr-1.5 text-caption text-violet/default">
                 {tag}
               </span>
             ))}
           </div>
-          <Tag.OpenClosed type={place.isOpen ? 'OPEN' : 'CLOSED'} />
+          <Tag.OpenClosed type={placeData.isOpen ? 'OPEN' : 'CLOSED'} />
         </div>
-        <h3 className="mb-2 text-head3">{place.name}</h3>
-        <p className="text-body2 text-bk60">{place.address}</p>
+        <h3 className="mb-2 text-head3">{placeData.name}</h3>
+        <p className="text-body2 text-bk60">{placeData.address}</p>
 
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
-        <DefaultInfo place={place} />
+        <DefaultInfo place={placeData} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
         <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
           {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
@@ -122,46 +131,49 @@ export default function Page({ params }: { params: { id: string } }) {
 
         <hr className="mb-6 text-bk10" />
         <div className="mb-6 flex flex-col gap-5">
-          {reviews?.pages.map(({ data }) =>
-            data.map((review) => <ReviewBox key={review.id} review={review} />)
+          {reviewsData?.pages.map(({ data }) =>
+            data.reviews.map((review) => <ReviewBox key={review.id} review={review} />)
           )}
         </div>
         <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsReviewSheetOpen(true)}>
           리뷰 작성하기
         </Button>
         <h5 className="mb-4 text-sub1">갤러리</h5>
-        <Link href={`place/${params.id}/gallery`} className="mb-[100px] flex gap-1">
-          {
-            // TODO: 이미지 개수에 따라서 레이아웃 변경
-            place.images.slice(0, 2).map(({ url }) => (
-              <div
-                key={url}
-                className="relative w-full cursor-pointer before:block before:pb-[100%]"
-              >
-                <Image
-                  src={url}
-                  alt="review-image"
-                  className="object-cover"
-                  sizes="(min-width: 640px) 33vw, 100vw"
-                  fill
-                />
-              </div>
-            ))
-          }
-          <div className="flex w-full cursor-pointer items-center justify-center bg-bk60 before:block before:pb-[100%]">
-            <p className="text-sub1 text-white">+4</p>
-          </div>
+        <Link href={`place/${params.id}/gallery`} className="flex gap-1 pb-[100px]">
+          {imagesData?.images.slice(0, 3).map(({ url }, index) => (
+            <div key={url} className="relative w-full cursor-pointer before:block before:pb-[100%]">
+              <Image
+                src={url}
+                alt="review-image"
+                className="object-cover"
+                sizes="(min-width: 640px) 33vw, 100vw"
+                fill
+              />
+              {
+                // TODO: 이미지 총 개수 - 3 / 총 개수를 현재 받고 있지 않아서 받게되면 수정
+                index === 2 && imagesData?.images.length > 3 && (
+                  <>
+                    <div className="absolute left-0 top-0 flex w-full cursor-pointer items-center justify-center bg-black opacity-40 before:block before:pb-[100%]"></div>
+                    <p className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-sub1 text-white">
+                      +{imagesData?.images.length - 3}
+                    </p>
+                  </>
+                )
+              }
+            </div>
+          ))}
         </Link>
       </section>
       <footer>
         <Button
           type="DEFAULT"
-          className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]"
+          className="fixed bottom-0 z-20 w-full min-w-[360px] max-w-[448px]"
           onClick={() => setIsLogTimeSheetOpen(true)}
         >
           카공 기록하기
         </Button>
       </footer>
+      <ShareSheet isOpen={isShareSheetOpen} onClose={() => setIsShareSheetOpen(false)} />
       <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
       <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
     </>

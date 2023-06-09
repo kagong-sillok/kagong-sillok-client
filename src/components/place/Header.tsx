@@ -4,14 +4,14 @@ import Image from 'next/image';
 interface HeaderProps {
   name?: string;
   className?: string;
-  onLeftClick?: () => void;
+  onBackClick?: () => void;
   rightIcons?: React.ComponentProps<typeof Image>[];
 }
 
-export default function Header({ name, className, onLeftClick, rightIcons }: HeaderProps) {
+export default function Header({ name, className, onBackClick, rightIcons }: HeaderProps) {
   return (
     <header
-      className={`fixed top-0 z-50 flex h-14 w-full min-w-[360px] max-w-[448px] justify-between bg-white px-6 py-3.5 ${
+      className={`fixed top-0 z-20 flex h-14 w-full min-w-[360px] max-w-[448px] justify-between bg-white px-6 py-3.5 ${
         className ?? ''
       }`}
     >
@@ -22,7 +22,7 @@ export default function Header({ name, className, onLeftClick, rightIcons }: Hea
           width={28}
           height={28}
           className="cursor-pointer"
-          onClick={onLeftClick}
+          onClick={onBackClick}
         />
         {name && <p className="ml-3 text-button1">{name}</p>}
       </div>

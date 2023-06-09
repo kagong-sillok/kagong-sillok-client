@@ -3,6 +3,7 @@
 import Button from '@/components/common/Button';
 import { Header, TimeLogSheet } from '@/components/place';
 import GalleryModal from '@/components/place/GalleryModal';
+import { useGetImages } from '@/hooks/queries/place/useGetImages';
 import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
 import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import Image from 'next/image';
@@ -13,30 +14,41 @@ export default function Page({ params }: { params: { id: string } }) {
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
-  const [images, setImages] = useState<{ url: string; userId: number; userNickname: string }[]>([]);
+  const [galleryImages, setGalleryImages] = useState<
+    { url: string; userId: number; userNickname: string }[]
+  >([]);
+  const [imageIds, setImageIds] = useState<number[]>([]);
 
-  const { data: place } = useGetPlace(params.id);
-  const { data: reviews } = useGetReviews(params.id);
+  const { data: placeData } = useGetPlace(params.id);
+  const { data: reviewsData } = useGetReviews(params.id);
+  const { data: imagesData } = useGetImages(imageIds);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!reviews) return;
+    if (!reviewsData) return;
 
-    const imageInPages = reviews.pages.flatMap(({ data }) =>
-      data.flatMap(({ userId, userNickname, images }) =>
-        images.map(({ url }) => ({ userId, userNickname, url }))
-      )
-    );
+    reviewsData.pages.forEach(({ data }) => {
+      data.reviews.forEach(({ imageIds }) => {
+        setImageIds((prev) => [...prev, ...imageIds]);
+      });
+    });
+  }, [reviewsData]);
 
-    setImages((prev) => [...prev, ...imageInPages]);
-  }, [reviews]);
+  useEffect(() => {
+    if (!imagesData) return;
+
+    setGalleryImages((prev) => [
+      ...prev,
+      ...imagesData.images.map(({ url }) => ({ url, userId: 1, userNickname: 'test' })),
+    ]);
+  }, [imagesData]);
 
   return (
     <>
       <Header
-        name={place?.name}
-        onLeftClick={() => router.push(`/place/${params.id}`)}
+        name={placeData?.name}
+        onBackClick={() => router.push(`/place/${params.id}`)}
         rightIcons={[
           {
             src: '/assets/icons/28/Bookmark.svg',
@@ -53,28 +65,24 @@ export default function Page({ params }: { params: { id: string } }) {
         ]}
       />
       <div className="grid grid-cols-3 gap-1 pt-14">
-        {reviews?.pages.map(({ data }) =>
-          data.map(({ images }) =>
-            images.map(({ url }) => (
-              <div
-                key={url}
-                className="relative w-full cursor-pointer before:block before:pb-[100%]"
-                onClick={() => {
-                  setSelectedImageUrl(url);
-                  setIsGalleryModalOpen(true);
-                }}
-              >
-                <Image
-                  src={url}
-                  alt="이미지"
-                  className="object-cover"
-                  sizes="(min-width: 640px) 33vw, 100vw"
-                  fill
-                />
-              </div>
-            ))
-          )
-        )}
+        {galleryImages.map(({ url }) => (
+          <div
+            key={url}
+            className="relative w-full cursor-pointer before:block before:pb-[100%]"
+            onClick={() => {
+              setSelectedImageUrl(url);
+              setIsGalleryModalOpen(true);
+            }}
+          >
+            <Image
+              src={url}
+              alt="이미지"
+              className="object-cover"
+              sizes="(min-width: 640px) 33vw, 100vw"
+              fill
+            />
+          </div>
+        ))}
       </div>
       <footer>
         <Button
@@ -87,10 +95,10 @@ export default function Page({ params }: { params: { id: string } }) {
       </footer>
       <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
       <GalleryModal
-        name={place?.name ?? ''}
+        name={placeData?.name ?? ''}
         isOpen={isGalleryModalOpen}
         onClose={() => setIsGalleryModalOpen(false)}
-        images={images ?? []}
+        images={galleryImages ?? []}
         selectedImageUrl={selectedImageUrl}
       />
     </>
