@@ -90,11 +90,11 @@ const reviewList: ReviewData = {
 
 function Reviews() {
   return (
-    <>
+    <div className="px-6">
       {reviewList.data.map((item, i) => {
         return <ReviewItem key={item.id} data={item} isLast={reviewList.data.length - 1 === i} />;
       })}
-    </>
+    </div>
   );
 }
 

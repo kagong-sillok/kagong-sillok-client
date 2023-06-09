@@ -1,6 +1,7 @@
 import Dot from './Dot';
-import { PlaceShortItem } from '@/types/place';
 import Image from 'next/image';
+
+import type { PlaceShortItem } from '@/types/place';
 
 interface BookmarkItemProps {
   data: PlaceShortItem;
@@ -39,7 +40,7 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
             <div>{isOpen ? '영업중' : '영업종료'}</div>
           </div>
         </div>
-        <div className="h-16 w-16 bg-bk30">이미지</div>
+        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
       </div>
       {!isLast && <div className="h-px w-full bg-bk10" />}
     </>
