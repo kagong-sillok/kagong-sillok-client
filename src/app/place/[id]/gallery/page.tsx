@@ -45,7 +45,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }, [imagesData]);
 
   return (
-    <div className="h-full">
+    <>
       <Header
         name={placeData?.name}
         onBackClick={() => router.push(`/place/${params.id}`)}
@@ -101,6 +101,6 @@ export default function Page({ params }: { params: { id: string } }) {
         images={galleryImages ?? []}
         selectedImageUrl={selectedImageUrl}
       />
-    </div>
+    </>
   );
 }

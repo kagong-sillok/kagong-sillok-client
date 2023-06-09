@@ -48,6 +48,7 @@ module.exports = {
       uijeongbuLine: '#EF9530',
       everLine: '#91CC81',
       gyeonggangLine: '#4670EB',
+      kakao: '#FFE500',
     },
     fontSize: {
       head1: [
