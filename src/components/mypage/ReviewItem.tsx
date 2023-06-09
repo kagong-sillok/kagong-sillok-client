@@ -22,7 +22,7 @@ export default function ReviewItem({ data, isLast }: ReviewItemProps) {
           <div className="flex flex-col justify-start gap-1">
             <div className="flex flex-col justify-start">
               <div className="text-caption text-bk50">{date}</div>
-              <div className="text-sub1">{id}</div>
+              <div className="text-sub1">스타벅스 동대문공원점</div>
             </div>
 
             <div className="mt-1.5 flex items-center gap-0.5 text-caption text-bk40">
