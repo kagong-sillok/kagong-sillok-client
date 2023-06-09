@@ -1,34 +1,33 @@
-/* eslint-disable @next/next/no-before-interactive-script-outside-document */
-'use client';
-
 import { DEFAULT_COORDINATES } from '@/constants/map';
 import useGeoLocation from '@/hooks/useGeolocation';
-import { usePlacesStore } from '@/store/PlacesState';
-import Script from 'next/script';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_API_KEY}&autoload=false`;
+import type { Coordinates } from '@/types/coordinates';
+import type { PlaceType } from '@/types/place';
 
-const KakaoMap = () => {
+interface KakaoMapProps {
+  className?: string;
+  customCoordinates?: Coordinates;
+  places?: PlaceType[];
+}
+
+const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {
   const { loaded, error, coordinates } = useGeoLocation();
-  const { places } = usePlacesStore();
 
-  if (loaded) {
-    <div>loading..</div>;
+  const center = customCoordinates ?? coordinates ?? DEFAULT_COORDINATES;
+
+  if (!loaded) {
+    // TODO: 로딩 Lottie 추가
   }
 
   if (error) {
-    <div>에러</div>;
+    return <div>에러</div>;
   }
 
   return (
     <>
-      <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
-      <Map
-        center={coordinates ? { lat: coordinates.lat, lng: coordinates.lng } : DEFAULT_COORDINATES}
-        className="h-screen w-full min-w-[360px]"
-      >
-        {places.map((place) => (
+      <Map center={center} className={className}>
+        {places?.map((place) => (
           <MapMarker
             key={place.id}
             position={{

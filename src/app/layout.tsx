@@ -1,5 +1,7 @@
-import ReactQueryProvider from '../providers/ReactQueryProvider';
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import './globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -9,6 +11,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ReactQueryProvider>
           <div className="min-h-screen bg-white">{children}</div>
         </ReactQueryProvider>
+        <Script
+          type="text/javascript"
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_API_KEY}&autoload=false`}
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

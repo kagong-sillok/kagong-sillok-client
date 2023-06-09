@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
+import type { Coordinates } from '@/types/coordinates';
+
 type locationType = {
   loaded: boolean;
-  coordinates?: { lat: number; lng: number };
+  coordinates?: Coordinates;
   error?: { code: number; message: string };
 };
 
