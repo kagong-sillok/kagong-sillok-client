@@ -48,7 +48,7 @@ function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void 
         prev2Label={null}
         nextLabel={null}
         prevLabel={null}
-        navigationLabel={({ label, date }) => {
+        navigationLabel={({ date }) => {
           const [year, month] = format(date, 'yyyy-MM-dd').split('-');
           return (
             <div className="flex cursor-pointer gap-0.5 text-sub1 text-background">
