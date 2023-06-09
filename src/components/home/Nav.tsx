@@ -36,7 +36,7 @@ export default function Nav({ isBottomSheetUp, onMenuClick }: navProps) {
   const router = useRouter();
 
   return (
-    <nav className="fixed top-0 z-50 max-h-[112px] w-full max-w-[448px] bg-white text-bk100">
+    <nav className="fixed top-0 z-20 max-h-[112px] w-full max-w-[448px] bg-white text-bk100">
       <div className="mx-4 my-3 flex items-center bg-background px-3.5 py-2">
         <Image
           src={'/assets/Icons/28/Menu.svg'}
