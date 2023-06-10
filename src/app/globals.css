@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .filter-bk40 {
   filter: invert(71%) sepia(5%) saturate(194%) hue-rotate(202deg) brightness(87%) contrast(80%);
 }

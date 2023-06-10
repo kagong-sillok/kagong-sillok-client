@@ -1,6 +1,6 @@
 import { CompactPlaceType } from '@/types/place';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface PlaceItemProps {
   place: CompactPlaceType;
@@ -9,9 +9,15 @@ interface PlaceItemProps {
 
 export default function PlaceItem({ place }: PlaceItemProps) {
   const { id, name, tags, rating, isOpen } = place;
+
+  const router = useRouter();
+
   return (
     <li className="h-[115px] w-full">
-      <Link href={`/place/${id}`} className="flex h-full justify-between p-6">
+      <div
+        onClick={() => router.push(`/place/${id}`)}
+        className="flex h-full cursor-pointer justify-between p-6"
+      >
         <div className="flex flex-col">
           <p className="mb-0.5 text-sub1">{name}</p>
           <div className="mb-2 h-fit text-caption text-bk50">
@@ -35,7 +41,7 @@ export default function PlaceItem({ place }: PlaceItemProps) {
           </div>
         </div>
         <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
-      </Link>
+      </div>
     </li>
   );
 }

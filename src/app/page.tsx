@@ -1,5 +1,6 @@
 'use client';
 
+import Loading from '@/app/loading';
 import BottomSheet from '@/components/common/BottomSheet';
 import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
@@ -9,6 +10,7 @@ import { useGetPlacesAround } from '@/hooks/queries/place/useGetPlacesAround';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
+import type { Coordinates } from '@/types/coordinates';
 import type { SheetRef } from 'react-modal-sheet';
 
 export default function Home() {
@@ -16,6 +18,9 @@ export default function Home() {
   const [isBottomSheetUp, setIsBottomSheetUp] = useState(false);
   const [isServer, setIsServer] = useState(true);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isLocationLoading, setIsLocationLoading] = useState(false);
+  const [currentCoordinates, setCurrentCoordinates] = useState<Coordinates>();
+
   const { data: placesAroundData } = useGetPlacesAround({
     latitude: 37.5665,
     longitude: 126.978,
@@ -29,6 +34,16 @@ export default function Home() {
 
   const snapTo = (i: number) => ref.current?.snapTo(i);
 
+  const handleLocationClick = () => {
+    // TODO: 로딩 Lottie 추가
+    setIsLocationLoading(true);
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setCurrentCoordinates({ lat: latitude, lng: longitude });
+      setIsLocationLoading(false);
+    });
+  };
+
   useEffect(() => {
     setIsServer(false);
   }, []);
@@ -39,7 +54,7 @@ export default function Home() {
       {isMenuVisible && <SideMenu open={isMenuVisible} onClose={() => setIsMenuVisible(false)} />}
       {isBottomSheetUp ? (
         <button
-          className="fixed bottom-[16px] left-[calc(50%-42px)] z-[45] w-[84px] rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
+          className="fixed bottom-[16px] left-1/2 z-[45] w-[84px] -translate-x-1/2 rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
           onClick={() => {
             snapTo(snapPoints.length - 1);
             setIsBottomSheetUp(false);
@@ -49,11 +64,11 @@ export default function Home() {
         </button>
       ) : (
         <>
-          <button className="fixed left-[calc(50%-69px)] top-[7.75rem] z-40 w-[138px] rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10">
+          <button className="fixed left-1/2 top-[7.75rem] z-30 w-[138px] -translate-x-1/2 rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10">
             이 지역에서 재검색
           </button>
           <button
-            className="fixed bottom-[81px] left-[calc(50%-42px)] z-30 w-[84px] rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
+            className="fixed bottom-[81px] left-1/2 z-30 w-[84px] -translate-x-1/2 rounded-full bg-bk100 py-2.5 text-body2 text-white drop-shadow-md transition-colors active:bg-bk80"
             onClick={() => {
               snapTo(0);
               setIsBottomSheetUp(true);
@@ -61,12 +76,19 @@ export default function Home() {
           >
             목록보기
           </button>
-          <button className="fixed bottom-[81px] right-6 z-30 rounded-full bg-white p-3 drop-shadow-md transition-colors active:bg-bk20">
+          <button
+            className="absolute bottom-[81px] right-6 z-30 rounded-full bg-white p-3 drop-shadow-md transition-colors active:bg-bk20"
+            onClick={handleLocationClick}
+          >
             <Image src="/assets/Icons/16/Location.svg" width={16} height={16} alt="location" />
           </button>
         </>
       )}
-      <KakaoMap className="h-screen w-full min-w-[360px]" places={placesAroundData?.places} />
+      <KakaoMap
+        className="h-screen w-full min-w-[360px]"
+        customCoordinates={currentCoordinates}
+        places={placesAroundData?.places}
+      />
       <BottomSheet
         ref={ref}
         isOpen={!isServer}
@@ -75,6 +97,11 @@ export default function Home() {
           return;
         }}
         initialSnap={snapPoints.length - 1}
+        onSnap={(index) => {
+          if (index === snapPoints.length - 1) {
+            setIsBottomSheetUp(false);
+          }
+        }}
       >
         <ul>
           {placesAroundData?.places.map((place) => (
@@ -82,6 +109,7 @@ export default function Home() {
           ))}
         </ul>
       </BottomSheet>
+      {isLocationLoading && <Loading />}
     </div>
   );
 }
