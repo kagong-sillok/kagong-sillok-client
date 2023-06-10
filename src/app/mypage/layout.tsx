@@ -32,7 +32,7 @@ export default function MypageLayout({ children }: PropsWithChildren) {
       <Gnb
         title={page === 'RECORD' ? '카공기록' : ''}
         onBackClick={() => router.back()}
-        onCloseClick={() => console.log('close')}
+        onCloseClick={() => router.push('/')}
       />
       <Header page={page as PageType} user={userData} />
       <TabGroup>
