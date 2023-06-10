@@ -1,3 +1,5 @@
+'use client';
+
 import { DEFAULT_COORDINATES } from '@/constants/map';
 // import useGeoLocation from '@/hooks/useGeolocation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
