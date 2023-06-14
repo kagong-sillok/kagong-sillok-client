@@ -21,7 +21,7 @@ export const getPlacesAround = async (params: PlacesAroundType) => {
 };
 
 export const getReviews = async (placeId: string, size: number, pageParam: number) => {
-  const data = await api.get('/db/reviews.json');
+  const data = await ky.get('/db/reviews.json');
   const json = await data.json<{ data: { reviews: ReviewType[] } }>();
 
   return {
