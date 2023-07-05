@@ -35,7 +35,6 @@ export default function Home() {
   const snapTo = (i: number) => ref.current?.snapTo(i);
 
   const handleLocationClick = () => {
-    // TODO: 로딩 Lottie 추가
     setIsLocationLoading(true);
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
