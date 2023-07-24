@@ -1,11 +1,9 @@
 'use client';
 
+import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
 import Button from '@/components/common/Button';
 import { Header, TimeLogSheet } from '@/components/place';
 import GalleryModal from '@/components/place/GalleryModal';
-import { useGetImages } from '@/hooks/queries/place/useGetImages';
-import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
-import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

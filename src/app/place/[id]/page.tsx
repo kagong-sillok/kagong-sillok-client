@@ -1,5 +1,6 @@
 'use client';
 
+import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
 import Button from '@/components/common/Button';
 import KakaoMap from '@/components/KakaoMap';
 import {
@@ -14,9 +15,6 @@ import {
   ShareSheet,
 } from '@/components/place';
 import { MAP_HEIGHT } from '@/constants/place';
-import { useGetImages } from '@/hooks/queries/place/useGetImages';
-import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
-import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';

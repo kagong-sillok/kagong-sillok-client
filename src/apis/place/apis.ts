@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import api from './api';
+import api from '../api';
 import ky from 'ky';
 
 import type { ImageType, PlaceType, PlacesAroundType, ReviewType } from '@/types/place';
 
 export const getPlace = async (id: string) => {
-  const data = await api.get(`api/v1/places/${id}`);
-  // const data = await ky.get('/db/place.json');
+  // const data = await api.get(`api/v1/places/${id}`);
+  const data = await ky.get('/db/place.json');
   const json = await data.json<{ data: PlaceType }>();
 
   return json.data;

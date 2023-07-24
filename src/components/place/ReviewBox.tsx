@@ -1,5 +1,5 @@
+import { useGetImages } from '@/apis/place';
 import { RATING_TEXT } from '@/constants/place';
-import { useGetImages } from '@/hooks/queries/place/useGetImages';
 import { format } from 'date-fns';
 import Image from 'next/image';
 

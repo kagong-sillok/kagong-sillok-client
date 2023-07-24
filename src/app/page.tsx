@@ -1,12 +1,12 @@
 'use client';
 
+import { useGetPlacesAround } from '@/apis/place';
 import Loading from '@/app/loading';
 import BottomSheet from '@/components/common/BottomSheet';
 import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
 import KakaoMap from '@/components/KakaoMap';
 import SideMenu from '@/components/SideMenu';
-import { useGetPlacesAround } from '@/hooks/queries/place/useGetPlacesAround';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 

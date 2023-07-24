@@ -1,7 +1,7 @@
 'use client';
 
+import { useGetReviews } from '@/apis/place';
 import { Header, ReviewBox } from '@/components/place';
-import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import { useRouter } from 'next/navigation';
 
 export default function Page({ params }: { params: { id: string } }) {

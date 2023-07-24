@@ -1,6 +1,6 @@
 'use client';
 
-import { postLogin } from '@/apis/user';
+import { useLoginMutation } from '@/apis/user';
 import { useUserStore } from '@/store/userState';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -15,25 +15,23 @@ export default function Redirect({
   const { setUser } = useUserStore();
   const router = useRouter();
 
-  const func = async () => {
-    const json = await postLogin(
-      searchParams.code,
-      process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string
-    );
-
-    console.log(json);
-
-    setUser({
-      nickname: 'test',
-      email: 'test@aaa.com',
-      role: 'USER',
-    });
-  };
+  const { mutate } = useLoginMutation({
+    onSuccess: () => {
+      setUser({
+        nickname: 'test',
+        email: 'test@gmail.com',
+        role: 'USER',
+      });
+      router.push('/');
+    },
+  });
 
   useEffect(() => {
-    func();
-    router.push('/');
-  });
+    mutate({
+      authorizationCode: searchParams.code,
+      redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
+    });
+  }, []);
 
   return <></>;
 }
