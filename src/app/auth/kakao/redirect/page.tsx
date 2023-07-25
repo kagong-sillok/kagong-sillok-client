@@ -1,6 +1,6 @@
 'use client';
 
-import { useLoginMutation } from '@/apis/user';
+import { useLoginMutation } from '@/apis/auth';
 import { useUserStore } from '@/store/userState';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
