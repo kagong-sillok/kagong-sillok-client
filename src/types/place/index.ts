@@ -10,49 +10,41 @@ export type PlaceType = {
   isOpen: boolean;
   phone: string; // 02-1234-1234
   links: {
-    id: number;
     linkType: 'INSTAGRAM' | 'BLOG' | 'WEB';
     url: string;
   }[];
   businessHours: [
     {
-      id: number;
       dayOfWeek: 'MONDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'TUESDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'WEDNESDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'THURSDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'FRIDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'SATURDAY';
       open: 'string';
       close: 'string';
     },
     {
-      id: number;
       dayOfWeek: 'SUNDAY';
       open: 'string';
       close: 'string';
@@ -106,7 +98,14 @@ export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TA
 
 export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
 
-export type DayType = keyof PlaceType['businessHours'];
+export type DayType =
+  | 'MONDAY'
+  | 'TUESDAY'
+  | 'WEDNESDAY'
+  | 'THURSDAY'
+  | 'FRIDAY'
+  | 'SATURDAY'
+  | 'SUNDAY';
 
 export type TabType = {
   id: number;

@@ -17,8 +17,10 @@ export default function Page({ params }: { params: { id: string } }) {
   >([]);
   const [imageIds, setImageIds] = useState<number[]>([]);
 
-  const { data: placeData } = useGetPlace(params.id);
-  const { data: reviewsData } = useGetReviews(params.id);
+  const placeId = Number(params.id);
+
+  const { data: placeData } = useGetPlace(placeId);
+  const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(imageIds);
 
   const router = useRouter();

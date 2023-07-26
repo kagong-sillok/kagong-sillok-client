@@ -28,8 +28,10 @@ export default function Page({ params }: { params: { id: string } }) {
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
   const [isShareSheetOpen, setIsShareSheetOpen] = useState(false);
 
-  const { data: placeData, isLoading, isError } = useGetPlace(params.id);
-  const { data: reviewsData } = useGetReviews(params.id);
+  const placeId = Number(params.id);
+
+  const { data: placeData, isLoading, isError } = useGetPlace(placeId);
+  const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(placeData?.imageIds || []); // TODO: 장소 이미지 페이징 api 나오면 수정
 
   const router = useRouter();

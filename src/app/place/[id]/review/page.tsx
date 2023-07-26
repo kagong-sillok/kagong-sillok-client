@@ -7,20 +7,22 @@ import { useRouter } from 'next/navigation';
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
 
-  const { data: reviewsData } = useGetReviews(params.id);
+  const placeId = Number(params.id);
+
+  const { data: reviewsData } = useGetReviews(placeId);
 
   return (
     <div className="pt-14">
       <Header
         name="리뷰더보기"
-        onBackClick={() => router.push(`/place/${params.id}`)}
+        onBackClick={() => router.push(`/place/${placeId}`)}
         rightIcons={[
           {
             src: '/assets/icons/28/Close.svg',
             alt: 'Close',
             width: 28,
             height: 28,
-            onClick: () => router.push(`/place/${params.id}`),
+            onClick: () => router.push(`/place/${placeId}`),
           },
         ]}
       />

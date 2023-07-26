@@ -1,8 +1,8 @@
-export type LoginPayload = {
+export interface LoginPayload {
   authorizationCode: string;
   redirectUri: string;
-};
+}
 
-export type LoginResponse = {
+export interface LoginResponse {
   accessToken: string;
-};
+}
