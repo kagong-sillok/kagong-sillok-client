@@ -1,19 +1,18 @@
 'use client';
 
-import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
-import Button from '@/components/common/Button';
-import KakaoMap from '@/components/KakaoMap';
 import {
   DefaultInfo,
   Header,
   KagongBox,
-  TimeLogSheet,
   ReviewBox,
   ReviewSheet,
-  Tag,
-  Tooltip,
   ShareSheet,
-} from '@/components/place';
+  Tag,
+  TimeLogSheet,
+  Tooltip,
+} from './components';
+import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
+import { KakaoMap, Button } from '@/components';
 import { MAP_HEIGHT } from '@/constants/place';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';

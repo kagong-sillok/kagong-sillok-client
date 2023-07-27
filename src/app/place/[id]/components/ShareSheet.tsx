@@ -1,4 +1,4 @@
-import BottomSheet from '@/components/common/BottomSheet';
+import { BottomSheet } from '@/components';
 import Image from 'next/image';
 import { useRef } from 'react';
 

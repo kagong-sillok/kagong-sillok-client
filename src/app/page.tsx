@@ -2,7 +2,7 @@
 
 import { useGetPlacesAround } from '@/apis/place';
 import Loading from '@/app/loading';
-import BottomSheet from '@/components/common/BottomSheet';
+import { BottomSheet } from '@/components';
 import Nav from '@/components/home/Nav';
 import PlaceItem from '@/components/home/PlaceItem';
 import KakaoMap from '@/components/KakaoMap';

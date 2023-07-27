@@ -1,9 +1,9 @@
 'use client';
 
+import { GalleryModal } from './components';
+import { Header, TimeLogSheet } from '../components';
 import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
-import Button from '@/components/common/Button';
-import { Header, TimeLogSheet } from '@/components/place';
-import GalleryModal from '@/components/place/GalleryModal';
+import { Button } from '@/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

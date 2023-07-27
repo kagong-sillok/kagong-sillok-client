@@ -1,4 +1,4 @@
-import Header from '@/components/place/Header';
+import Header from '@/app/place/[id]/components/Header';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 

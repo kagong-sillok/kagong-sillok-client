@@ -1,6 +1,5 @@
-import BottomSheet from '@/components/common/BottomSheet';
-import Button from '@/components/common/Button';
-import { ImageUpload, Rating, Tabs } from '@/components/place';
+import Rating from './Rating';
+import { Button, ImageUpload, BottomSheet, Tabs } from '@/components';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';

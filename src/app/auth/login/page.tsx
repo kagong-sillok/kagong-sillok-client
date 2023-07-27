@@ -1,7 +1,7 @@
 'use client';
 
+import KakaoButton from './components/KakaoButton';
 import * as animationData from '../../../../public/assets/lotties/prography_motion_intro.json';
-import KakaoButton from '@/components/auth/KakaoButton';
 import Lottie from 'lottie-react';
 import Link from 'next/link';
 

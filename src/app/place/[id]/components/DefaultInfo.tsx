@@ -1,7 +1,7 @@
 'use client';
 
-import IconFlex from '@/components/place/IconFlex';
-import TimeInfo from '@/components/place/TimeInfo';
+import TimeInfo from './TimeInfo';
+import { IconFlex } from '@/components';
 import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';

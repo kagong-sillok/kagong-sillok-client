@@ -1,6 +1,4 @@
-import Button from '../common/Button';
-import BottomSheet from '@/components/common/BottomSheet';
-import { ImageUpload } from '@/components/place';
+import { Button, ImageUpload, BottomSheet } from '@/components';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 
