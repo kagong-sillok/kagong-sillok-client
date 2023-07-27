@@ -1,5 +1,5 @@
 'use client';
-import SearchHistoryItem from '@/components/search/SearchHistoryItem';
+import { SearchHistoryItem } from '@/app/search/components';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
