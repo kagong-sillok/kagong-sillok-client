@@ -7,7 +7,7 @@ export const postLogin = async (payload: LoginPayload) => {
     .post('api/v1/auth/kakao/login', {
       json: payload,
     })
-    .json<{ data: LoginResponse }>();
+    .json<Common.Response<LoginResponse>>();
 
   return data;
 };
