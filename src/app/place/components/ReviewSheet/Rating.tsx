@@ -1,4 +1,4 @@
-import { RATING_TEXT } from '@/constants/place';
+import { RATING_TEXT } from '@/app/place/constants';
 import Image from 'next/image';
 
 interface RatingProps {

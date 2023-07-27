@@ -10,10 +10,12 @@ import {
   Tag,
   TimeLogSheet,
   Tooltip,
-} from './components';
-import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
+} from '../components';
+import { useGetImages } from '@/apis/image';
+import { useGetPlace } from '@/apis/place';
+import { useGetReviews } from '@/apis/review';
+import { MAP_HEIGHT } from '@/app/place/constants';
 import { KakaoMap, Button } from '@/components';
-import { MAP_HEIGHT } from '@/constants/place';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';

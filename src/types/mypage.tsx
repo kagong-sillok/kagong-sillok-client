@@ -6,22 +6,6 @@ export type ViewType = 'BOOKMARKS' | 'REVIEWS' | 'TIMELINE' | 'MAP';
 
 export type CalendarType = 'MONTH' | 'WEEK';
 
-export type ReviewItem = {
-  id: number;
-  rating: number;
-  content: string;
-  images: string[];
-  tags: string[];
-  userId: number;
-  userNickname: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ReviewData = {
-  data: ReviewItem[];
-};
-
 export type RecordItem = {
   id: number;
   name: string;

@@ -1,7 +1,7 @@
 'use client';
 
-import { Header, ReviewItem } from '../components';
-import { useGetReviews } from '@/apis/place';
+import { Header, ReviewItem } from '../../components';
+import { useGetReviews } from '@/apis/review';
 import { useRouter } from 'next/navigation';
 
 export default function Page({ params }: { params: { id: string } }) {

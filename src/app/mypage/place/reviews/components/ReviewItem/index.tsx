@@ -1,19 +1,19 @@
 'use client';
 
-import Dot from '@/app/mypage/record/timeline/components/RecordItem/Dot';
-import { RATING_TEXT } from '@/constants/place';
+import Dot from '@/app/mypage/components/Dot';
+import { RATING_TEXT } from '@/app/place/constants';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-import type { ReviewItem } from '@/types/mypage';
+import type { Review } from '@/apis/review';
 
 interface ReviewItemProps {
-  data: ReviewItem;
-  isLast: boolean;
+  review: Review;
+  isLast?: boolean;
 }
 
-export default function ReviewItem({ data, isLast }: ReviewItemProps) {
-  const { id, rating, createdAt, content } = data;
+export default function ReviewItem({ review, isLast = false }: ReviewItemProps) {
+  const { id, rating, createdAt, content } = review;
   const date = format(new Date(createdAt), 'yy.MM.dd');
   return (
     <>

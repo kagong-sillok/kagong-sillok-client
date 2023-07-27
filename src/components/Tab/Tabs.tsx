@@ -1,9 +1,13 @@
 import Tab from './Tab';
-import { INITIAL_TABS } from '@/constants/place';
 import { useEffect, useState } from 'react';
 
-import type { TabType } from '@/types/place';
 import type { Dispatch, SetStateAction } from 'react';
+
+export interface TabItem {
+  id: number;
+  isSelected: boolean;
+  text: string;
+}
 
 interface TabsProps {
   selectedTabIds: number[];
@@ -11,7 +15,7 @@ interface TabsProps {
 }
 
 export default function Tabs({ selectedTabIds, setSelectedTabIds }: TabsProps) {
-  const [Tabs, setTabs] = useState<TabType[]>(INITIAL_TABS);
+  const [Tabs, setTabs] = useState<TabItem[]>([]);
 
   const handleSelectTab = (id: number) => {
     setSelectedTabIds((prev) => {
@@ -41,7 +45,7 @@ export default function Tabs({ selectedTabIds, setSelectedTabIds }: TabsProps) {
           isSelected={tab.isSelected}
           setSelectedTab={handleSelectTab as Dispatch<SetStateAction<number>>} // TODO: Tab 컴포넌트의 setSelectedTab prop 대신 handleSelectTab 함수를 넘겨주도록 수정
         >
-          {tab.children}
+          {tab.text}
         </Tab>
       ))}
     </div>

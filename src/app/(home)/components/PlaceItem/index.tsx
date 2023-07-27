@@ -1,9 +1,10 @@
-import { CompactPlaceType } from '@/types/place';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import type { Place } from '@/apis/place';
+
 interface PlaceItemProps {
-  place: CompactPlaceType;
+  place: Place;
   // snapTo: (i: number) => void;
 }
 

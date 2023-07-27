@@ -1,4 +1,4 @@
-import { CONDITION_LIST } from '@/constants/place';
+import { CONDITION_LIST } from '@/app/place/constants';
 import Image from 'next/image';
 
 import type { PlaceConditionType } from '@/types/place';

@@ -1,4 +1,5 @@
-import type { DayType, TabType } from '@/types/place';
+import type { TabItem } from '@/components/Tab/Tabs';
+import type { DayType } from '@/types/place';
 
 export const MAP_HEIGHT = 219;
 
@@ -51,37 +52,37 @@ export const CONDITION_LIST = [
   },
 ];
 
-export const INITIAL_TABS: TabType[] = [
+export const INITIAL_TABS: TabItem[] = [
   {
     id: 1,
     isSelected: false,
-    children: '호텔급 청결',
+    text: '호텔급 청결',
   },
   {
     id: 2,
     isSelected: false,
-    children: '와이파이',
+    text: '와이파이',
   },
   {
     id: 3,
     isSelected: false,
-    children: '편안한 좌석',
+    text: '편안한 좌석',
   },
   {
     id: 4,
     isSelected: false,
-    children: '조용한 공간',
+    text: '조용한 공간',
   },
   {
     id: 5,
     isSelected: false,
-    children: '적정 온도',
+    text: '적정 온도',
   },
   {
     id: 6,
     isSelected: false,
-    children: '넓은 테이블',
+    text: '넓은 테이블',
   },
 ];
 
-export const RATING_TEXT = ['별로에요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];
+export const RATING_TEXT = ['별로예요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];

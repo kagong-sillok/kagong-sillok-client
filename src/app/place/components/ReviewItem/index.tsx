@@ -1,12 +1,12 @@
-import { useGetImages } from '@/apis/place';
-import { RATING_TEXT } from '@/constants/place';
+import { useGetImages } from '@/apis/image';
+import { RATING_TEXT } from '@/app/place/constants';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-import type { ReviewType } from '@/types/place';
+import type { Review } from '@/apis/review';
 
 interface ReviewItemProps {
-  review: ReviewType;
+  review: Review;
 }
 
 export default function ReviewItem({ review }: ReviewItemProps) {

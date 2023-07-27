@@ -1,10 +1,10 @@
-import Dot from '../../../../record/timeline/components/RecordItem/Dot';
+import { Dot } from '@/app/mypage/components';
 import Image from 'next/image';
 
-import type { PlaceShortItem } from '@/types/place';
+import type { Place } from '@/apis/place';
 
 interface BookmarkItemProps {
-  data: PlaceShortItem;
+  data: Place;
   isLast: boolean;
 }
 

@@ -1,4 +1,4 @@
-import { DAYS_OF_WEEK } from '@/constants/place';
+import { DAYS_OF_WEEK } from '@/app/place/constants';
 import { formatTime } from '@/utils/formatTime';
 
 import type { DayType, PlaceType } from '@/types/place';
