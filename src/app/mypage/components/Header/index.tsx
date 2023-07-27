@@ -1,6 +1,5 @@
+import { PageType, UserData } from '@/app/mypage/types';
 import { format } from 'date-fns';
-
-import type { PageType, UserData } from '@/types/mypage';
 
 interface HeaderProps {
   page: PageType;
