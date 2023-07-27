@@ -20,7 +20,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['cdn.pixabay.com'],
+    domains: ['cdn.pixabay.com', 'https://kauth.kakao.com'],
   },
 };
 

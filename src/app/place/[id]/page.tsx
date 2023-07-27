@@ -1,5 +1,6 @@
 'use client';
 
+import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
 import Button from '@/components/common/Button';
 import KakaoMap from '@/components/KakaoMap';
 import {
@@ -14,9 +15,6 @@ import {
   ShareSheet,
 } from '@/components/place';
 import { MAP_HEIGHT } from '@/constants/place';
-import { useGetImages } from '@/hooks/queries/place/useGetImages';
-import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
-import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,8 +28,10 @@ export default function Page({ params }: { params: { id: string } }) {
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
   const [isShareSheetOpen, setIsShareSheetOpen] = useState(false);
 
-  const { data: placeData, isLoading, isError } = useGetPlace(params.id);
-  const { data: reviewsData } = useGetReviews(params.id);
+  const placeId = Number(params.id);
+
+  const { data: placeData, isLoading, isError } = useGetPlace(placeId);
+  const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(placeData?.imageIds || []); // TODO: 장소 이미지 페이징 api 나오면 수정
 
   const router = useRouter();

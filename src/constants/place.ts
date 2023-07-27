@@ -2,7 +2,7 @@ import type { DayType, TabType } from '@/types/place';
 
 export const MAP_HEIGHT = 219;
 
-export const DAYS_OF_WEEK: { [key in DayType]: string } = {
+export const DAYS_OF_WEEK: { [key in Lowercase<DayType>]: string } = {
   monday: '월',
   tuesday: '화',
   wednesday: '수',

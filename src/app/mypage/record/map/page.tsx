@@ -1,7 +1,7 @@
 'use client';
 
+import { useGetPlacesAround } from '@/apis/place';
 import KakaoMap from '@/components/KakaoMap';
-import { useGetPlacesAround } from '@/hooks/queries/place/useGetPlacesAround';
 
 function Map() {
   const { data: placesAroundData } = useGetPlacesAround({

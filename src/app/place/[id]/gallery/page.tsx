@@ -1,11 +1,9 @@
 'use client';
 
+import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
 import Button from '@/components/common/Button';
 import { Header, TimeLogSheet } from '@/components/place';
 import GalleryModal from '@/components/place/GalleryModal';
-import { useGetImages } from '@/hooks/queries/place/useGetImages';
-import { useGetPlace } from '@/hooks/queries/place/useGetPlace';
-import { useGetReviews } from '@/hooks/queries/place/useGetReviews';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -19,8 +17,10 @@ export default function Page({ params }: { params: { id: string } }) {
   >([]);
   const [imageIds, setImageIds] = useState<number[]>([]);
 
-  const { data: placeData } = useGetPlace(params.id);
-  const { data: reviewsData } = useGetReviews(params.id);
+  const placeId = Number(params.id);
+
+  const { data: placeData } = useGetPlace(placeId);
+  const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(imageIds);
 
   const router = useRouter();
