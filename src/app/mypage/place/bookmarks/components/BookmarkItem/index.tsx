@@ -1,4 +1,4 @@
-import Dot from './Dot';
+import Dot from '../../../../record/timeline/components/RecordItem/Dot';
 import Image from 'next/image';
 
 import type { PlaceShortItem } from '@/types/place';

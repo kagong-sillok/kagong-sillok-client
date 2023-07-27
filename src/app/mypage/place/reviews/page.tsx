@@ -1,4 +1,4 @@
-import { ReviewItem } from '@/components/mypage';
+import { ReviewItem } from './components';
 
 import type { ReviewData } from '@/types/mypage';
 

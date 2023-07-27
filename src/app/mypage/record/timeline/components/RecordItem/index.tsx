@@ -1,4 +1,4 @@
-import Dot from '@/components/mypage/Dot';
+import Dot from './Dot';
 import { format } from 'date-fns';
 import Image from 'next/image';
 

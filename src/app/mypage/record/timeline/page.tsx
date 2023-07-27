@@ -1,7 +1,6 @@
 'use client';
 
-import { Monthly, Weekly } from '@/components/mypage';
-import RecordItem from '@/components/mypage/RecordItem';
+import { Monthly, Weekly, RecordItem } from './components';
 import { useState } from 'react';
 
 import type { CalendarType, RecordData } from '@/types/mypage';

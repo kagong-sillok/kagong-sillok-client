@@ -1,4 +1,4 @@
-import { BookmarkItem } from '@/components/mypage';
+import { BookmarkItem } from './components';
 
 import type { PlaceShortData } from '@/types/place';
 

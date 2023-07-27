@@ -1,6 +1,6 @@
 'use client';
 
-import Dot from '@/components/mypage/Dot';
+import Dot from '@/app/mypage/record/timeline/components/RecordItem/Dot';
 import { RATING_TEXT } from '@/constants/place';
 import { format } from 'date-fns';
 import Image from 'next/image';
