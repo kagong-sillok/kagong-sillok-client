@@ -2,7 +2,7 @@
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import localFont from 'next/font/local';
 import Script from 'next/script';
-import './globals.css';
+import '@/styles/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

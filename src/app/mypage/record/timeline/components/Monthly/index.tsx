@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Calendar } from 'react-calendar';
-import '@/components/mypage/calendar.css';
+import '@/styles/calendar.css';
 
 import type { CalendarType } from '@/types/mypage';
 import type { LooseValue } from 'react-calendar/dist/cjs/shared/types';
