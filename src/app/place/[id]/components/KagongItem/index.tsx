@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 import type { PlaceConditionType } from '@/types/place';
 
-interface KagongBoxProps {
+interface KagongItemProps {
   type: PlaceConditionType;
   isFirst?: boolean;
 }
 
-export default function KagongBox({ type, isFirst = false }: KagongBoxProps) {
+export default function KagongItem({ type, isFirst = false }: KagongItemProps) {
   const condition = CONDITION_LIST.find((item) => item.type === type);
 
   if (!condition) return null;

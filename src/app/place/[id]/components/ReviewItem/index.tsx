@@ -5,11 +5,11 @@ import Image from 'next/image';
 
 import type { ReviewType } from '@/types/place';
 
-interface ReviewBoxProps {
+interface ReviewItemProps {
   review: ReviewType;
 }
 
-export default function ReviewBox({ review }: ReviewBoxProps) {
+export default function ReviewItem({ review }: ReviewItemProps) {
   const { data: imagesData } = useGetImages(review.imageIds || []);
 
   return (
