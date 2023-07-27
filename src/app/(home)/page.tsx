@@ -1,12 +1,9 @@
 'use client';
 
+import { Nav, PlaceItem } from './components';
+import Loading from '../loading';
 import { useGetPlacesAround } from '@/apis/place';
-import Loading from '@/app/loading';
-import { BottomSheet } from '@/components';
-import Nav from '@/components/home/Nav';
-import PlaceItem from '@/components/home/PlaceItem';
-import KakaoMap from '@/components/KakaoMap';
-import SideMenu from '@/components/SideMenu';
+import { BottomSheet, KakaoMap, SideMenu } from '@/components';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
