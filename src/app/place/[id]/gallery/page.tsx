@@ -1,10 +1,10 @@
 'use client';
 
 import { GalleryModal } from './components';
-import { Header, TimeLogSheet } from '../../components';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
+import { Header, TimeLogSheet } from '@/app/place/components';
 import { Button } from '@/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';

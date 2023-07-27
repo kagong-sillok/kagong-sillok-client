@@ -1,4 +1,4 @@
-import type { DayType, LinkType } from '@/types/place';
+import type { DayType, LinkType } from '@/app/place/types';
 
 export interface BusinessHour {
   dayOfWeek: DayType;

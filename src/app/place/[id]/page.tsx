@@ -1,5 +1,8 @@
 'use client';
 
+import { useGetImages } from '@/apis/image';
+import { useGetPlace } from '@/apis/place';
+import { useGetReviews } from '@/apis/review';
 import {
   Info,
   Header,
@@ -10,10 +13,7 @@ import {
   Tag,
   TimeLogSheet,
   Tooltip,
-} from '../components';
-import { useGetImages } from '@/apis/image';
-import { useGetPlace } from '@/apis/place';
-import { useGetReviews } from '@/apis/review';
+} from '@/app/place/components';
 import { MAP_HEIGHT } from '@/app/place/constants';
 import { KakaoMap, Button } from '@/components';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
@@ -22,7 +22,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import type { PlaceConditionType } from '@/types/place';
+import type { PlaceConditionType } from '@/app/place/types';
 
 export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);

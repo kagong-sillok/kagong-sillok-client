@@ -1,19 +1,19 @@
 import Image from 'next/image';
 
+import type { SearchHistory } from '@/app/search/types';
+
 interface SearchHistoryItemProps {
-  id: number;
-  keyword: string;
-  date: string;
+  searchHistory: SearchHistory;
   handleHistoryDelete: (id: number) => void;
 }
 
 Image;
 export default function SearchHistoryItem({
-  id,
-  keyword,
-  date,
+  searchHistory,
   handleHistoryDelete,
 }: SearchHistoryItemProps) {
+  const { id, keyword, date } = searchHistory;
+
   return (
     <li className="flex w-full items-center justify-between px-6 py-[1.375rem] transition-colors active:bg-[#F7F7F8]">
       <div className="text-body2 text-bk100">{keyword}</div>

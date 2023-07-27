@@ -31,6 +31,7 @@ export default function Redirect({
       authorizationCode: searchParams.code,
       redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <></>;

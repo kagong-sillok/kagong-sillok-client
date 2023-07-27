@@ -11,7 +11,7 @@ export const getPlace = async (id: number) => {
 };
 
 export const getPlacesAround = async (params: PlacesAround) => {
-  const { data } = await ky.get('/db/places.json').json<Common.Response<Place>>();
+  const { data } = await ky.get('/db/places.json').json<Common.Response<{ places: Place[] }>>();
 
   return data;
 };

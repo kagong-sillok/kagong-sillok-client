@@ -1,39 +1,16 @@
 'use client';
 
 import { Monthly, Weekly, RecordItem } from './components';
+import records from '../../../../../public/db/records.json';
 import { useState } from 'react';
 
-import type { CalendarType, RecordData } from '@/types/mypage';
-
-const recordList: RecordData = {
-  data: [
-    {
-      id: 1,
-      name: '스타벅스 동대문공원점',
-      content: '모각코',
-      latitude: 123.123,
-      longitude: 123.123,
-      image: 'imageUrl',
-      createdAt: '2023-06-01T00:04:00',
-      updatedAt: '2023-06-01T00:00:00',
-      time: '2023-06-01T00:04:00',
-    },
-    {
-      id: 2,
-      name: '스타벅스 동대문공원점',
-      content: '모각코',
-      latitude: 123.123,
-      longitude: 123.123,
-      createdAt: '2023-06-01T01:20:00',
-      image: 'imageUrl',
-      updatedAt: '2023-06-01T00:00:00',
-      time: '2023-06-01T01:20:00',
-    },
-  ],
-};
+import type { CalendarType, StudyRecord } from '@/apis/record';
 
 function Timeline() {
   const [viewType, setViewType] = useState<CalendarType>('MONTH');
+
+  const recordList: Common.Response<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
+
   return (
     <div>
       {viewType === 'MONTH' ? (
@@ -43,7 +20,7 @@ function Timeline() {
       )}
 
       <div className="flex w-full flex-col items-center justify-center gap-6 p-6">
-        {recordList.data.map((item) => {
+        {recordList.data.studyRecords.map((item) => {
           return <RecordItem key={item.id} data={item} />;
         })}
       </div>

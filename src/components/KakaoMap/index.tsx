@@ -4,13 +4,13 @@ import { DEFAULT_COORDINATES } from '@/constants/map';
 // import useGeoLocation from '@/hooks/useGeolocation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
+import type { Place } from '@/apis/place';
 import type { Coordinates } from '@/types/coordinates';
-import type { PlaceType } from '@/types/place';
 
 interface KakaoMapProps {
   className?: string;
   customCoordinates?: Coordinates;
-  places?: PlaceType[];
+  places?: Place[];
 }
 
 const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {

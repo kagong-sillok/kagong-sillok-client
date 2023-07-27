@@ -6,10 +6,10 @@ import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import type { PlaceType } from '@/types/place';
+import type { Place } from '@/apis/place';
 
 interface DefaultInfoProps {
-  place: PlaceType;
+  place: Place;
 }
 
 export default function DefaultInfo({ place }: DefaultInfoProps) {
