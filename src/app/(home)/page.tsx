@@ -7,7 +7,6 @@ import { BottomSheet, KakaoMap, SideMenu } from '@/components';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import type { Coordinates } from '@/types/coordinates';
 import type { SheetRef } from 'react-modal-sheet';
 
 export default function Home() {

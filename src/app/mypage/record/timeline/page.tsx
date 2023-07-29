@@ -9,7 +9,7 @@ import type { CalendarType, StudyRecord } from '@/apis/record';
 function Timeline() {
   const [viewType, setViewType] = useState<CalendarType>('MONTH');
 
-  const recordList: Common.Response<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
+  const recordList: Response<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
 
   return (
     <div>

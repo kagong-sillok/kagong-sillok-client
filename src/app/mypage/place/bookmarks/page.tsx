@@ -2,7 +2,7 @@ import { BookmarkItem } from './components';
 
 import type { Place } from '@/apis/place';
 
-const bookmarkList: Common.Response<{ places: Place[] }> = {
+const bookmarkList: Response<{ places: Place[] }> = {
   data: {
     places: [
       {

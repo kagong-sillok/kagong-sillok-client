@@ -5,7 +5,6 @@ import { DEFAULT_COORDINATES } from '@/constants/map';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 import type { Place } from '@/apis/place';
-import type { Coordinates } from '@/types/coordinates';
 
 interface KakaoMapProps {
   className?: string;

@@ -9,7 +9,7 @@ export const getImages = async (imageIds: number[]) => {
         imageIds: imageIds.join(','),
       },
     })
-    .json<Common.Response<{ images: Image[] }>>();
+    .json<APIResponse<{ images: Image[] }>>();
 
   return data;
 };
@@ -19,7 +19,7 @@ export const postImages = async (payload: ImagesPayload) => {
     .post('api/v1/images', {
       json: payload,
     })
-    .json<Common.Response<{ images: Image[] }>>();
+    .json<APIResponse<{ images: Image[] }>>();
 
   return data;
 };
