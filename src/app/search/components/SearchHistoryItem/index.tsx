@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { SearchHistory } from '@/app/search/types';
+import type { SearchHistory } from '@/types/search';
 
 interface SearchHistoryItemProps {
   searchHistory: SearchHistory;

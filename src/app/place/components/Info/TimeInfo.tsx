@@ -1,8 +1,7 @@
 import { DAYS_OF_WEEK } from '@/app/place/constants';
 import { formatTime } from '@/utils/formatTime';
 
-import type { Place } from '@/apis/place';
-import type { DayType } from '@/app/place/types';
+import type { Place, DayType } from '@/types/place';
 
 interface TimeInfoProps {
   businessHours: Place['businessHours'];

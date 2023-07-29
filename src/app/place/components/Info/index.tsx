@@ -6,7 +6,7 @@ import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import type { Place } from '@/apis/place';
+import type { Place } from '@/types/place';
 
 interface DefaultInfoProps {
   place: Place;

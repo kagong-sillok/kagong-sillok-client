@@ -4,12 +4,13 @@ import { Monthly, Weekly, RecordItem } from './components';
 import records from '../../../../../public/db/records.json';
 import { useState } from 'react';
 
-import type { CalendarType, StudyRecord } from '@/apis/record';
+import type { CalendarType } from '@/types/mypage';
+import type { StudyRecord } from '@/types/record';
 
 function Timeline() {
   const [viewType, setViewType] = useState<CalendarType>('MONTH');
 
-  const recordList: Response<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
+  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
 
   return (
     <div>

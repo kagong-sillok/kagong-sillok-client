@@ -1,7 +1,7 @@
 import api from '@/apis/config/instance';
 import ky from 'ky';
 
-import type { Place, PlacesAround } from './types';
+import type { Place, PlacesAround } from '@/types/place';
 
 export const getPlace = async (id: number) => {
   // const {data} = await api.get(`api/v1/places/${id}`);

@@ -4,7 +4,7 @@ import { DEFAULT_COORDINATES } from '@/constants/map';
 // import useGeoLocation from '@/hooks/useGeolocation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-import type { Place } from '@/apis/place';
+import type { Place } from '@/types/place';
 
 interface KakaoMapProps {
   className?: string;

@@ -1,4 +1,3 @@
-import { Coordinates } from '@/types/coordinates';
 import { create } from 'zustand';
 
 interface CenterCoordinates {

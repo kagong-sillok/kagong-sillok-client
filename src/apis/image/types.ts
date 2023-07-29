@@ -1,10 +1,4 @@
-export interface Image {
-  id: number;
-  url: string;
-  width: number;
-  height: number;
-  extension: string;
-}
+import type { Image } from '@/types/Image';
 
 export interface ImagesPayload {
   images: Omit<Image, 'id'>[];

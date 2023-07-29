@@ -1,6 +1,5 @@
+import { User } from '@/types/user';
 import { create } from 'zustand';
-
-import type { User } from '@/apis/user';
 
 interface UserStore {
   user: User;

@@ -1,4 +1,4 @@
-import type { PlaceConditionType } from '@/app/place/types';
+import type { PlaceConditionType } from '../place';
 
 export interface Review {
   id: number;

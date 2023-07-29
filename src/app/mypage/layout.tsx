@@ -3,7 +3,7 @@
 import { Gnb, Header, Tab, TabGroup } from './components';
 import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
 
-import type { PageType, UserData, ViewType } from './types';
+import type { PageType, UserData, ViewType } from '@/types/mypage';
 import type { PropsWithChildren } from 'react';
 
 type TabItems = { [key in PageType]: { label: string; key: ViewType }[] };

@@ -1,6 +1,6 @@
 import ky from 'ky';
 
-import type { Review } from './types';
+import type { Review } from '@/types/review';
 
 export const getReviews = async (placeId: number, size: number, pageParam: number) => {
   const { data } = await ky.get('/db/reviews.json').json<APIResponse<{ reviews: Review[] }>>();

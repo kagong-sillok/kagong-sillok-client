@@ -1,7 +1,7 @@
 import { Dot } from '@/app/mypage/components';
 import Image from 'next/image';
 
-import type { Place } from '@/apis/place';
+import type { Place } from '@/types/place';
 
 interface BookmarkItemProps {
   data: Place;

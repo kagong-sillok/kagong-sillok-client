@@ -1,6 +1,7 @@
 import api from '@/apis/config/instance';
 
-import type { Image, ImagesPayload } from './types';
+import type { ImagesPayload } from './types';
+import type { Image } from '@/types/Image';
 
 export const getImages = async (imageIds: number[]) => {
   const { data } = await api

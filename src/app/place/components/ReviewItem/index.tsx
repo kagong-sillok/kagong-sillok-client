@@ -3,7 +3,7 @@ import { RATING_TEXT } from '@/app/place/constants';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-import type { Review } from '@/apis/review';
+import type { Review } from '@/types/review';
 
 interface ReviewItemProps {
   review: Review;

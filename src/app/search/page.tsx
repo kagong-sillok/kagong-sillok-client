@@ -1,10 +1,9 @@
 'use client';
 import { SearchHistoryItem } from '@/app/search/components';
+import { SearchHistory } from '@/types/search';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-
-import type { SearchHistory } from './types';
 
 export default function Search() {
   const [keyword, setKeyword] = useState('');

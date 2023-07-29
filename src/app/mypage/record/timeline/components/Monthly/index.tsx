@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Calendar } from 'react-calendar';
 import '@/styles/calendar.css';
 
-import type { CalendarType } from '@/app/mypage/types';
+import type { CalendarType } from '@/types/mypage';
 import type { LooseValue } from 'react-calendar/dist/cjs/shared/types';
 
 // 임시 데이터

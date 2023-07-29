@@ -1,4 +1,4 @@
-import { LineType } from '@/app/place/types';
+import type { LineType } from '@/types/place';
 
 interface OpenClosedProps {
   type: 'OPEN' | 'CLOSED';

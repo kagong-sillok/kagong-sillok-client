@@ -1,8 +1,8 @@
 import { BookmarkItem } from './components';
 
-import type { Place } from '@/apis/place';
+import type { Place } from '@/types/place';
 
-const bookmarkList: Response<{ places: Place[] }> = {
+const bookmarkList: APIResponse<{ places: Place[] }> = {
   data: {
     places: [
       {
