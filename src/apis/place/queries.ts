@@ -2,7 +2,7 @@ import { getPlace, getPlacesAround } from './apis';
 import { Keys } from './keys';
 import { useQuery } from '@tanstack/react-query';
 
-import type { PlacesAround } from './types';
+import type { PlacesAround } from '@/types/place';
 
 export function useGetPlace(id: number) {
   return useQuery(Keys.place(id), () => getPlace(id));

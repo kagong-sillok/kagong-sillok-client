@@ -20,8 +20,8 @@ export default function Home() {
   const { data: placesAroundData } = useGetPlacesAround({
     latitude: 37.5665,
     longitude: 126.978,
-    latitudeBound: 0.01,
-    longitudeBound: 0.01,
+    latitudeBound: 0.1,
+    longitudeBound: 0.1,
   });
 
   const snapPoints = [

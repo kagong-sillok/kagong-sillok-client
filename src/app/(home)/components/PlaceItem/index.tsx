@@ -22,7 +22,7 @@ export default function PlaceItem({ place }: PlaceItemProps) {
         <div className="flex flex-col">
           <p className="mb-0.5 text-sub1">{name}</p>
           <div className="mb-2 h-fit text-caption text-bk50">
-            {tags.map((tag) => (
+            {tags?.map((tag) => (
               <span key={tag} className="mr-1.5">
                 {tag}
               </span>
@@ -30,7 +30,7 @@ export default function PlaceItem({ place }: PlaceItemProps) {
           </div>
           <div className="flex gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/Icons/40/emoji-rating${Math.round(rating)}_on.svg`}
+              src={`/assets/Icons/40/emoji-rating${Math.round(rating ?? 3)}_on.svg`}
               height={16}
               width={16}
               alt="emoji"
