@@ -1,3 +1,5 @@
+import { retryRequest } from './retryRequest';
+import { setHeader } from './setHeader';
 import ky from 'ky';
 
 const api = ky.create({
@@ -6,8 +8,8 @@ const api = ky.create({
     'Content-Type': 'application/json',
   },
   hooks: {
-    beforeRequest: [], // 요청 전 처리
-    afterResponse: [], // 응답 후 처리
+    beforeRequest: [setHeader],
+    afterResponse: [retryRequest],
   },
 });
 
