@@ -1,4 +1,10 @@
-export type PlaceType = {
+export interface BusinessHour {
+  dayOfWeek: DayType;
+  open: string;
+  close: string;
+}
+
+export interface Place {
   id: number;
   name: string;
   address: string;
@@ -10,67 +16,39 @@ export type PlaceType = {
   isOpen: boolean;
   phone: string; // 02-1234-1234
   links: {
-    linkType: 'INSTAGRAM' | 'BLOG' | 'WEB';
+    linkType: LinkType;
     url: string;
   }[];
   businessHours: [
-    {
-      dayOfWeek: 'MONDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'TUESDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'WEDNESDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'THURSDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'FRIDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'SATURDAY';
-      open: 'string';
-      close: 'string';
-    },
-    {
-      dayOfWeek: 'SUNDAY';
-      open: 'string';
-      close: 'string';
-    }
+    Modify<BusinessHour, { dayOfWeek: 'MONDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'TUESDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'WEDNESDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'THURSDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'FRIDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'SATURDAY' }>,
+    Modify<BusinessHour, { dayOfWeek: 'SUNDAY' }>
   ];
-};
+}
 
-export type CompactPlaceType = {
-  id: number;
-  name: string;
-  tags: string[];
-  rating: number;
-  isOpen: boolean;
-};
+export interface PlacesAround {
+  latitude: number;
+  longitude: number;
+  latitudeBound: number;
+  longitudeBound: number;
+}
 
-export type ReviewType = {
-  id: number;
-  rating: number;
-  content: string;
-  imageIds: number[];
-  tags: PlaceConditionType;
-  userId: number;
-  userNickname: string;
-  createdAt: string;
-  updatedAt: string;
-};
+export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
+
+export type DayType =
+  | 'MONDAY'
+  | 'TUESDAY'
+  | 'WEDNESDAY'
+  | 'THURSDAY'
+  | 'FRIDAY'
+  | 'SATURDAY'
+  | 'SUNDAY';
+
+export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TABLE' | 'QUIET';
 
 export type LineType =
   | '1'
@@ -93,54 +71,3 @@ export type LineType =
   | '의정부'
   | '에버라인'
   | '경강선';
-
-export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TABLE' | 'QUIET';
-
-export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
-
-export type DayType =
-  | 'MONDAY'
-  | 'TUESDAY'
-  | 'WEDNESDAY'
-  | 'THURSDAY'
-  | 'FRIDAY'
-  | 'SATURDAY'
-  | 'SUNDAY';
-
-export type TabType = {
-  id: number;
-  isSelected: boolean;
-  children: string;
-};
-
-export type PlaceShortItem = {
-  id: number;
-  name: string;
-  tags: string[];
-  rating: number;
-  latitude: number;
-  longitude: number;
-  isOpen: boolean;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type PlaceShortData = {
-  data: {
-    places: PlaceShortItem[];
-  };
-};
-
-export type ImageType = {
-  url: string;
-  width: number;
-  height: number;
-  extension: string;
-};
-
-export type PlacesAroundType = {
-  latitude: number;
-  longitude: number;
-  latitudeBound: number;
-  longitudeBound: number;
-};

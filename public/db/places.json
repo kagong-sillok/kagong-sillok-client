@@ -14,13 +14,13 @@
         "phone": "02-1234-1234",
         "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
         "businessHours": [
-          { "id": 8, "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 9, "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 10, "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 11, "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 12, "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 13, "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 14, "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
+          { "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
         ]
       },
       {
@@ -36,13 +36,13 @@
         "phone": "02-1234-1234",
         "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
         "businessHours": [
-          { "id": 8, "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 9, "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 10, "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 11, "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 12, "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 13, "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 14, "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
+          { "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
         ]
       },
       {
@@ -58,13 +58,13 @@
         "phone": "02-1234-1234",
         "links": [{ "linkType": "WEB", "url": "https://www.starbucks.co.kr/" }],
         "businessHours": [
-          { "id": 8, "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 9, "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 10, "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 11, "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 12, "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 13, "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
-          { "id": 14, "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
+          { "dayOfWeek": "MONDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "TUESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "WEDNESDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "THURSDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "FRIDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SATURDAY", "open": "09:00:00", "close": "22:00:00" },
+          { "dayOfWeek": "SUNDAY", "open": "09:00:00", "close": "22:00:00" }
         ]
       }
     ]

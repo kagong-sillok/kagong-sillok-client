@@ -1,7 +1,7 @@
 'use client';
 
-import { useGetReviews } from '@/apis/place';
-import { Header, ReviewBox } from '@/components/place';
+import { useGetReviews } from '@/apis/review';
+import { Header, ReviewItem } from '@/app/place/components';
 import { useRouter } from 'next/navigation';
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { id: string } }) {
       />
       <div className="my-6 flex flex-col gap-5 px-6">
         {reviewsData?.pages.map(({ data }) =>
-          data.reviews.map((review) => <ReviewBox key={review.id} review={review} />)
+          data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
         )}
       </div>
     </div>

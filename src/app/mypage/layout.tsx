@@ -1,6 +1,6 @@
 'use client';
 
-import { Gnb, Header, Tab, TabGroup } from '@/components/mypage';
+import { Gnb, Header, Tab, TabGroup } from './components';
 import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
 
 import type { PageType, UserData, ViewType } from '@/types/mypage';

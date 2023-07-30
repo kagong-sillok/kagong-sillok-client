@@ -1,8 +1,6 @@
-import type { PlacesAroundType } from '@/types/place';
+import type { PlacesAround } from './types';
 
 export const Keys = Object.freeze({
   place: (id: number) => ['place', id],
-  placesAround: (around: PlacesAroundType) => ['placesAround', around],
-  reviews: (placeId: number) => ['reviews', placeId],
-  images: (imageIds: number[]) => ['images', { ...imageIds }],
+  placesAround: (around: PlacesAround) => ['placesAround', around],
 });

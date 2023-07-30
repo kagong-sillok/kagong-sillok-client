@@ -1,8 +1,6 @@
 'use client';
 
 import { useLoginMutation } from '@/apis/auth';
-import { useUserStore } from '@/store/userState';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function Redirect({
@@ -12,25 +10,14 @@ export default function Redirect({
     code: string;
   };
 }) {
-  const { setUser } = useUserStore();
-  const router = useRouter();
-
-  const { mutate } = useLoginMutation({
-    onSuccess: () => {
-      setUser({
-        nickname: 'test',
-        email: 'test@gmail.com',
-        role: 'USER',
-      });
-      router.push('/');
-    },
-  });
+  const { mutate } = useLoginMutation();
 
   useEffect(() => {
     mutate({
       authorizationCode: searchParams.code,
       redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <></>;

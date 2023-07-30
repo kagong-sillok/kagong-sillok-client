@@ -1,0 +1,28 @@
+{
+  "data": {
+    "studyRecords": [
+      {
+        "id": 1,
+        "placeName": "스타벅스 동대문공원점",
+        "latitude": 37.565289,
+        "longitude": 127.001285,
+        "studyDate": "2023-07-27",
+        "description": "스터디",
+        "duration": 3,
+        "imageIds": [],
+        "writtenAt": "2023-07-27T15:26:45.536Z"
+      },
+      {
+        "id": 2,
+        "placeName": "스타벅스 동대문공원점",
+        "latitude": 37.565289,
+        "longitude": 127.001285,
+        "studyDate": "2023-07-25",
+        "description": "모각코",
+        "duration": 2,
+        "imageIds": [],
+        "writtenAt": "2023-07-27T15:26:45.536Z"
+      }
+    ]
+  }
+}

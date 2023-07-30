@@ -1,20 +1,21 @@
 'use client';
 
-import { useGetImages, useGetPlace, useGetReviews } from '@/apis/place';
-import Button from '@/components/common/Button';
-import KakaoMap from '@/components/KakaoMap';
+import { useGetImages } from '@/apis/image';
+import { useGetPlace } from '@/apis/place';
+import { useGetReviews } from '@/apis/review';
 import {
-  DefaultInfo,
+  Info,
   Header,
-  KagongBox,
-  TimeLogSheet,
-  ReviewBox,
+  KagongItem,
+  ReviewItem,
   ReviewSheet,
-  Tag,
-  Tooltip,
   ShareSheet,
-} from '@/components/place';
-import { MAP_HEIGHT } from '@/constants/place';
+  Tag,
+  TimeLogSheet,
+  Tooltip,
+} from '@/app/place/components';
+import { MAP_HEIGHT } from '@/app/place/constants';
+import { KakaoMap, Button } from '@/components';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -91,11 +92,11 @@ export default function Page({ params }: { params: { id: string } }) {
         <hr className="my-8 text-bk10" />
 
         <h5 className="mb-4 text-sub1">기본 정보</h5>
-        <DefaultInfo place={placeData} />
+        <Info place={placeData} />
         <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
         <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
           {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
-            <KagongBox key={index} type={type as PlaceConditionType} isFirst={index === 0} />
+            <KagongItem key={index} type={type as PlaceConditionType} isFirst={index === 0} />
           ))}
         </div>
         <a
@@ -143,7 +144,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <hr className="mb-6 text-bk10" />
         <div className="mb-6 flex flex-col gap-5">
           {reviewsData?.pages.map(({ data }) =>
-            data.reviews.map((review) => <ReviewBox key={review.id} review={review} />)
+            data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
           )}
         </div>
         <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsReviewSheetOpen(true)}>

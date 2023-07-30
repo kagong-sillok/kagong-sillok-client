@@ -5,4 +5,7 @@ export interface LoginPayload {
 
 export interface LoginResponse {
   accessToken: string;
+  refreshToken: string;
+  accessTokenExpireDateTime: string;
+  refreshTokenExpireDateTime: string;
 }

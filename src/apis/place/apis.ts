@@ -1,41 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import api from '@/apis/config/instance';
 import ky from 'ky';
 
-import type { ImageType, PlaceType, PlacesAroundType, ReviewType } from '@/types/place';
+import type { Place, PlacesAround } from '@/types/place';
 
 export const getPlace = async (id: number) => {
-  // const {data} = await api.get(`api/v1/places/${id}`);
-  const { data } = await ky.get('/db/place.json').json<{ data: PlaceType }>();
+  const { data } = await api.get(`api/v1/places/${id}`).json<APIResponse<Place>>();
+  // const { data } = await ky.get('/db/place.json').json<APIResponse<Place>>();
 
   return data;
 };
 
-export const getPlacesAround = async (params: PlacesAroundType) => {
-  const { data } = await ky.get('/db/places.json').json<{ data: { places: PlaceType[] } }>();
-
-  return data;
-};
-
-export const getReviews = async (placeId: number, size: number, pageParam: number) => {
-  const { data } = await ky.get('/db/reviews.json').json<{ data: { reviews: ReviewType[] } }>();
-
-  return {
-    data,
-    pageParam,
-  };
-};
-
-export const getImages = async (imageIds: number[]) => {
+export const getPlacesAround = async (params: PlacesAround) => {
   const { data } = await api
-    .get('api/v1/images', {
-      searchParams: {
-        imageIds: imageIds.join(','),
-      },
+    .get('api/v1/places/around', {
+      searchParams: { ...params },
     })
-    .json<{ data: { images: ImageType[] } }>();
-  // const {data} = await ky.get('/db/images.json');
+    .json<APIResponse<{ places: Place[] }>>();
+  // const { data } = await ky.get('/db/places.json').json<APIResponse<{ places: Place[] }>>();
 
   return data;
 };

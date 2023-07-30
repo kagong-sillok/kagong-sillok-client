@@ -1,12 +1,16 @@
 import { postLogin } from '.';
-import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
+import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 
-export function useLoginMutation(
-  options?: UseMutationOptions<
-    Awaited<ReturnType<typeof postLogin>>,
-    unknown,
-    Parameters<typeof postLogin>[0]
-  >
-) {
-  return useMutation(postLogin, options);
+export function useLoginMutation() {
+  const router = useRouter();
+  return useMutation(postLogin, {
+    onSuccess: (data) => {
+      setCookie('accessToken', data.accessToken);
+      setCookie('refreshToken', data.refreshToken);
+
+      router.push('/');
+    },
+  });
 }

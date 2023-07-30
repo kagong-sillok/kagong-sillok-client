@@ -1,15 +1,14 @@
 'use client';
-import SearchHistoryItem from '@/components/search/SearchHistoryItem';
+import { SearchHistoryItem } from '@/app/search/components';
+import { SearchHistory } from '@/types/search';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-import type { SearchHistoryType } from '@/types/search';
-
 export default function Search() {
   const [keyword, setKeyword] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const [searchHistory, setHistoryList] = useState<SearchHistoryType[]>([
+  const [searchHistoryList, setSearchHistoryList] = useState<SearchHistory[]>([
     { id: 1, keyword: '스타벅스 한국 프레스점', date: '05.20' },
     { id: 2, keyword: '스타벅스 환구단점', date: '05.20' },
   ]);
@@ -23,7 +22,7 @@ export default function Search() {
   }
 
   const handleHistoryDelete = (id: number) => {
-    setHistoryList(searchHistory.filter((item) => item.id != id));
+    setSearchHistoryList((prev) => prev.filter((item) => item.id != id));
   };
 
   return (
@@ -41,7 +40,7 @@ export default function Search() {
           ref={inputRef}
         />
       </div>
-      {searchHistory.length === 0 ? (
+      {searchHistoryList.length === 0 ? (
         <div className="flex h-[calc(100%-3.5rem)] items-center justify-center">
           <p className="text-body1 text-bk40"> 원하는 지역의 카페를 검색해보세요!</p>
         </div>
@@ -49,12 +48,10 @@ export default function Search() {
         <>
           <div className="px-6 py-2.5 text-sub2 text-bk40">최근 검색</div>
           <ul>
-            {searchHistory.map((item) => (
+            {searchHistoryList.map((searchHistory) => (
               <SearchHistoryItem
-                key={item.id}
-                id={item.id}
-                keyword={item.keyword}
-                date={item.date}
+                key={searchHistory.id}
+                searchHistory={searchHistory}
                 handleHistoryDelete={handleHistoryDelete}
               />
             ))}
