@@ -1,3 +1,4 @@
+'use client';
 import TimeLogSheet from '../TimeLogSheet';
 import { Button } from '@/components';
 import { useState } from 'react';

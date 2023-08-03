@@ -1,3 +1,4 @@
+'use client';
 import Tooltip from './Tooltip';
 import { useGetReviews } from '@/apis/review';
 import { ReviewItem, ReviewSheet } from '@/app/place/components';

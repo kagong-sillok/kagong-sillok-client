@@ -1,3 +1,4 @@
+'use client';
 import { MAP_HEIGHT } from '../../constants';
 import Header from '../Header';
 import ShareSheet from '../ShareSheet';
