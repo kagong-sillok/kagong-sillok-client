@@ -1,7 +1,7 @@
 import api from '@/apis/config/instance';
 
 import type { ImagesPayload } from './types';
-import type { Image } from '@/types/Image';
+import type { ImageObject } from '@/types/Image';
 
 export const getImages = async (imageIds: number[]) => {
   const { data } = await api
@@ -10,7 +10,7 @@ export const getImages = async (imageIds: number[]) => {
         imageIds: imageIds.join(','),
       },
     })
-    .json<APIResponse<{ images: Image[] }>>();
+    .json<APIResponse<{ images: ImageObject[] }>>();
 
   return data;
 };
@@ -20,7 +20,7 @@ export const postImages = async (payload: ImagesPayload) => {
     .post('api/v1/images', {
       json: payload,
     })
-    .json<APIResponse<{ images: Image[] }>>();
+    .json<APIResponse<{ images: ImageObject[] }>>();
 
   return data;
 };

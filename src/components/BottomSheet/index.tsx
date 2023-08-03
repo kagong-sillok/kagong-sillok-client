@@ -19,6 +19,10 @@ function BottomSheet(
       isOpen={isOpen}
       className="!z-40 mx-auto w-full min-w-[360px] max-w-[448px]"
       onClose={onClose}
+      tweenConfig={{
+        ease: 'easeInOut',
+        duration: 0.5,
+      }}
       {...props}
     >
       <Sheet.Container>

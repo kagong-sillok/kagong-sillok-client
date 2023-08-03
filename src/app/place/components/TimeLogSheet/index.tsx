@@ -77,7 +77,7 @@ export default function TimeLogSheet({ isOpen, onClose }: TimeLogSheetProps) {
       {isOpen && (
         <Button
           type="DEFAULT"
-          className="fixed bottom-0 z-[1000] w-full min-w-[360px] max-w-[448px]"
+          className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
         >
           카공 기록등록
         </Button>

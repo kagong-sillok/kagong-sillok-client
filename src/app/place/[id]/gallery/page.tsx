@@ -4,14 +4,13 @@ import { GalleryModal } from './components';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
-import { Header, TimeLogSheet } from '@/app/place/components';
-import { Button } from '@/components';
+import { Footer } from '@/app/place/components';
+import { TopNavigationBar } from '@/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
   const [galleryImages, setGalleryImages] = useState<
@@ -48,23 +47,27 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Header
-        name={placeData?.name}
+      <TopNavigationBar
+        title={placeData?.name}
         onBackClick={() => router.push(`/place/${params.id}`)}
-        rightIcons={[
-          {
-            src: '/assets/icons/28/Bookmark.svg',
-            alt: 'Bookmark',
-            width: 28,
-            height: 28,
-          },
-          {
-            src: '/assets/icons/28/Share.svg',
-            alt: 'Share',
-            width: 28,
-            height: 28,
-          },
-        ]}
+        rightNode={
+          <>
+            <Image
+              src="/assets/icons/28/Bookmark.svg"
+              alt="Bookmark"
+              width={28}
+              height={28}
+              onClick={() => console.log('북마크 클릭')}
+            />
+            <Image
+              src="/assets/icons/28/Share.svg"
+              alt="Share"
+              width={28}
+              height={28}
+              onClick={() => setIsGalleryModalOpen(true)}
+            />
+          </>
+        }
       />
       <div className="grid grid-cols-3 gap-1 pt-14">
         {galleryImages.map(({ url }) => (
@@ -86,16 +89,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         ))}
       </div>
-      <footer>
-        <Button
-          type="DEFAULT"
-          className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]"
-          onClick={() => setIsLogTimeSheetOpen(true)}
-        >
-          카공 기록하기
-        </Button>
-      </footer>
-      <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
+      <Footer />
       <GalleryModal
         name={placeData?.name ?? ''}
         isOpen={isGalleryModalOpen}
