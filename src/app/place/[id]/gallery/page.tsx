@@ -5,7 +5,7 @@ import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
 import { Footer } from '@/app/place/components';
-import TopNavigationBar from '@/components/TopNavigationBar';
+import { TopNavigationBar } from '@/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
