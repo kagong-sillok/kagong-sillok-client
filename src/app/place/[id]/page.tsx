@@ -1,18 +1,11 @@
 'use client';
 
+import Footer from '../components/Footer';
 import PlaceTopNavigationBar from '../components/PlaceTopNavigationBar';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
-import {
-  Info,
-  KagongItem,
-  ReviewItem,
-  ReviewSheet,
-  Tag,
-  TimeLogSheet,
-  Tooltip,
-} from '@/app/place/components';
+import { Info, KagongItem, ReviewItem, ReviewSheet, Tag, Tooltip } from '@/app/place/components';
 import { KakaoMap, Button } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -22,7 +15,6 @@ import type { PlaceConditionType } from '@/types/place';
 
 export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
-  const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
 
   const placeId = Number(params.id);
 
@@ -148,17 +140,8 @@ export default function Page({ params }: { params: { id: string } }) {
           ))}
         </Link>
       </section>
-      <footer>
-        <Button
-          type="DEFAULT"
-          className="fixed bottom-0 z-20 w-full min-w-[360px] max-w-[448px]"
-          onClick={() => setIsLogTimeSheetOpen(true)}
-        >
-          카공 기록하기
-        </Button>
-      </footer>
+      <Footer />
       <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
-      <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
     </>
   );
 }
