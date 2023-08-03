@@ -4,7 +4,8 @@ import { GalleryModal } from './components';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
-import { Footer, Header } from '@/app/place/components';
+import { Footer } from '@/app/place/components';
+import TopNavigationBar from '@/components/TopNavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -46,23 +47,27 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Header
-        name={placeData?.name}
+      <TopNavigationBar
+        title={placeData?.name}
         onBackClick={() => router.push(`/place/${params.id}`)}
-        rightIcons={[
-          {
-            src: '/assets/icons/28/Bookmark.svg',
-            alt: 'Bookmark',
-            width: 28,
-            height: 28,
-          },
-          {
-            src: '/assets/icons/28/Share.svg',
-            alt: 'Share',
-            width: 28,
-            height: 28,
-          },
-        ]}
+        rightNode={
+          <>
+            <Image
+              src="/assets/icons/28/Bookmark.svg"
+              alt="Bookmark"
+              width={28}
+              height={28}
+              onClick={() => console.log('북마크 클릭')}
+            />
+            <Image
+              src="/assets/icons/28/Share.svg"
+              alt="Share"
+              width={28}
+              height={28}
+              onClick={() => setIsGalleryModalOpen(true)}
+            />
+          </>
+        }
       />
       <div className="grid grid-cols-3 gap-1 pt-14">
         {galleryImages.map(({ url }) => (
