@@ -5,7 +5,6 @@ import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
 import {
   Info,
-  Header,
   KagongItem,
   ReviewItem,
   ReviewSheet,
@@ -15,7 +14,7 @@ import {
   Tooltip,
 } from '@/app/place/components';
 import { MAP_HEIGHT } from '@/app/place/constants';
-import { KakaoMap, Button } from '@/components';
+import { KakaoMap, Button, TopNavigationBar } from '@/components';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -43,26 +42,28 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Header
-        name={isScrolled ? placeData.name : ''}
+      <TopNavigationBar
+        title={isScrolled ? placeData.name : ''}
         className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
         onBackClick={() => router.push('/')}
-        rightIcons={[
-          {
-            src: '/assets/icons/28/Bookmark.svg',
-            alt: 'Bookmark',
-            width: 28,
-            height: 28,
-            onClick: () => console.log('북마크 클릭'),
-          },
-          {
-            src: '/assets/icons/28/Share.svg',
-            alt: 'Share',
-            width: 28,
-            height: 28,
-            onClick: () => setIsShareSheetOpen(true),
-          },
-        ]}
+        right={
+          <>
+            <Image
+              src="/assets/icons/28/Bookmark.svg"
+              alt="Bookmark"
+              width={28}
+              height={28}
+              onClick={() => console.log('북마크 클릭')}
+            />
+            <Image
+              src="/assets/icons/28/Share.svg"
+              alt="Share"
+              width={28}
+              height={28}
+              onClick={() => setIsShareSheetOpen(true)}
+            />
+          </>
+        }
       />
       <div className="relative h-[219px]">
         <KakaoMap
