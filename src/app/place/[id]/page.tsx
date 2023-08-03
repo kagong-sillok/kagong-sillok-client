@@ -1,25 +1,21 @@
 'use client';
 
+import { ReviewSection } from './components';
 import Footer from '../components/Footer';
 import PlaceTopNavigationBar from '../components/PlaceTopNavigationBar';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
-import { useGetReviews } from '@/apis/review';
-import { Info, KagongItem, ReviewItem, ReviewSheet, Tag, Tooltip } from '@/app/place/components';
-import { KakaoMap, Button } from '@/components';
+import { Info, KagongItem, Tag } from '@/app/place/components';
+import { KakaoMap } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
-
   const placeId = Number(params.id);
 
   const { data: placeData, isLoading, isError } = useGetPlace(placeId);
-  const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(placeData?.imageIds || []); // TODO: 장소 이미지 페이징 api 나오면 수정
 
   if (isLoading) return null;
@@ -69,51 +65,8 @@ export default function Page({ params }: { params: { id: string } }) {
         >
           해당 카페에 자세히 알고 싶다면?
         </a>
-        <div className="mb-[47px] mt-10 flex justify-between">
-          <h5 className="text-sub1">
-            리뷰 <span className="text-violet/default">14</span>
-          </h5>
-          <Link
-            href={`/place/${params.id}/review`}
-            className="flex cursor-pointer items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60"
-          >
-            리뷰 더보기
-            <Image
-              src="/assets/icons/16/Arrow-right.svg"
-              alt="Arrow-right"
-              width={16}
-              height={16}
-              className="invert-[40%] filter"
-            />
-          </Link>
-        </div>
-        <div
-          className="relative mb-10 flex cursor-pointer justify-center gap-2"
-          onClick={() => setIsReviewSheetOpen(true)}
-        >
-          <Tooltip className="absolute bottom-12">
-            리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
-          </Tooltip>
-          {[1, 2, 3, 4, 5].map((item) => (
-            <Image
-              key={item}
-              src={`/assets/icons/40/emoji-rating${item}_off.svg`}
-              alt={`emoji-rating${item}_off`}
-              width={40}
-              height={40}
-            />
-          ))}
-        </div>
-
-        <hr className="mb-6 text-bk10" />
-        <div className="mb-6 flex flex-col gap-5">
-          {reviewsData?.pages.map(({ data }) =>
-            data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
-          )}
-        </div>
-        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsReviewSheetOpen(true)}>
-          리뷰 작성하기
-        </Button>
+        <div className="mt-10" />
+        <ReviewSection placeId={placeId} />
         <h5 className="mb-4 text-sub1">갤러리</h5>
         <Link href={`place/${params.id}/gallery`} className="flex gap-1 pb-[100px]">
           {imagesData?.images.slice(0, 3).map(({ url }, index) => (
@@ -141,7 +94,6 @@ export default function Page({ params }: { params: { id: string } }) {
         </Link>
       </section>
       <Footer />
-      <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
     </>
   );
 }
