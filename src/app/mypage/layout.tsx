@@ -1,6 +1,8 @@
 'use client';
 
-import { Gnb, Header, Tab, TabGroup } from './components';
+import { Header, Tab, TabGroup } from './components';
+import { TopNavigationBar } from '@/components';
+import Image from 'next/image';
 import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
 
 import type { PageType, UserData, ViewType } from '@/types/mypage';
@@ -29,10 +31,18 @@ export default function MypageLayout({ children }: PropsWithChildren) {
 
   return (
     <div className="h-screen">
-      <Gnb
+      <TopNavigationBar
         title={page === 'RECORD' ? '카공기록' : ''}
         onBackClick={() => router.back()}
-        onCloseClick={() => router.push('/')}
+        rightNode={
+          <Image
+            src="/assets/icons/28/Close.svg"
+            alt="Close"
+            width={28}
+            height={28}
+            onClick={() => router.push('/')}
+          />
+        }
       />
       <Header page={page as PageType} user={userData} />
       <TabGroup>
