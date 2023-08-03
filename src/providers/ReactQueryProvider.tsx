@@ -9,6 +9,7 @@ export default function ReactQueryProvider({ children }: PropsWithChildren) {
 
   queryClient.setDefaultOptions({
     queries: {
+      retry: 0,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
