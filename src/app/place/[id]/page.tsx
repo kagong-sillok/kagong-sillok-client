@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { id: string } }) {
         className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
         isSpacing={false}
         onBackClick={() => router.push('/')}
-        right={
+        rightNode={
           <>
             <Image
               src="/assets/icons/28/Bookmark.svg"

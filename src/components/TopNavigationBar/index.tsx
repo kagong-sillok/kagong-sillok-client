@@ -3,7 +3,7 @@ import Image from 'next/image';
 interface TopNavigationBarProps {
   title?: string;
   onBackClick?: () => void;
-  right?: React.ReactNode;
+  rightNode?: React.ReactNode;
   className?: string;
   isSpacing?: boolean;
 }
@@ -11,7 +11,7 @@ interface TopNavigationBarProps {
 export default function TopNavigationBar({
   title,
   onBackClick,
-  right,
+  rightNode,
   className = '',
   isSpacing = true,
 }: TopNavigationBarProps) {
@@ -31,7 +31,7 @@ export default function TopNavigationBar({
           />
           {title && <p className="ml-3 text-button1">{title}</p>}
         </div>
-        <div className="flex items-center gap-3">{right}</div>
+        <div className="flex items-center gap-3">{rightNode}</div>
       </header>
       {isSpacing && <div className="h-14" />}
     </>

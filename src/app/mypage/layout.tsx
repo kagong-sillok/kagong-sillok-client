@@ -34,7 +34,7 @@ export default function MypageLayout({ children }: PropsWithChildren) {
       <TopNavigationBar
         title={page === 'RECORD' ? '카공기록' : ''}
         onBackClick={() => router.back()}
-        right={
+        rightNode={
           <Image
             src="/assets/icons/28/Close.svg"
             alt="Close"
