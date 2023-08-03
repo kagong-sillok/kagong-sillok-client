@@ -1,5 +1,5 @@
-import type { Image } from '@/types/Image';
+import type { ImageObject } from '@/types/Image';
 
 export interface ImagesPayload {
-  images: Omit<Image, 'id'>[];
+  images: Omit<ImageObject, 'id'>[];
 }
