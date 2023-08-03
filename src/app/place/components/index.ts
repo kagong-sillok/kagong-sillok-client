@@ -1,4 +1,3 @@
-export { default as Header } from './Header';
 export { default as KagongItem } from './KagongItem';
 export { default as ReviewItem } from './ReviewItem';
 export { default as Tag } from './Tag';
