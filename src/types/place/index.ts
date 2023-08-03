@@ -26,7 +26,7 @@ export interface Place {
     Modify<BusinessHour, { dayOfWeek: 'THURSDAY' }>,
     Modify<BusinessHour, { dayOfWeek: 'FRIDAY' }>,
     Modify<BusinessHour, { dayOfWeek: 'SATURDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'SUNDAY' }>
+    Modify<BusinessHour, { dayOfWeek: 'SUNDAY' }>,
   ];
 }
 

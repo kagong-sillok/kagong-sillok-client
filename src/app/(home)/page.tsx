@@ -99,9 +99,7 @@ export default function Home() {
         }}
       >
         <ul>
-          {placesAroundData?.places.map((place) => (
-            <PlaceItem key={place.id} place={place} />
-          ))}
+          {placesAroundData?.places.map((place) => <PlaceItem key={place.id} place={place} />)}
         </ul>
       </BottomSheet>
       {isLocationLoading && <Loading />}

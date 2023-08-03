@@ -1,3 +1,4 @@
+'use client';
 import { ReviewItem } from './components';
 import { useGetMemberReviews } from '@/apis/review';
 
