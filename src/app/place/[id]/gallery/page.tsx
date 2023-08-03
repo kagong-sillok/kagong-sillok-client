@@ -1,17 +1,16 @@
 'use client';
 
 import { GalleryModal } from './components';
+import Footer from '../../components/Footer';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
-import { Header, TimeLogSheet } from '@/app/place/components';
-import { Button } from '@/components';
+import { Header } from '@/app/place/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
   const [galleryImages, setGalleryImages] = useState<
@@ -86,16 +85,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         ))}
       </div>
-      <footer>
-        <Button
-          type="DEFAULT"
-          className="fixed bottom-0 z-50 w-full min-w-[360px] max-w-[448px]"
-          onClick={() => setIsLogTimeSheetOpen(true)}
-        >
-          카공 기록하기
-        </Button>
-      </footer>
-      <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
+      <Footer />
       <GalleryModal
         name={placeData?.name ?? ''}
         isOpen={isGalleryModalOpen}
