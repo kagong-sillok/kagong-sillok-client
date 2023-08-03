@@ -1,16 +1,14 @@
 'use client';
 
 import { ReviewSection } from './components';
+import InfoSection from './components/InfoSection';
 import Footer from '../components/Footer';
 import PlaceTopNavigationBar from '../components/PlaceTopNavigationBar';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
-import { Info, KagongItem, Tag } from '@/app/place/components';
 import { KakaoMap } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import type { PlaceConditionType } from '@/types/place';
 
 export default function Page({ params }: { params: { id: string } }) {
   const placeId = Number(params.id);
@@ -35,36 +33,8 @@ export default function Page({ params }: { params: { id: string } }) {
         />
         <div className="absolute left-0 top-0 z-10 h-[219px] w-full bg-black bg-gradient-to-b from-bk100 to-white opacity-40"></div>
       </div>
-      <section className="px-6 pt-[30px]">
-        <div className="flex items-center justify-between">
-          <div>
-            {placeData.tags?.map((tag) => (
-              <span key={tag} className="mr-1.5 text-caption text-violet/default">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <Tag.OpenClosed type={placeData.isOpen ? 'OPEN' : 'CLOSED'} />
-        </div>
-        <h3 className="mb-2 text-head3">{placeData.name}</h3>
-        <p className="text-body2 text-bk60">{placeData.address}</p>
-
-        <hr className="my-8 text-bk10" />
-
-        <h5 className="mb-4 text-sub1">기본 정보</h5>
-        <Info place={placeData} />
-        <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
-        <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
-          {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
-            <KagongItem key={index} type={type as PlaceConditionType} isFirst={index === 0} />
-          ))}
-        </div>
-        <a
-          href=""
-          className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
-        >
-          해당 카페에 자세히 알고 싶다면?
-        </a>
+      <div className="px-6 pt-[30px]">
+        <InfoSection placeData={placeData} />
         <div className="mt-10" />
         <ReviewSection placeId={placeId} />
         <h5 className="mb-4 text-sub1">갤러리</h5>
@@ -92,7 +62,7 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           ))}
         </Link>
-      </section>
+      </div>
       <Footer />
     </>
   );

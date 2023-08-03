@@ -1,5 +1,5 @@
 import type { TabItem } from '@/components/Tab/Tabs';
-import type { DayType } from '@/types/place';
+import type { DayType, LinkType } from '@/types/place';
 
 export const MAP_HEIGHT = 219;
 
@@ -86,3 +86,9 @@ export const INITIAL_TABS: TabItem[] = [
 ];
 
 export const RATING_TEXT = ['별로예요', '그저 그래요', '괜찮아요', '만족해요', '최고예요'];
+
+export const LINK_TEXT = {
+  INSTAGRAM: '인스타그램',
+  BLOG: '블로그',
+  WEB: '홈페이지',
+};
