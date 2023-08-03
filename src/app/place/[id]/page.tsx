@@ -1,25 +1,21 @@
 'use client';
 
+import PlaceTopNavigationBar from '../components/PlaceTopNavigationBar';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
 import {
   Info,
-  Header,
   KagongItem,
   ReviewItem,
   ReviewSheet,
-  ShareSheet,
   Tag,
   TimeLogSheet,
   Tooltip,
 } from '@/app/place/components';
-import { MAP_HEIGHT } from '@/app/place/constants';
 import { KakaoMap, Button } from '@/components';
-import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import type { PlaceConditionType } from '@/types/place';
@@ -27,7 +23,6 @@ import type { PlaceConditionType } from '@/types/place';
 export default function Page({ params }: { params: { id: string } }) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isLogTimeSheetOpen, setIsLogTimeSheetOpen] = useState(false);
-  const [isShareSheetOpen, setIsShareSheetOpen] = useState(false);
 
   const placeId = Number(params.id);
 
@@ -35,35 +30,12 @@ export default function Page({ params }: { params: { id: string } }) {
   const { data: reviewsData } = useGetReviews(placeId);
   const { data: imagesData } = useGetImages(placeData?.imageIds || []); // TODO: 장소 이미지 페이징 api 나오면 수정
 
-  const router = useRouter();
-  const isScrolled = useDetectScroll(MAP_HEIGHT);
-
   if (isLoading) return null;
   if (isError) return null;
 
   return (
     <>
-      <Header
-        name={isScrolled ? placeData.name : ''}
-        className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
-        onBackClick={() => router.push('/')}
-        rightIcons={[
-          {
-            src: '/assets/icons/28/Bookmark.svg',
-            alt: 'Bookmark',
-            width: 28,
-            height: 28,
-            onClick: () => console.log('북마크 클릭'),
-          },
-          {
-            src: '/assets/icons/28/Share.svg',
-            alt: 'Share',
-            width: 28,
-            height: 28,
-            onClick: () => setIsShareSheetOpen(true),
-          },
-        ]}
-      />
+      <PlaceTopNavigationBar name={placeData.name} />
       <div className="relative h-[219px]">
         <KakaoMap
           className="h-full"
@@ -185,7 +157,6 @@ export default function Page({ params }: { params: { id: string } }) {
           카공 기록하기
         </Button>
       </footer>
-      <ShareSheet isOpen={isShareSheetOpen} onClose={() => setIsShareSheetOpen(false)} />
       <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
       <TimeLogSheet isOpen={isLogTimeSheetOpen} onClose={() => setIsLogTimeSheetOpen(false)} />
     </>
