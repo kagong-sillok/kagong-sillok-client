@@ -2,7 +2,7 @@
 
 import { GallerySection, ReviewSection } from './components';
 import InfoSection from './components/InfoSection';
-import Footer from '../components/Footer';
+import { Footer } from '../components';
 import PlaceTopNavigationBar from '../components/PlaceTopNavigationBar';
 import { useGetPlace } from '@/apis/place';
 import { KakaoMap } from '@/components';

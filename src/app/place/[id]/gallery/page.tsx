@@ -1,11 +1,10 @@
 'use client';
 
 import { GalleryModal } from './components';
-import Footer from '../../components/Footer';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
 import { useGetReviews } from '@/apis/review';
-import { Header } from '@/app/place/components';
+import { Footer, Header } from '@/app/place/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
