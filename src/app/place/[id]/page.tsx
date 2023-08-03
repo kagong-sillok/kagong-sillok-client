@@ -45,6 +45,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <TopNavigationBar
         title={isScrolled ? placeData.name : ''}
         className={isScrolled ? '' : 'bg-opacity-0 invert filter'}
+        isSpacing={false}
         onBackClick={() => router.push('/')}
         right={
           <>
