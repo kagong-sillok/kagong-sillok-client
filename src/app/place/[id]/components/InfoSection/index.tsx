@@ -4,6 +4,7 @@ import KagongItem from './KagongItem';
 import Tag from './Tag';
 import TimeInfo from './TimeInfo';
 import { LINK_TEXT } from '@/app/place/constants';
+import { Spacing } from '@/components';
 import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -33,21 +34,23 @@ export default function InfoSection({ placeData }: InfoSectionProps) {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <div>
+        <div className="flex gap-1.5">
           {tags?.map((tag) => (
-            <span key={tag} className="mr-1.5 text-caption text-violet/default">
+            <p key={tag} className="text-caption text-violet/default">
               {tag}
-            </span>
+            </p>
           ))}
         </div>
         <Tag.OpenClosed type={isOpen ? 'OPEN' : 'CLOSED'} />
       </div>
-      <h3 className="mb-2 text-head3">{name}</h3>
+      <h3 className="text-head3">{name}</h3>
+      <Spacing size={8} />
       <p className="text-body2 text-bk60">{address}</p>
-
-      <hr className="my-8 text-bk10" />
-
-      <h5 className="mb-4 text-sub1">기본 정보</h5>
+      <Spacing size={32} />
+      <hr className="text-bk10" />
+      <Spacing size={32} />
+      <h5 className="text-sub1">기본 정보</h5>
+      <Spacing size={16} />
       <div className="flex flex-col gap-3.5 text-body2">
         <IconFlex
           icon={
@@ -89,7 +92,9 @@ export default function InfoSection({ placeData }: InfoSectionProps) {
           ))}
         </IconFlex>
       </div>
-      <h5 className="mb-4 mt-10 text-sub1">카공을 위한 정보</h5>
+      <Spacing size={40} />
+      <h5 className="text-sub1">카공을 위한 정보</h5>
+      <Spacing size={16} />
       <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
         {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
           <KagongItem key={index} type={type as PlaceConditionType} isFirst={index === 0} />

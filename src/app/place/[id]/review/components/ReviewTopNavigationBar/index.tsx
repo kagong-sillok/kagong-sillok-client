@@ -16,6 +16,7 @@ export default function ReviewTopNavigationBar() {
           width={28}
           height={28}
           onClick={() => router.back()}
+          className="cursor-pointer"
         />
       }
     />

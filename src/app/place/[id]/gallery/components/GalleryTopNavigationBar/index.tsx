@@ -27,6 +27,7 @@ export default function GalleryTopNavigationBar({ placeId, name }: GalleryTopNav
               width={28}
               height={28}
               onClick={() => console.log('북마크 클릭')}
+              className="cursor-pointer"
             />
             <Image
               src="/assets/icons/28/Share.svg"
@@ -34,6 +35,7 @@ export default function GalleryTopNavigationBar({ placeId, name }: GalleryTopNav
               width={28}
               height={28}
               onClick={() => setIsShareModalOpen(true)}
+              className="cursor-pointer"
             />
           </>
         }
