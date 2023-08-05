@@ -1,37 +1,21 @@
 'use client';
 
+import { ReviewTopNavigationBar } from './components';
 import { useGetReviews } from '@/apis/review';
-import { ReviewItem } from '@/app/place/components';
-import { TopNavigationBar } from '@/components';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { ReviewList } from '@/app/place/components';
+import Spacing from '@/components/Spacing';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const router = useRouter();
-
   const placeId = Number(params.id);
 
   const { data: reviewsData } = useGetReviews(placeId);
 
   return (
     <main>
-      <TopNavigationBar
-        title="리뷰더보기"
-        onBackClick={() => router.push(`/place/${placeId}`)}
-        rightNode={
-          <Image
-            src="/assets/icons/28/Close.svg"
-            alt="Close"
-            width={28}
-            height={28}
-            onClick={() => router.push(`/place/${placeId}`)}
-          />
-        }
-      />
-      <div className="my-6 flex flex-col gap-5 px-6">
-        {reviewsData?.pages.map(({ data }) =>
-          data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
-        )}
+      <ReviewTopNavigationBar />
+      <Spacing size={6} />
+      <div className="px-6">
+        <ReviewList reviewsData={reviewsData.reviews} />
       </div>
     </main>
   );

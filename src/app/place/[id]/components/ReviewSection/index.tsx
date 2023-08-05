@@ -1,8 +1,8 @@
 'use client';
 import Tooltip from './Tooltip';
 import { useGetReviews } from '@/apis/review';
-import { ReviewItem, ReviewSheet } from '@/app/place/components';
-import { Button } from '@/components';
+import { ReviewList, ReviewSheet } from '@/app/place/components';
+import { Button, Spacing } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -22,7 +22,7 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
   return (
     <>
       <section>
-        <div className="mb-[47px] flex justify-between">
+        <div className="flex justify-between">
           <h5 className="text-sub1">
             리뷰 <span className="text-violet/default">14</span>
           </h5>
@@ -40,8 +40,9 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
             />
           </Link>
         </div>
+        <Spacing size={47} />
         <div
-          className="relative mb-10 flex cursor-pointer justify-center gap-2"
+          className="relative flex cursor-pointer justify-center gap-2"
           onClick={() => setIsReviewSheetOpen(true)}
         >
           <Tooltip className="absolute bottom-12">
@@ -57,14 +58,12 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
             />
           ))}
         </div>
-
-        <hr className="mb-6 text-bk10" />
-        <div className="mb-6 flex flex-col gap-5">
-          {reviewsData?.pages.map(({ data }) =>
-            data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
-          )}
-        </div>
-        <Button type="ROUND_DEFAULT" className="mb-10" onClick={() => setIsReviewSheetOpen(true)}>
+        <Spacing size={40} />
+        <hr className="text-bk10" />
+        <Spacing size={24} />
+        <ReviewList reviewsData={reviewsData.reviews} />
+        <Spacing size={24} />
+        <Button type="ROUND_DEFAULT" onClick={() => setIsReviewSheetOpen(true)}>
           리뷰 작성하기
         </Button>
       </section>
