@@ -1,6 +1,5 @@
 'use client';
 import Tooltip from './Tooltip';
-import { useGetReviews } from '@/apis/review';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, Spacing } from '@/components';
 import Image from 'next/image';
@@ -14,8 +13,6 @@ interface ReviewSectionProps {
 
 export default function ReviewSection({ placeId }: ReviewSectionProps) {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
-
-  const { data: reviewsData } = useGetReviews(placeId);
 
   const pathname = usePathname();
 
@@ -40,7 +37,9 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
             />
           </Link>
         </div>
+
         <Spacing size={47} />
+
         <div
           className="relative flex cursor-pointer justify-center gap-2"
           onClick={() => setIsReviewSheetOpen(true)}
@@ -48,7 +47,7 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
           </Tooltip>
-          {[1, 2, 3, 4, 5].map((item) => (
+          {Array.from({ length: 5 }, (_, i) => i + 1).map((item) => (
             <Image
               key={item}
               src={`/assets/icons/40/emoji-rating${item}_off.svg`}
@@ -58,10 +57,13 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
             />
           ))}
         </div>
+
         <Spacing size={40} />
         <hr className="text-bk10" />
         <Spacing size={24} />
-        <ReviewList reviewsData={reviewsData.reviews} />
+
+        <ReviewList placeId={placeId} />
+
         <Spacing size={24} />
         <Button type="ROUND_DEFAULT" onClick={() => setIsReviewSheetOpen(true)}>
           리뷰 작성하기

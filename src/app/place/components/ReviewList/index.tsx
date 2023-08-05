@@ -1,5 +1,6 @@
 'use client';
 import { useGetImages } from '@/apis/image';
+import { useGetReviews } from '@/apis/review';
 import { RATING_TEXT } from '@/app/place/constants';
 import { format } from 'date-fns';
 import Image from 'next/image';
@@ -7,23 +8,27 @@ import Image from 'next/image';
 import type { Review } from '@/types/review';
 
 interface ReviewListProps {
-  reviewsData: Review[];
+  placeId: number;
 }
 
-export default function ReviewList({ reviewsData }: ReviewListProps) {
+export default function ReviewList({ placeId }: ReviewListProps) {
+  const { data: reviewsData } = useGetReviews(placeId);
+
   return (
     <div className="flex flex-col gap-5">
-      {reviewsData?.map((review) => <ReviewItem key={review.id} reviewData={review} />)}
+      {reviewsData.reviews.map((review) => (
+        <ReviewItem key={review.id} review={review} />
+      ))}
     </div>
   );
 }
 
 interface ReviewItemProps {
-  reviewData: Review;
+  review: Review;
 }
 
-function ReviewItem({ reviewData }: ReviewItemProps) {
-  const { imageIds, content, memberNickname, rating, writtenAt } = reviewData;
+function ReviewItem({ review }: ReviewItemProps) {
+  const { imageIds, content, memberNickname, rating, writtenAt } = review;
   const { data: imagesData } = useGetImages(imageIds);
 
   return (

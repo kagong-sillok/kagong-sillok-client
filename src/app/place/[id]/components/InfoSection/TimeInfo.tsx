@@ -1,7 +1,8 @@
 import { DAYS_OF_WEEK } from '@/app/place/constants';
+import { Spacing } from '@/components';
 import { formatTime } from '@/utils/formatTime';
 
-import type { Place, DayType } from '@/types/place';
+import type { Place } from '@/types/place';
 
 interface TimeInfoProps {
   businessHours: Place['businessHours'];
@@ -9,15 +10,18 @@ interface TimeInfoProps {
 
 export default function TimeInfo({ businessHours }: TimeInfoProps) {
   return (
-    <div>
-      {Object.entries(businessHours).map(([day, { open, close }]) => (
-        <div key={day} className="mb-1 mt-2.5 flex gap-1.5 text-body2">
-          <div>{DAYS_OF_WEEK[day as Lowercase<DayType>]}</div>
-          <div>
-            {formatTime(open)} - {formatTime(close)}
+    <>
+      <Spacing size={8} />
+      <div className="flex flex-col gap-3">
+        {businessHours.map(({ close, dayOfWeek, open }) => (
+          <div key={dayOfWeek} className="flex gap-1.5 text-body2">
+            <div>{DAYS_OF_WEEK[dayOfWeek]}</div>
+            <div>
+              {formatTime(open)} - {formatTime(close)}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }

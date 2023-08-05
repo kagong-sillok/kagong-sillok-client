@@ -29,7 +29,7 @@ export default function PlaceDetail({ placeId }: PlaceDetailProps) {
       </div>
       <div className="px-6">
         <Spacing size={30} />
-        <InfoSection placeData={placeData} />
+        <InfoSection placeId={placeId} />
         <Spacing size={40} />
         <ReviewSection placeId={placeId} />
         <Spacing size={40} />

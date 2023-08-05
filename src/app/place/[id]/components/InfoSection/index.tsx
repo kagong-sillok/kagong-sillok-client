@@ -3,33 +3,25 @@ import IconFlex from './IconFlex';
 import KagongItem from './KagongItem';
 import Tag from './Tag';
 import TimeInfo from './TimeInfo';
+import { useGetPlace } from '@/apis/place';
 import { LINK_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import type { Place, PlaceConditionType } from '@/types/place';
+import type { PlaceConditionType } from '@/types/place';
 
 interface InfoSectionProps {
-  placeData: Place;
+  placeId: number;
 }
 
-export default function InfoSection({ placeData }: InfoSectionProps) {
+export default function InfoSection({ placeId }: InfoSectionProps) {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
-  const { tags, isOpen, address, name, businessHours, phone, links } = placeData;
+  const { data: placeData } = useGetPlace(placeId);
 
-  const placeStatus = {
-    OPEN: {
-      text: '영업중',
-      color: 'text-black text-body2',
-    },
-    CLOSED: {
-      text: '영업종료',
-      color: 'text-alert text-body2',
-    },
-  }[isOpen ? 'OPEN' : 'CLOSED'];
+  const { tags, isOpen, address, name, businessHours, phone, links } = placeData;
 
   return (
     <section>
@@ -63,7 +55,10 @@ export default function InfoSection({ placeData }: InfoSectionProps) {
           icon={<Image src="/assets/icons/16/Time.svg" alt="Time" width={16} height={16} />}
         >
           <div className="flex" onClick={() => setIsToggleOpen((prev) => !prev)}>
-            <span className={placeStatus.color}>{placeStatus.text}</span>
+            <span className={`text-body2 ${isOpen ? 'text-black' : 'text-alert'}`}>
+              {isOpen ? '영업중' : '영업종료'}
+            </span>
+
             <p className="circle relative pl-2.5 text-[13px]">
               {/* TODO: 현재 요일에 맞게 종료 시간 보이게 하기 */}
               {formatTime(businessHours[0].close)} 영업종료
