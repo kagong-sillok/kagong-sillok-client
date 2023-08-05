@@ -1,9 +1,7 @@
 'use client';
-import GallerySection from '../GallerySection';
-import InfoSection from '../InfoSection';
-import ReviewSection from '../ReviewSection';
+import { GallerySection, InfoSection, PlaceTopNavigationBar, ReviewSection } from '..';
 import { useGetPlace } from '@/apis/place';
-import { Footer, PlaceTopNavigationBar } from '@/app/place/components';
+import { Footer } from '@/app/place/components';
 import { KakaoMap } from '@/components';
 
 interface PlaceDetailProps {

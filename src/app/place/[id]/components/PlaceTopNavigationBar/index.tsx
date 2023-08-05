@@ -1,6 +1,6 @@
 'use client';
-import { MAP_HEIGHT } from '../../constants';
-import ShareSheet from '../ShareSheet';
+import ShareSheet from '../../../components/ShareSheet';
+import { MAP_HEIGHT } from '../../../constants';
 import { TopNavigationBar } from '@/components';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';

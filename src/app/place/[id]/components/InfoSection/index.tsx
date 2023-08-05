@@ -96,7 +96,7 @@ export default function InfoSection({ placeData }: InfoSectionProps) {
         ))}
       </div>
       <a
-        href=""
+        href="/"
         className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
       >
         해당 카페에 자세히 알고 싶다면?
