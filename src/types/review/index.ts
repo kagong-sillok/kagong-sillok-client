@@ -1,13 +1,11 @@
-import type { PlaceConditionType } from '../place';
-
 export interface Review {
   id: number;
   rating: number;
   content: string;
   imageIds: number[];
-  tags: PlaceConditionType[]; //TODO: tagIds로 변경
-  userId: number;
-  userNickname: string;
-  createdAt: string;
-  updatedAt: string;
+  tagIds: number[];
+  memberId: number;
+  placeId: number;
+  memberNickname: string;
+  writtenAt: string;
 }
