@@ -17,8 +17,6 @@ interface InfoSectionProps {
 }
 
 export default function InfoSection({ placeId }: InfoSectionProps) {
-  const [isToggleOpen, setIsToggleOpen] = useState(false);
-
   const { data: placeData } = useGetPlace(placeId);
 
   const { tags, isOpen, address, name, businessHours, phone, links } = placeData;
@@ -54,23 +52,7 @@ export default function InfoSection({ placeId }: InfoSectionProps) {
         <IconFlex
           icon={<Image src="/assets/icons/16/Time.svg" alt="Time" width={16} height={16} />}
         >
-          <div className="flex" onClick={() => setIsToggleOpen((prev) => !prev)}>
-            <span className={`text-body2 ${isOpen ? 'text-black' : 'text-alert'}`}>
-              {isOpen ? '영업중' : '영업종료'}
-            </span>
-
-            <p className="circle relative pl-2.5 text-[13px]">
-              {/* TODO: 현재 요일에 맞게 종료 시간 보이게 하기 */}
-              {formatTime(businessHours[0].close)} 영업종료
-            </p>
-            <Image
-              src={`/assets/icons/16/Arrow-${isToggleOpen ? 'down' : 'up'}.svg`}
-              alt="Arrow"
-              width={16}
-              height={16}
-            />
-          </div>
-          {isToggleOpen && <TimeInfo businessHours={businessHours} />}
+          <TimeInfo businessHours={businessHours} isPlaceOpen={isOpen} />
         </IconFlex>
         <IconFlex
           icon={<Image src="/assets/icons/16/Call.svg" alt="Call" width={16} height={16} />}
