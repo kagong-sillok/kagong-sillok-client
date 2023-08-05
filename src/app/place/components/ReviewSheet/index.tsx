@@ -79,6 +79,7 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
           </div>
           <Spacing size={24} />
           <hr className="text-bk10" />
+          <Spacing size={24} />
           <div>
             <p className="text-center text-body2 text-bk60">사진도 등록하고 카공을 공유해요!</p>
             <Spacing size={16} />

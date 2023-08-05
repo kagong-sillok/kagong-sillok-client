@@ -1,6 +1,5 @@
 import { RATING_TEXT } from '@/app/place/constants';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 interface RatingProps {
   rating: number | null;
@@ -18,11 +17,9 @@ export default function Rating({ rating, onClick }: RatingProps) {
             alt={`emoji-rating${num}`}
             className="cursor-pointer"
             onClick={() => onClick(num)}
-            whileTap={{ scale: 0.9 }}
             animate={{
               width: rating === num ? '60px' : '40px',
               height: rating === num ? '60px' : '40px',
-              transformOrigin: 'bottom left',
             }}
           />
         ))}
