@@ -43,31 +43,25 @@ export default function InfoSection({ placeId }: InfoSectionProps) {
       <Spacing size={16} />
       <div className="flex flex-col gap-3.5 text-body2">
         <IconFlex
-          icon={
-            <Image src="/assets/icons/16/Location-1.svg" alt="Location" width={16} height={16} />
-          }
-        >
-          <p>{address}</p>
-        </IconFlex>
+          iconNode={<Image src="/assets/icons/16/Location-1.svg" alt="Location" fill />}
+          textNode={address}
+        />
         <IconFlex
-          icon={<Image src="/assets/icons/16/Time.svg" alt="Time" width={16} height={16} />}
-        >
-          <TimeInfo businessHours={businessHours} isPlaceOpen={isOpen} />
-        </IconFlex>
+          iconNode={<Image src="/assets/icons/16/Time.svg" alt="Time" fill />}
+          textNode={<TimeInfo businessHours={businessHours} isPlaceOpen={isOpen} />}
+        />
         <IconFlex
-          icon={<Image src="/assets/icons/16/Call.svg" alt="Call" width={16} height={16} />}
-        >
-          {phone}
-        </IconFlex>
+          iconNode={<Image src="/assets/icons/16/Call.svg" alt="Call" fill />}
+          textNode={phone}
+        />
         <IconFlex
-          icon={<Image src="/assets/icons/16/Site.svg" alt="Site" width={16} height={16} />}
-        >
-          {links.map(({ linkType, url }) => (
+          iconNode={<Image src="/assets/icons/16/Site.svg" alt="Site" fill />}
+          textNode={links.map(({ linkType, url }) => (
             <a key={url} href={url} className="mr-2">
               {LINK_TEXT[linkType]}
             </a>
           ))}
-        </IconFlex>
+        />
       </div>
       <Spacing size={40} />
       <h5 className="text-sub1">카공을 위한 정보</h5>
