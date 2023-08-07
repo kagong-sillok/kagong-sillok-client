@@ -34,6 +34,7 @@ export default function PlaceDetail({ placeId }: PlaceDetailProps) {
         <ReviewSection placeId={placeId} />
         <Spacing size={40} />
         <GallerySection imageIds={imageIds} />
+        <Spacing size={100} />
       </div>
       <Footer />
     </>
