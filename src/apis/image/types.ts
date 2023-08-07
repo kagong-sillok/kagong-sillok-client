@@ -1,5 +1,10 @@
-import type { ImageObject } from '@/types/Image';
+import type { ImageObject, ImageObjectWithId } from '@/types/Image';
 
-export interface ImagesPayload {
-  images: Omit<ImageObject, 'id'>[];
+export interface ImageResponse {
+  images: ImageObjectWithId[];
+}
+
+export interface UploadImagesPayload {
+  files: File[];
+  folderName: string;
 }

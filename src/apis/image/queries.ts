@@ -4,6 +4,6 @@ import { useSuspenseQuery } from '@suspensive/react-query';
 
 export function useGetImages(imageIds: number[]) {
   return useSuspenseQuery(Keys.images(imageIds), () => getImages(imageIds), {
-    enabled: !!imageIds.length,
+    enabled: !!imageIds?.length,
   });
 }

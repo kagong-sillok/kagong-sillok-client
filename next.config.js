@@ -20,7 +20,11 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['cdn.pixabay.com', 'https://kauth.kakao.com'],
+    domains: [
+      'bucket-8th-team3.s3.ap-northeast-2.amazonaws.com',
+      'cdn.pixabay.com',
+      'https://kauth.kakao.com',
+    ],
   },
 };
 
