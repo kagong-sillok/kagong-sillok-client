@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
-export function useLoginMutation() {
+export function useLogin() {
   const router = useRouter();
   return useMutation(postLogin, {
     onSuccess: (data) => {

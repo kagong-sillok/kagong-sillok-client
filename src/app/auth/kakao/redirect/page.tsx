@@ -1,6 +1,6 @@
 'use client';
 
-import { useLoginMutation } from '@/apis/auth';
+import { useLogin } from '@/apis/auth';
 import { useEffect } from 'react';
 
 export default function Redirect({
@@ -10,7 +10,7 @@ export default function Redirect({
     code: string;
   };
 }) {
-  const { mutate } = useLoginMutation();
+  const { mutate } = useLogin();
 
   useEffect(() => {
     mutate({

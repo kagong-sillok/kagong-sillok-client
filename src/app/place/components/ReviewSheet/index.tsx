@@ -21,7 +21,7 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
   const [content, setContent] = useState('');
   const [images, setImages] = useState<File[]>([]);
 
-  const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
+  const { mutate: postReviewMutate } = usePostReviewMutation(placeId)
   const { mutateAsync: uploadImagesMutateAsync } = useUploadImagesMutation();
 
   const ref = useRef<SheetRef>();
