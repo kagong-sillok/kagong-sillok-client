@@ -1,6 +1,6 @@
 'use client';
 import Rating from './Rating';
-import { useUploadImagesMutation } from '@/apis/image';
+import { useImagesUpload } from '@/apis/image';
 import { usePostReviewMutation } from '@/apis/review';
 import { Button, ImageUpload, BottomSheet, Tabs, Spacing } from '@/components';
 import { useRef, useState } from 'react';
@@ -21,8 +21,8 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
   const [content, setContent] = useState('');
   const [images, setImages] = useState<File[]>([]);
 
-  const { mutate: postReviewMutate } = usePostReviewMutation(placeId)
-  const { mutateAsync: uploadImagesMutateAsync } = useUploadImagesMutation();
+  const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
+  const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
 
   const ref = useRef<SheetRef>();
 

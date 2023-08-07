@@ -4,17 +4,16 @@ import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, Spacing } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-interface ReviewSectionProps {
-  placeId: number;
-}
-
-export default function ReviewSection({ placeId }: ReviewSectionProps) {
+export default function ReviewSection() {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
 
   const pathname = usePathname();
+  const params = useParams();
+
+  const placeId = Number(params.id);
 
   return (
     <>

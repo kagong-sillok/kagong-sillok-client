@@ -50,7 +50,7 @@ export const CONDITION_LIST = [
     title: '조용한 공간',
     iconSrc: '/assets/icons/32/Quait.svg',
   },
-];
+] as const;
 
 export const INITIAL_TABS: TabItem[] = [
   {
