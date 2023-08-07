@@ -9,3 +9,12 @@ export interface Review {
   memberNickname: string;
   writtenAt: string;
 }
+
+export interface ReviewPayload {
+  rating: number;
+  content: string;
+  imageIds: number[];
+  reviewtagIds: number[];
+  memberId: number;
+  placeId: number;
+}

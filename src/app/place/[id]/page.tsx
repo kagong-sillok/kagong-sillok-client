@@ -5,22 +5,30 @@ import Loading from '@/app/loading';
 import { HydrationProvider } from '@/providers/HydrationProvider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function PlacePage({ params }: { params: { id: string } }) {
+interface PlacePageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function PlacePage({ params }: PlacePageProps) {
   const placeId = Number(params.id);
 
   return (
-    <QueryAsyncBoundary
-      rejectedFallback={<div>에러가 발생했습니다.</div>}
-      pendingFallback={<Loading />}
-    >
-      <HydrationProvider queryKey={PlaceKeys.place(placeId)} queryFn={() => getPlace(placeId)}>
-        <HydrationProvider
-          queryKey={ReviewKeys.reviews(placeId)}
-          queryFn={() => getReviews(placeId)}
-        >
-          <PlaceDetail placeId={placeId} />
+    <main>
+      <QueryAsyncBoundary
+        rejectedFallback={<div>에러가 발생했습니다.</div>}
+        pendingFallback={<Loading />}
+      >
+        <HydrationProvider queryKey={PlaceKeys.place(placeId)} queryFn={() => getPlace(placeId)}>
+          <HydrationProvider
+            queryKey={ReviewKeys.reviews(placeId)}
+            queryFn={() => getReviews(placeId)}
+          >
+            <PlaceDetail placeId={placeId} />
+          </HydrationProvider>
         </HydrationProvider>
-      </HydrationProvider>
-    </QueryAsyncBoundary>
+      </QueryAsyncBoundary>
+    </main>
   );
 }

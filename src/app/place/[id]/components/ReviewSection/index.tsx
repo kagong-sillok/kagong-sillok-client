@@ -69,7 +69,11 @@ export default function ReviewSection({ placeId }: ReviewSectionProps) {
           리뷰 작성하기
         </Button>
       </section>
-      <ReviewSheet isOpen={isReviewSheetOpen} onClose={() => setIsReviewSheetOpen(false)} />
+      <ReviewSheet
+        isOpen={isReviewSheetOpen}
+        onClose={() => setIsReviewSheetOpen(false)}
+        placeId={placeId}
+      />
     </>
   );
 }
