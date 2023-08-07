@@ -1,5 +1,7 @@
+'use client';
 import Tab from './Tab';
-import { useEffect, useState } from 'react';
+import { INITIAL_TABS } from '@/app/place/constants';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -15,17 +17,20 @@ interface TabsProps {
 }
 
 export default function Tabs({ selectedTabIds, setSelectedTabIds }: TabsProps) {
-  const [Tabs, setTabs] = useState<TabItem[]>([]);
+  const [Tabs, setTabs] = useState<TabItem[]>(INITIAL_TABS);
 
-  const handleSelectTab = (id: number) => {
-    setSelectedTabIds((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((selectedTabId) => selectedTabId !== id);
-      } else {
-        return [...prev, id];
-      }
-    });
-  };
+  const handleSelectTab = useCallback(
+    (id: number) => {
+      setSelectedTabIds((prev) => {
+        if (prev.includes(id)) {
+          return prev.filter((selectedTabId) => selectedTabId !== id);
+        } else {
+          return [...prev, id];
+        }
+      });
+    },
+    [setSelectedTabIds]
+  );
 
   useEffect(() => {
     setTabs((prev) =>

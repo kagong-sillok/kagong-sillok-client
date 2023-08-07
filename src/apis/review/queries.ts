@@ -1,23 +1,17 @@
 import { getMemberReviews, getReviews } from './apis';
 import { Keys } from './keys';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@suspensive/react-query';
 
-export function useGetReviews(placeId: number, size = 5) {
-  return useInfiniteQuery(
-    Keys.reviews(placeId),
-    ({ pageParam = 0 }) => getReviews(placeId, size, pageParam),
-    {
-      getNextPageParam: (lastPage) => lastPage.pageParam + size,
-    }
-  );
+/**
+ * 페이지네이션 예정
+ */
+export function useGetReviews(placeId: number) {
+  return useSuspenseQuery(Keys.reviews(placeId), () => getReviews(placeId));
 }
 
-export function useGetMemberReviews(memberId: number, size = 5) {
-  return useInfiniteQuery(
-    Keys.memberReviews(memberId),
-    ({ pageParam = 0 }) => getMemberReviews(memberId, size, pageParam),
-    {
-      getNextPageParam: (lastPage) => lastPage.pageParam + size,
-    }
-  );
+/**
+ * 페이지네이션 예정
+ */
+export function useGetMemberReviews(memberId: number) {
+  return useSuspenseQuery(Keys.memberReviews(memberId), () => getMemberReviews(memberId));
 }

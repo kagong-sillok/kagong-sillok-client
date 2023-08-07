@@ -9,7 +9,7 @@ interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
 export default memo(function Spacing({
   size,
   direction = 'vertical',
-  className,
+  className = '',
   ...props
 }: SpacingProps) {
   return (

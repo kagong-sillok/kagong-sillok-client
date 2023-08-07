@@ -1,4 +1,4 @@
-import Header from '@/app/place/components/Header';
+import { TopNavigationBar } from '@/components';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -27,11 +27,17 @@ export default function GalleryModal({
 
   return (
     <div className="fixed bottom-0 top-0 z-[51] flex w-full min-w-[360px] max-w-[448px] flex-col justify-center bg-black pb-6">
-      <Header name={name} onBackClick={onClose} className="bg-opacity-0 invert filter" />
-      <div className="absolute right-6 top-4">
-        <span className="mr-1 text-body2 text-white">{currentImageIndex + 1}</span>
-        <span className="text-caption text-bk50">/ {images.length}</span>
-      </div>
+      <TopNavigationBar
+        title={name}
+        onBackClick={onClose}
+        rightNode={
+          <div>
+            <span className="mr-1 text-body2">{currentImageIndex + 1}</span>
+            <span className="text-caption text-bk50">/ {images.length}</span>
+          </div>
+        }
+        className="bg-opacity-0 invert filter"
+      />
       <div className="relative w-full before:block before:pb-[100%]">
         {images[currentImageIndex]?.url && (
           <Image
