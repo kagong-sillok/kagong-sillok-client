@@ -1,5 +1,5 @@
 import { RATING_TEXT } from '@/app/place/constants';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface RatingProps {
   rating: number | null;
@@ -10,15 +10,17 @@ export default function Rating({ rating, onClick }: RatingProps) {
   return (
     <div className="flex h-24 flex-col items-center gap-3">
       <div className="flex h-[60px] items-end justify-center gap-2">
-        {[1, 2, 3, 4, 5].map((item) => (
-          <Image
-            key={item}
-            src={`/assets/icons/40/emoji-rating${item}_${rating === item ? 'on' : 'off'}.svg`}
-            alt={`emoji-rating${item}`}
-            width={rating === item ? 60 : 40}
-            height={rating === item ? 60 : 40}
+        {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
+          <motion.img
+            key={num}
+            src={`/assets/icons/40/emoji-rating${num}_${rating === num ? 'on' : 'off'}.svg`}
+            alt={`emoji-rating${num}`}
             className="cursor-pointer"
-            onClick={() => onClick(item)}
+            onClick={() => onClick(num)}
+            animate={{
+              width: rating === num ? '60px' : '40px',
+              height: rating === num ? '60px' : '40px',
+            }}
           />
         ))}
       </div>

@@ -1,3 +1,4 @@
+'use client';
 import ShareIcon from './ShareIcon';
 import { BottomSheet } from '@/components';
 import { useRef } from 'react';

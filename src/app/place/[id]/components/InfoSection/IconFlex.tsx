@@ -1,12 +1,18 @@
+import { Spacing } from '@/components';
+
 interface IconFlexProps extends React.HTMLAttributes<HTMLDivElement> {
-  icon: React.ReactNode;
-  children?: React.ReactNode;
+  iconNode: React.ReactNode;
+  textNode: React.ReactNode;
 }
-export default function IconFlex({ icon, children, ...props }: IconFlexProps) {
+export default function IconFlex({ iconNode, textNode, ...props }: IconFlexProps) {
   return (
-    <div className="flex items-start" {...props}>
-      <div className="mr-1.5 pt-0.5 invert-[60%] filter">{icon}</div>
-      <div>{children}</div>
+    <div className="flex" {...props}>
+      <div>
+        <Spacing size={2} />
+        <div className="relative h-4 w-4 invert-[60%] filter">{iconNode}</div>
+      </div>
+      <Spacing size={6} direction="horizontal" />
+      <div>{textNode}</div>
     </div>
   );
 }

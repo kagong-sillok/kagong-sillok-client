@@ -1,16 +1,16 @@
 import type { TabItem } from '@/components/Tab/Tabs';
-import type { DayType, LinkType } from '@/types/place';
+import type { DayType } from '@/types/place';
 
 export const MAP_HEIGHT = 219;
 
-export const DAYS_OF_WEEK: { [key in Lowercase<DayType>]: string } = {
-  monday: '월',
-  tuesday: '화',
-  wednesday: '수',
-  thursday: '목',
-  friday: '금',
-  saturday: '토',
-  sunday: '일',
+export const DAYS_OF_WEEK: { [key in DayType]: string } = {
+  MONDAY: '월',
+  TUESDAY: '화',
+  WEDNESDAY: '수',
+  THURSDAY: '목',
+  FRIDAY: '금',
+  SATURDAY: '토',
+  SUNDAY: '일',
 };
 
 export const CONDITION_LIST = [

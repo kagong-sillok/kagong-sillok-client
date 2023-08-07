@@ -1,6 +1,6 @@
 'use client';
-import { MAP_HEIGHT } from '../../constants';
-import ShareSheet from '../ShareSheet';
+import ShareSheet from '../../../components/ShareSheet';
+import { MAP_HEIGHT } from '../../../constants';
 import { TopNavigationBar } from '@/components';
 import { useDetectScroll } from '@/hooks/useDetectScroll';
 import Image from 'next/image';
@@ -33,6 +33,7 @@ export default function PlaceTopNavigationBar({ name }: PlaceTopNavigationBarPro
               width={28}
               height={28}
               onClick={() => console.log('북마크 클릭')}
+              className="cursor-pointer"
             />
             <Image
               src="/assets/icons/28/Share.svg"
@@ -40,6 +41,7 @@ export default function PlaceTopNavigationBar({ name }: PlaceTopNavigationBarPro
               width={28}
               height={28}
               onClick={() => setIsShareSheetOpen(true)}
+              className="cursor-pointer"
             />
           </>
         }

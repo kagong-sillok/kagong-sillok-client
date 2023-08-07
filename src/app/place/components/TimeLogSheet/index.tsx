@@ -1,3 +1,4 @@
+'use client';
 import { Button, ImageUpload, BottomSheet } from '@/components';
 import Link from 'next/link';
 import { useRef, useState } from 'react';

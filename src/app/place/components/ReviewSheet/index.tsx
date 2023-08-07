@@ -1,5 +1,6 @@
+'use client';
 import Rating from './Rating';
-import { Button, ImageUpload, BottomSheet, Tabs } from '@/components';
+import { Button, ImageUpload, BottomSheet, Tabs, Spacing } from '@/components';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
@@ -20,6 +21,10 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
   const ref = useRef<SheetRef>();
 
   const handleRating = (selectRating: number) => {
+    if (selectRating === rating) {
+      setRating(null);
+      return;
+    }
     setRating(selectRating);
 
     if (currentSnap !== 0) {
@@ -40,14 +45,19 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
         isBackDrop={true}
         className={`${currentSnap === 1 ? '!overflow-hidden' : ''}`}
       >
-        <div className="h-full px-6 pb-24 pt-8">
+        <Spacing size={32} />
+        <div className="h-full px-6">
           <h3 className="mb-5 text-head3">
             스타벅스 동대문점은
             <br />
             어떠셨나요?
           </h3>
           <Rating rating={rating} onClick={handleRating} />
-          <hr className="mb-6 mt-9 text-bk10" />
+
+          <Spacing size={36} />
+          <hr className="text-bk10" />
+          <Spacing size={24} />
+
           <div>
             <p className="text-center text-body2 text-bk60">어떤 점이 좋았나요?</p>
             <Tabs selectedTabIds={selectedTabIds} setSelectedTabIds={setSelectedTabIds} />
@@ -61,19 +71,22 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
               rows={3}
               maxLength={200}
             />
-            <p className="mt-1 text-right text-caption">
+            <Spacing size={4} />
+            <p className="text-right text-caption">
               {text.length}
               <span className="text-bk40">/200</span>
             </p>
           </div>
-          <hr className="my-6 text-bk10" />
+          <Spacing size={24} />
+          <hr className="text-bk10" />
+          <Spacing size={24} />
           <div>
-            <p className="mb-4 text-center text-body2 text-bk60">
-              사진도 등록하고 카공을 공유해요!
-            </p>
+            <p className="text-center text-body2 text-bk60">사진도 등록하고 카공을 공유해요!</p>
+            <Spacing size={16} />
             <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
           </div>
         </div>
+        <Spacing size={96} />
       </BottomSheet>
       {isOpen && (
         <Button

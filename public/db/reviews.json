@@ -6,22 +6,20 @@
         "rating": 1,
         "content": "싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요싫어요",
         "imageIds": [],
-        "tags": ["CLEAN", "WIFI", "SEAT"],
-        "userId": 1,
-        "userNickname": "카공실록",
-        "createdAt": "2023-06-01T00:00:00",
-        "updatedAt": "2023-06-01T00:00:00"
+        "tagIds": [0],
+        "memberId": 1,
+        "memberNickname": "카공실록",
+        "writtenAt": "2023-06-01T00:00:00"
       },
       {
         "id": 2,
         "rating": 5,
         "content": "좋아요",
         "imageIds": [1, 2, 3],
-        "tags": ["SEAT"],
-        "userId": 2,
-        "userNickname": "라떼처돌이",
-        "createdAt": "2023-06-02T00:00:00",
-        "updatedAt": "2023-06-02T00:00:00"
+        "tagIds": ["SEAT"],
+        "memberId": 2,
+        "memberNickname": "라떼처돌이",
+        "writtenAt": "2023-06-02T00:00:00"
       }
     ]
   }

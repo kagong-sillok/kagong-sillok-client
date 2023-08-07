@@ -1,4 +1,5 @@
 import api from '@/apis/config/instance';
+import ky from 'ky';
 
 import type { ImagesPayload } from './types';
 import type { ImageObject } from '@/types/Image';

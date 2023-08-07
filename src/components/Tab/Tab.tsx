@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction, memo } from 'react';
 
 interface TabProps {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface TabProps {
   setSelectedTab: Dispatch<SetStateAction<number>>;
 }
 
-export default function Tab({ children, id, isSelected, setSelectedTab }: TabProps) {
+export default memo(function Tab({ children, id, isSelected, setSelectedTab }: TabProps) {
   function handleClick() {
     setSelectedTab(id);
   }
@@ -25,4 +25,4 @@ export default function Tab({ children, id, isSelected, setSelectedTab }: TabPro
       {children}
     </button>
   );
-}
+});
