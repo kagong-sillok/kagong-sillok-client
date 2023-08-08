@@ -13,7 +13,7 @@ function Weekly({ onViewChange }: { onViewChange: (type: CalendarType) => void }
   const days = Array.from({ length: 7 }, (_, i) => Number(day) + i);
 
   return (
-    <div className="relative flex h-40 w-full flex-col items-center justify-center gap-[15px] bg-violet/default px-6 py-5">
+    <div className="bg-violet/default relative flex h-40 w-full flex-col items-center justify-center gap-[15px] px-6 py-5">
       <div
         className="absolute right-6 top-6 cursor-pointer text-caption text-background"
         onClick={() => onViewChange('MONTH')}

@@ -19,7 +19,7 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
           {tags?.map((tag) => (
-            <p key={tag} className="text-caption text-violet/default">
+            <p key={tag} className="text-violet/default text-caption">
               {tag}
             </p>
           ))}
