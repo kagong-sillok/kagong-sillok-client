@@ -11,17 +11,15 @@ interface PlaceDetailProps {
 export default function PlaceDetail({ placeId }: PlaceDetailProps) {
   const { data: placeData } = useGetPlace(placeId);
 
-  const { name, latitude, longitude, imageIds } = placeData;
-
   return (
     <>
-      <PlaceTopNavigationBar name={name} />
+      <PlaceTopNavigationBar name={placeData.name} />
       <div className="relative h-[219px]">
         <KakaoMap
           className="h-full"
           customCoordinates={{
-            lat: latitude,
-            lng: longitude,
+            lat: placeData.latitude,
+            lng: placeData.longitude,
           }}
           places={[placeData]}
         />
@@ -29,11 +27,12 @@ export default function PlaceDetail({ placeId }: PlaceDetailProps) {
       </div>
       <div className="px-6">
         <Spacing size={30} />
-        <InfoSection placeId={placeId} />
+        <InfoSection {...placeData} />
         <Spacing size={40} />
-        <ReviewSection placeId={placeId} />
+        <ReviewSection />
         <Spacing size={40} />
-        <GallerySection imageIds={imageIds} />
+        <GallerySection imageIds={placeData.imageIds} />
+        <Spacing size={100} />
       </div>
       <Footer />
     </>

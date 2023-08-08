@@ -3,30 +3,23 @@ import IconFlex from './IconFlex';
 import KagongItem from './KagongItem';
 import Tag from './Tag';
 import TimeInfo from './TimeInfo';
-import { useGetPlace } from '@/apis/place';
-import { LINK_TEXT } from '@/app/place/constants';
+import { CONDITION_LIST, LINK_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
-import { formatTime } from '@/utils/formatTime';
 import Image from 'next/image';
-import { useState } from 'react';
 
-import type { PlaceConditionType } from '@/types/place';
+import type { Place } from '@/types/place';
 
-interface InfoSectionProps {
-  placeId: number;
-}
+interface InfoSectionProps extends Omit<Place, 'longitude' | 'latitude' | 'imageIds' | 'rating'> {}
 
-export default function InfoSection({ placeId }: InfoSectionProps) {
-  const { data: placeData } = useGetPlace(placeId);
-
-  const { tags, isOpen, address, name, businessHours, phone, links } = placeData;
+export default function InfoSection({ ...place }: InfoSectionProps) {
+  const { tags, isOpen, address, name, businessHours, phone, links } = place;
 
   return (
     <section>
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
           {tags?.map((tag) => (
-            <p key={tag} className="text-caption text-violet/default">
+            <p key={tag} className="text-violet/default text-caption">
               {tag}
             </p>
           ))}
@@ -67,8 +60,8 @@ export default function InfoSection({ placeId }: InfoSectionProps) {
       <h5 className="text-sub1">카공을 위한 정보</h5>
       <Spacing size={16} />
       <div className="flex w-[calc(100%+1.5rem)] gap-2 overflow-hidden overflow-x-scroll pb-5 pr-6">
-        {['CLEAN', 'QUIET', 'SEAT', 'TABLE', 'TEMPERATURE', 'WIFI'].map((type, index) => (
-          <KagongItem key={index} type={type as PlaceConditionType} isFirst={index === 0} />
+        {CONDITION_LIST.map(({ type }, index) => (
+          <KagongItem key={type} type={type} isFirst={index === 0} />
         ))}
       </div>
       <a

@@ -1,7 +1,10 @@
 export interface ImageObject {
-  id: number;
   url: string;
   width: number;
   height: number;
   extension: string;
+}
+
+export interface ImageObjectWithId extends ImageObject {
+  id: number;
 }

@@ -2,6 +2,7 @@
 import { useGetImages } from '@/apis/image';
 import { useGetReviews } from '@/apis/review';
 import { RATING_TEXT } from '@/app/place/constants';
+import { Spacing } from '@/components';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
@@ -29,13 +30,13 @@ interface ReviewItemProps {
 
 function ReviewItem({ review }: ReviewItemProps) {
   const { imageIds, content, memberNickname, rating, writtenAt } = review;
-  const { data: imagesData } = useGetImages(imageIds);
+  const { data: imagesData } = useGetImages([1]);
 
   return (
     <div className="flex gap-3.5">
       <div className="h-10 w-10 shrink-0 rounded-full bg-bk20"></div>
       <div className="flex flex-grow flex-col overflow-hidden">
-        <div className="mb-[13px] flex h-10 justify-between">
+        <div className="flex h-10 justify-between">
           <div>
             <p className="text-body2">{memberNickname}</p>
             <div className="flex items-center">
@@ -52,8 +53,9 @@ function ReviewItem({ review }: ReviewItemProps) {
           </div>
           <p className="text-caption text-bk40">{format(new Date(writtenAt), 'yy.MM.dd')}</p>
         </div>
+        <Spacing size={13} />
         <div
-          className={`mb-2.5 flex items-center gap-0.5 overflow-x-scroll ${
+          className={`flex items-center gap-0.5 overflow-x-scroll ${
             imagesData?.images?.length ? '' : 'hidden'
           }`}
         >
@@ -63,12 +65,13 @@ function ReviewItem({ review }: ReviewItemProps) {
                 src={image.url}
                 alt="review-image"
                 className="object-cover"
-                sizes="64px"
+                sizes="96px"
                 fill
               />
             </div>
           ))}
         </div>
+        <Spacing size={10} />
         <p className="text-body2">{content}</p>
       </div>
     </div>

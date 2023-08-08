@@ -81,7 +81,7 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
           <div className="flex w-full cursor-pointer items-center justify-between">
             <div className="flex items-start justify-start gap-[5px]">
               <div className="text-sub2">공지사항</div>
-              <div className="h-[6px] w-[6px] rounded-full bg-violet/default" />
+              <div className="bg-violet/default h-[6px] w-[6px] rounded-full" />
             </div>
             <Image
               src="/assets/icons/16/Arrow-right.svg"

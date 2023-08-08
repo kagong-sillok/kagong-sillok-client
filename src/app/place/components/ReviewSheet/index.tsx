@@ -1,5 +1,7 @@
 'use client';
 import Rating from './Rating';
+import { useImagesUpload } from '@/apis/image';
+import { usePostReviewMutation } from '@/apis/review';
 import { Button, ImageUpload, BottomSheet, Tabs, Spacing } from '@/components';
 import { useRef, useState } from 'react';
 
@@ -7,20 +9,24 @@ import type { SheetRef } from 'react-modal-sheet';
 
 interface ReviewSheetProps {
   isOpen: boolean;
+  placeId: number;
   onClose: () => void;
 }
 
-export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
+export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetProps) {
   const [currentSnap, setCurrentSnap] = useState(1);
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
   const [rating, setRating] = useState<number | null>(null);
   const [selectedTabIds, setSelectedTabIds] = useState<number[]>([]);
-  const [text, setText] = useState('');
+  const [content, setContent] = useState('');
   const [images, setImages] = useState<File[]>([]);
+
+  const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
+  const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
 
   const ref = useRef<SheetRef>();
 
-  const handleRating = (selectRating: number) => {
+  const handleRatingClick = (selectRating: number) => {
     if (selectRating === rating) {
       setRating(null);
       return;
@@ -34,6 +40,24 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
     }
   };
 
+  const handlePostReviewClick = async () => {
+    if (!rating || !content) return;
+
+    const imageIds = await uploadImagesMutateAsync({
+      files: images,
+      folderName: 'review',
+    }).then((res) => res.images.map((image) => image.id));
+
+    postReviewMutate({
+      placeId,
+      rating,
+      content,
+      imageIds,
+      reviewtagIds: selectedTabIds,
+      memberId: 1,
+    });
+  };
+
   return (
     <>
       <BottomSheet
@@ -42,8 +66,9 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
         onClose={onClose}
         snapPoints={snapPoints}
         initialSnap={currentSnap}
-        isBackDrop={true}
         className={`${currentSnap === 1 ? '!overflow-hidden' : ''}`}
+        isBackDrop
+        // isScrollable
       >
         <Spacing size={32} />
         <div className="h-full px-6">
@@ -52,7 +77,7 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
             <br />
             어떠셨나요?
           </h3>
-          <Rating rating={rating} onClick={handleRating} />
+          <Rating rating={rating} onClick={handleRatingClick} />
 
           <Spacing size={36} />
           <hr className="text-bk10" />
@@ -66,14 +91,14 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
               placeholder="더 자세한 이야기를 들려주세요. (필수)"
               onChange={(e) => {
                 if (e.target.value.length > 200) e.target.value = e.target.value.slice(0, 200);
-                setText(e.target.value);
+                setContent(e.target.value);
               }}
               rows={3}
               maxLength={200}
             />
             <Spacing size={4} />
             <p className="text-right text-caption">
-              {text.length}
+              {content.length}
               <span className="text-bk40">/200</span>
             </p>
           </div>
@@ -86,13 +111,13 @@ export default function ReviewSheet({ isOpen, onClose }: ReviewSheetProps) {
             <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
           </div>
         </div>
-        <Spacing size={96} />
       </BottomSheet>
       {isOpen && (
         <Button
           type="DEFAULT"
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
-          disabled
+          disabled={!rating || !content}
+          onClick={handlePostReviewClick}
         >
           리뷰등록
         </Button>

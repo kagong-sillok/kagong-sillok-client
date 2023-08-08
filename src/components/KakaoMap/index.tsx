@@ -1,7 +1,6 @@
 'use client';
 
 import { DEFAULT_COORDINATES } from '@/constants/map';
-// import useGeoLocation from '@/hooks/useGeolocation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 import type { Place } from '@/types/place';
@@ -26,8 +25,15 @@ const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {
             image={{
               src: '/assets/Icons/marker.svg',
               size: {
-                width: 36,
-                height: 45,
+                width: 72,
+                height: 72,
+              },
+              options: {
+                alt: 'marker',
+                offset: {
+                  x: 36,
+                  y: 36,
+                },
               },
             }}
           />

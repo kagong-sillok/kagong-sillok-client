@@ -16,7 +16,7 @@ export default function KagongItem({ type, isFirst = false }: KagongItemProps) {
   return (
     <div
       className={`flex h-[156px] w-[130px] shrink-0 flex-col justify-between px-4 pb-5 pt-4 shadow-[0_4px_10px_0_rgba(0,0,0,0.1)] ${
-        isFirst ? 'bg-violet/default text-white' : 'bg-white text-black'
+        isFirst ? 'bg-point/default text-white' : 'bg-white text-black'
       }`}
     >
       <Image

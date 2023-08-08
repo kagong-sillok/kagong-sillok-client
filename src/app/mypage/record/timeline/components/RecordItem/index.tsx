@@ -16,7 +16,7 @@ export default function RecordItem({ data }: RecordItemProps) {
       <div className="flex w-full items-center justify-between gap-4">
         <div className="flex flex-col justify-start gap-0.5">
           <div className="text-sub1">{placeName}</div>
-          <div className="flex items-center gap-2 text-body2 text-violet/default">
+          <div className="text-violet/default flex items-center gap-2 text-body2">
             <div>{description}</div>
             <Dot />
             <div>{date}</div>
