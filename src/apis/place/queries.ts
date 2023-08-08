@@ -11,5 +11,5 @@ export function useGetPlace(id: number) {
 
 export function useGetPlacesAround(around: PlacesAround) {
   // TODO: useInfiniteQuery로 변경
-  return useQuery(Keys.placesAround(around), () => getPlacesAround(around));
+  return useSuspenseQuery(Keys.placesAround(around), () => getPlacesAround(around));
 }

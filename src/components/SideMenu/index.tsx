@@ -1,3 +1,5 @@
+import { Spacing } from '@/components';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,10 +36,17 @@ const pages: { label: string; link: string }[] = [
 
 export default function SideMenu({ open, onClose }: SideMenuProps) {
   if (!open) return <></>;
+
   return (
-    <div className="absolute left-0 top-0 z-50 flex h-full w-full items-start justify-start">
+    <motion.div
+      className="absolute left-0 top-0 z-50 flex h-screen w-full items-start justify-start"
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="h-full w-72 bg-white px-6 py-5">
-        <div className="mt-5 flex flex-col items-center justify-center gap-5">
+        <Spacing size={20} />
+        <div className="flex flex-col items-center justify-center gap-5">
           <div className="flex w-full items-center justify-start gap-3">
             <div className="h-[52px] w-[52px] rounded-full bg-bk40" />
             <div className="flex flex-col items-start justify-center gap-0.5">
@@ -121,6 +130,6 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
         />
         <div className={`h-full w-full cursor-pointer bg-bk100 opacity-60`} onClick={onClose} />
       </div>
-    </div>
+    </motion.div>
   );
 }

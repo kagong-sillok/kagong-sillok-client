@@ -7,7 +7,7 @@ import '@/styles/globals.css';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={pretendard.className}>
-      <body className="mx-auto h-full min-h-screen w-full min-w-[360px] max-w-[448px] bg-background scrollbar-hide">
+      <body className="relative mx-auto h-full min-h-screen w-full min-w-[360px] max-w-[448px] bg-background scrollbar-hide">
         <ReactQueryProvider>
           <div className="min-h-screen bg-white">{children}</div>
         </ReactQueryProvider>

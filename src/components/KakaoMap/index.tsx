@@ -14,7 +14,15 @@ interface KakaoMapProps {
 const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {
   return (
     <>
-      <Map center={customCoordinates ?? DEFAULT_COORDINATES} className={className}>
+      <Map
+        center={
+          customCoordinates ?? {
+            lat: DEFAULT_COORDINATES.latitude,
+            lng: DEFAULT_COORDINATES.longitude,
+          }
+        }
+        className={className}
+      >
         {places?.map((place) => (
           <MapMarker
             key={place.id}

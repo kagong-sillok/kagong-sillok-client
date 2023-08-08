@@ -1,14 +1,23 @@
+'use client';
+
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import type { Place } from '@/types/place';
 
-interface PlaceItemProps {
-  place: Place;
-  // snapTo: (i: number) => void;
+interface PlaceListProps {
+  places: Place[];
 }
 
-export default function PlaceItem({ place }: PlaceItemProps) {
+export default function PlaceList({ places }: PlaceListProps) {
+  return <ul>{places?.map((place) => <PlaceItem key={place.id} place={place} />)}</ul>;
+}
+
+interface PlaceItemProps {
+  place: Place;
+}
+
+function PlaceItem({ place }: PlaceItemProps) {
   const { id, name, tags, rating, isOpen } = place;
 
   const router = useRouter();
