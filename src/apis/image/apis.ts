@@ -41,10 +41,6 @@ const postImages = async (payload: ImageObject[]) => {
  * S3에 이미지를 업로드합니다.
  */
 const uploadImage = async (file: File, folderName: string): Promise<ImageObject> => {
-  if (!file) {
-    throw new Error('파일이 없습니다.');
-  }
-
   const params: S3.Types.PutObjectRequest = {
     Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
     Key: folderName + '/' + file.name,
@@ -70,8 +66,6 @@ export const uploadImages = async (payload: UploadImagesPayload) => {
   const { files, folderName } = payload;
   const promises = files.map((file) => uploadImage(file, folderName));
   const data = await Promise.all(promises);
-
-  console.log(data);
 
   return postImages(data);
 };
