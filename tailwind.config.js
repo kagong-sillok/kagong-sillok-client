@@ -9,8 +9,8 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      'violet/default': '#6550E7',
-      'violet/pressed': '#4533B4',
+      'point/default': '#00A7D9',
+      'point/pressed': '#0085AD',
       brown: '#E19678',
       yellow: '#FFB400',
       blue: '#4B64FF',
