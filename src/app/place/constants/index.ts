@@ -15,36 +15,42 @@ export const DAYS_OF_WEEK: { [key in DayType]: string } = {
 
 export const CONDITION_LIST = [
   {
+    id: 1,
     type: 'CLEAN',
     text: '청결',
     title: '호텔급 청결',
     iconSrc: '/assets/icons/32/Cleaning.svg',
   },
   {
+    id: 2,
     type: 'WIFI',
     text: '와이파이',
     title: '빵빵 터짐',
     iconSrc: '/assets/icons/32/Internet.svg',
   },
   {
+    id: 3,
     type: 'SEAT',
     text: '좌석',
     title: '편안한 의자',
     iconSrc: '/assets/icons/32/Livingroom.svg',
   },
   {
+    id: 4,
     type: 'TEMPERATURE',
     text: '온도',
     title: '쾌적상쾌',
     iconSrc: '/assets/icons/32/Aircon.svg',
   },
   {
+    id: 5,
     type: 'TABLE',
     text: '테이블',
     title: '넓은 테이블',
     iconSrc: '/assets/icons/32/table.svg',
   },
   {
+    id: 6,
     type: 'QUIET',
     text: '소음',
     title: '조용한 공간',

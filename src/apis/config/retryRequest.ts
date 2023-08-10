@@ -1,29 +1,31 @@
-import api from './instance';
+import { instance } from './instance';
 import { postRefresh } from '../auth';
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
-import { redirect } from 'next/navigation';
+import { getCookie, setCookie } from 'cookies-next';
 
 import type { AfterResponseHook } from 'ky';
 
 export const retryRequest: AfterResponseHook = async (request, options, response) => {
-  if (response.status === 401) {
-    try {
-      const refreshToken = getCookie('refreshToken') as string;
+  if (
+    response.status === 401 ||
+    response.status === 400 ||
+    response.status === 403 ||
+    response.status === 404 ||
+    response.status === 500
+  ) {
+    const refreshToken = getCookie('refreshToken') as string;
 
-      if (refreshToken) {
-        const token = await postRefresh(refreshToken);
+    if (refreshToken) {
+      const token = await postRefresh(refreshToken);
 
-        setCookie('accessToken', token.accessToken);
-        setCookie('refreshToken', token.refreshToken);
+      setCookie('accessToken', token.accessToken, {
+        expires: new Date(token.accessTokenExpireDateTime),
+      });
 
-        return api(request, options);
-      }
-    } catch (error) {
-      console.log(error);
+      setCookie('refreshToken', token.refreshToken, {
+        expires: new Date(token.refreshTokenExpireDateTime),
+      });
 
-      deleteCookie('accessToken');
-      deleteCookie('refreshToken');
-      redirect('/auth/login');
+      return instance(request, options);
     }
   }
 };

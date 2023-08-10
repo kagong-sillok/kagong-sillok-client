@@ -3,7 +3,7 @@
 import { GalleryModal, GalleryTopNavigationBar } from './components';
 import { useGetImages } from '@/apis/image';
 import { useGetPlace } from '@/apis/place';
-import { useGetReviews } from '@/apis/review';
+import { useGetPlaceReviews } from '@/apis/review';
 import { Footer } from '@/app/place/components';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -19,7 +19,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const placeId = Number(params.id);
 
   const { data: placeData } = useGetPlace(placeId);
-  const { data: reviewsData } = useGetReviews(placeId);
+  const { data: reviewsData } = useGetPlaceReviews(placeId);
   const { data: imagesData } = useGetImages(imageIds);
 
   useEffect(() => {

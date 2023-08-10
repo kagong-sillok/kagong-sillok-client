@@ -13,8 +13,8 @@ interface ReviewItemProps {
 }
 
 export default function ReviewItem({ review, isLast = false }: ReviewItemProps) {
-  const { id, rating, createdAt, content } = review;
-  const date = format(new Date(createdAt), 'yy.MM.dd');
+  const { id, rating, writtenAt, content } = review;
+  const date = format(new Date(writtenAt), 'yy.MM.dd');
   return (
     <>
       <div className="flex flex-col justify-start gap-3 py-6">

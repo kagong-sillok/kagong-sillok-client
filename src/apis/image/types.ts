@@ -1,6 +1,6 @@
-import type { ImageObject, ImageObjectWithId } from '@/types/Image';
+import type { ImageObjectWithId } from '@/types/Image';
 
-export interface ImageResponse {
+export interface ImagesResponse {
   images: ImageObjectWithId[];
 }
 

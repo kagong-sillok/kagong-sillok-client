@@ -4,7 +4,7 @@ import ky from 'ky';
 
 import type { Input, Options } from 'ky/distribution/types/options';
 
-const instance = ky.create({
+export const instance = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -12,6 +12,10 @@ const instance = ky.create({
   hooks: {
     beforeRequest: [setHeader],
     afterResponse: [retryRequest],
+  },
+  retry: {
+    limit: 2,
+    statusCodes: [401, 403, 404, 500],
   },
 });
 
