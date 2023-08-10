@@ -1,19 +1,16 @@
 import { ReviewTopNavigationBar } from './components';
-import { ReviewList } from '@/app/place/components';
+import ReviewDetail from './components/ReviewDetail';
+import { Loading } from '@/components';
 import Spacing from '@/components/Spacing';
 import { Suspense } from '@suspensive/react';
 
-export default function ReviewsPage({ params }: { params: { id: string } }) {
-  const placeId = Number(params.id);
-
+export default function ReviewsPage() {
   return (
     <main>
       <ReviewTopNavigationBar />
       <Spacing size={6} />
-      <Suspense fallback={null}>
-        <div className="px-6">
-          <ReviewList placeId={placeId} />
-        </div>
+      <Suspense fallback={<Loading isBackDrop={false} />}>
+        <ReviewDetail />
       </Suspense>
     </main>
   );

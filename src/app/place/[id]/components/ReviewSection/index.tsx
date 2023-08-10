@@ -12,7 +12,7 @@ export default function ReviewSection() {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
 
   const pathname = usePathname();
-  const params = useParams();
+  const params = useParams() as { id: string };
   const placeId = Number(params.id);
 
   const { data: reviewsData } = useGetPlaceReviews(placeId);

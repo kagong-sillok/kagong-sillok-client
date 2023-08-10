@@ -42,7 +42,7 @@ interface ReviewItemProps {
 
 function ReviewItem({ review }: ReviewItemProps) {
   const { imageIds, content, memberNickname, rating, writtenAt } = review;
-  const { data: imagesData } = useGetImages([1]);
+  const { data: imagesData } = useGetImages(imageIds);
 
   return (
     <div className="flex gap-3.5">

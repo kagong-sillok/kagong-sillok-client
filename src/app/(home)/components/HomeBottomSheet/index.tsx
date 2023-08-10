@@ -2,7 +2,7 @@
 
 import PlaceList from './PlaceList';
 import { BottomSheet } from '@/components';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import type { Place } from '@/types/place';
 import type { SheetRef } from 'react-modal-sheet';
@@ -64,7 +64,11 @@ export default function HomeBottomSheet({
           }
         }}
       >
-        <PlaceList places={places} />
+        <Suspense
+          fallback={<div className="text-center text-body2 text-bk40">잠시만 기다려주세요</div>}
+        >
+          <PlaceList places={places} />
+        </Suspense>
       </BottomSheet>
     </>
   );

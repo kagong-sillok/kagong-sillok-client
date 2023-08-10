@@ -6,7 +6,7 @@ import { KakaoMap, Spacing } from '@/components';
 import { useParams } from 'next/navigation';
 
 export default function PlaceDetail() {
-  const params = useParams();
+  const params = useParams() as { id: string };
   const placeId = Number(params.id);
 
   const { data: placeData } = useGetPlace(placeId);
