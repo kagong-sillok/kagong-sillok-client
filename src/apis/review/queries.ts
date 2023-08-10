@@ -1,12 +1,12 @@
-import { getMemberReviews, getReviews } from './apis';
+import { getMemberReviews, getPlaceReviews } from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
 /**
  * 페이지네이션 예정
  */
-export function useGetReviews(placeId: number) {
-  return useSuspenseQuery(Keys.reviews(placeId), () => getReviews(placeId));
+export function useGetPlaceReviews(placeId: number) {
+  return useSuspenseQuery(Keys.reviews(placeId), () => getPlaceReviews(placeId));
 }
 
 /**

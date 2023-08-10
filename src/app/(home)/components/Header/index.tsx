@@ -1,7 +1,7 @@
 'use client';
 
 import Tabs from './Tabs';
-import { useGetUserInfo } from '@/apis/user/queries';
+import { useGetUserInfo } from '@/apis/user';
 import { SideMenu, Spacing } from '@/components';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';

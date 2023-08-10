@@ -1,6 +1,6 @@
 'use client';
 import { useGetImages } from '@/apis/image';
-import { useGetReviews } from '@/apis/review';
+import { useGetPlaceReviews } from '@/apis/review';
 import { RATING_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { format } from 'date-fns';
@@ -13,17 +13,15 @@ interface ReviewListProps {
 }
 
 export default function ReviewList({ placeId }: ReviewListProps) {
-  // const { data: reviewsData } = useGetReviews(placeId);
+  const { data: reviewsData } = useGetPlaceReviews(placeId);
 
-  // return (
-  //   <div className="flex flex-col gap-5">
-  //     {reviewsData.reviews.map((review) => (
-  //       <ReviewItem key={review.id} review={review} />
-  //     ))}
-  //   </div>
-  // );
-
-  return null;
+  return (
+    <div className="flex flex-col gap-5">
+      {reviewsData.reviews.map((review) => (
+        <ReviewItem key={review.id} review={review} />
+      ))}
+    </div>
+  );
 }
 
 interface ReviewItemProps {
