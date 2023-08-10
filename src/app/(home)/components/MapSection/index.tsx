@@ -1,7 +1,6 @@
 'use client';
 
-import Loading from '@/app/loading';
-import { KakaoMap } from '@/components';
+import { KakaoMap, Loading } from '@/components';
 import { Place } from '@/types/place';
 import Image from 'next/image';
 import { useState } from 'react';

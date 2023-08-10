@@ -3,6 +3,7 @@ import api from '@/apis/config/instance';
 import type { Place, PlacesAround } from '@/types/place';
 
 export const getPlace = async (id: number) => {
+  console.log(`api/v1/places/${id}`);
   const { data } = await api.get<Place>(`api/v1/places/${id}`);
 
   return data;

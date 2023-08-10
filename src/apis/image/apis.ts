@@ -3,10 +3,10 @@ import { ImageObject } from '@/types/Image';
 import { myBucket } from '@/utils/uploadImage';
 import { S3 } from 'aws-sdk';
 
-import type { ImageResponse, UploadImagesPayload } from './types';
+import type { ImagesResponse, UploadImagesPayload } from './types';
 
 export const getImages = async (imageIds: number[]) => {
-  const { data } = await api.get<ImageResponse>('api/v1/images', {
+  const { data } = await api.get<ImagesResponse>('api/v1/images', {
     searchParams: {
       imageIds: imageIds.join(','),
     },
@@ -19,7 +19,7 @@ export const getImages = async (imageIds: number[]) => {
  * 이미지를 서버에 업로드합니다.
  */
 export const postImage = async (payload: ImageObject) => {
-  const { data } = await api.post<ImageResponse>('api/v1/images', {
+  const { data } = await api.post<ImageObject>('api/v1/images', {
     json: payload,
   });
 
@@ -30,7 +30,7 @@ export const postImage = async (payload: ImageObject) => {
  * 이미지를 서버에 여러개 업로드합니다.
  */
 const postImages = async (payload: ImageObject[]) => {
-  const { data } = await api.post<ImageResponse>('api/v1/images/images', {
+  const { data } = await api.post<ImagesResponse>('api/v1/images/images', {
     json: payload,
   });
 

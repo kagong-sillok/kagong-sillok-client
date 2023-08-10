@@ -13,15 +13,17 @@ interface ReviewListProps {
 }
 
 export default function ReviewList({ placeId }: ReviewListProps) {
-  const { data: reviewsData } = useGetReviews(placeId);
+  // const { data: reviewsData } = useGetReviews(placeId);
 
-  return (
-    <div className="flex flex-col gap-5">
-      {reviewsData.reviews.map((review) => (
-        <ReviewItem key={review.id} review={review} />
-      ))}
-    </div>
-  );
+  // return (
+  //   <div className="flex flex-col gap-5">
+  //     {reviewsData.reviews.map((review) => (
+  //       <ReviewItem key={review.id} review={review} />
+  //     ))}
+  //   </div>
+  // );
+
+  return null;
 }
 
 interface ReviewItemProps {

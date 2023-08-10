@@ -15,7 +15,7 @@ export const instance = ky.create({
   },
   retry: {
     limit: 2,
-    statusCodes: [401],
+    statusCodes: [401, 403, 404, 500],
   },
 });
 

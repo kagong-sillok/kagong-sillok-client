@@ -1,7 +1,7 @@
 import HomeDetail from './components/HomeDetail';
-import Loading from '../loading';
 import { getPlacesAround } from '@/apis/place';
 import { Keys } from '@/apis/place/keys';
+import { Loading } from '@/components';
 import { DEFAULT_COORDINATES } from '@/constants/map';
 import { HydrationProvider } from '@/providers/HydrationProvider';
 import { AsyncBoundary } from '@suspensive/react';

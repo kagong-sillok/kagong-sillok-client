@@ -1,3 +1,4 @@
+'use client';
 import { Spacing } from '@/components';
 import { User } from '@/types/user';
 import { useQueryClient } from '@tanstack/react-query';

@@ -1,6 +1,6 @@
 'use client';
 
-import * as animationData from '../../public/assets/lotties/prography_motion_loading.json';
+import * as animationData from '../../../public/assets/lotties/prography_motion_loading.json';
 import Lottie from 'lottie-react';
 
 export default function Loading() {
