@@ -9,15 +9,27 @@ import Image from 'next/image';
 import type { Review } from '@/types/review';
 
 interface ReviewListProps {
-  placeId: number;
+  reviews: Review[];
 }
 
-export default function ReviewList({ placeId }: ReviewListProps) {
-  const { data: reviewsData } = useGetPlaceReviews(placeId);
+export default function ReviewList({ reviews }: ReviewListProps) {
+  if (!reviews.length) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-3">
+        <Image
+          src="/assets/icons/40/emoji-rating3_off.svg"
+          alt="emoji-rating0_off"
+          width={40}
+          height={40}
+        />
+        <p className="text-body2 text-bk40">아직 리뷰가 없어요</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-5">
-      {reviewsData.reviews.map((review) => (
+      {reviews.map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}
     </div>

@@ -1,5 +1,6 @@
 'use client';
 import Tooltip from './Tooltip';
+import { useGetPlaceReviews } from '@/apis/review';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, Spacing } from '@/components';
 import Image from 'next/image';
@@ -12,15 +13,16 @@ export default function ReviewSection() {
 
   const pathname = usePathname();
   const params = useParams();
-
   const placeId = Number(params.id);
+
+  const { data: reviewsData } = useGetPlaceReviews(placeId);
 
   return (
     <>
       <section>
         <div className="flex justify-between">
           <h5 className="text-sub1">
-            리뷰 <span className="text-violet/default">14</span>
+            리뷰 <span className="text-violet/default">{reviewsData.reviews.length}</span>
           </h5>
           <Link
             href={`${pathname}/review`}
@@ -61,7 +63,7 @@ export default function ReviewSection() {
         <hr className="text-bk10" />
         <Spacing size={24} />
 
-        <ReviewList placeId={placeId} />
+        <ReviewList reviews={reviewsData.reviews} />
 
         <Spacing size={24} />
         <Button type="ROUND_DEFAULT" onClick={() => setIsReviewSheetOpen(true)}>
