@@ -1,22 +1,19 @@
 import { Spacing } from '@/components';
+import { User } from '@/types/user';
+import { useQueryClient } from '@tanstack/react-query';
+import { deleteCookie } from 'cookies-next';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-interface SideMenuProps {
-  open: boolean;
-  onClose: () => void;
-}
-
-const IconButton = ({
-  label,
-  icon,
-  link,
-}: {
+interface IconButtonProps {
   label: string;
   icon: React.ReactNode;
   link: string;
-}) => {
+}
+
+const IconButton = ({ label, icon, link }: IconButtonProps) => {
   return (
     <Link
       href={link}
@@ -34,8 +31,36 @@ const pages: { label: string; link: string }[] = [
   { label: '작성한 리뷰', link: '/mypage/place/reviews' },
 ];
 
-export default function SideMenu({ open, onClose }: SideMenuProps) {
+interface SideMenuProps {
+  open: boolean;
+  onClose: () => void;
+  userInfo: User | undefined;
+}
+
+export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const { nickname, email, profileImage, loginCount } = userInfo || {
+    nickname: '로그인이 필요합니다.',
+    email: '',
+    profileImage: '/assets/Icons/profileImage.svg',
+    loginCount: 0,
+  };
+
   if (!open) return <></>;
+
+  const handleUserClick = () => {
+    router.push(userInfo ? `/mypage` : '/auth/login');
+  };
+
+  const handleLogoutClick = () => {
+    deleteCookie('accessToken');
+    deleteCookie('refreshToken');
+    queryClient.clear();
+
+    router.push('/auth/login');
+  };
 
   return (
     <motion.div
@@ -47,17 +72,26 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
       <div className="h-full w-72 bg-white px-6 py-5">
         <Spacing size={20} />
         <div className="flex flex-col items-center justify-center gap-5">
-          <div className="flex w-full items-center justify-start gap-3">
-            <div className="h-[52px] w-[52px] rounded-full bg-bk40" />
+          <div
+            className="flex w-full cursor-pointer items-center justify-start gap-3"
+            onClick={handleUserClick}
+          >
+            <Image
+              src={profileImage}
+              alt="profileImage"
+              width={52}
+              height={52}
+              className="rounded-full"
+            />
             <div className="flex flex-col items-start justify-center gap-0.5">
-              <div className="text-sub1">라떼처돌이</div>
-              <div className="text-caption text-bk40">kimkim@kakao.com</div>
+              <div className="text-sub1">{nickname}</div>
+              <div className="text-caption text-bk40">{email}</div>
             </div>
           </div>
           <div className="flex w-full items-center justify-start gap-4 bg-bk100 p-4">
             <div className="flex w-[88px] flex-col items-start justify-center gap-0.5 text-background">
               <div className="text-caption opacity-60">카공실록 방문일</div>
-              <div className="text-sub2 ">78일</div>
+              <div className="text-sub2 ">{loginCount}일</div>
             </div>
             <div className="h-10 w-px bg-background opacity-30" />
             <div className="flex w-[88px] flex-col items-start justify-center  gap-0.5 text-background">
@@ -115,7 +149,9 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
         </div>
       </div>
       <div className="absolute bottom-5 left-6 z-50 flex w-full items-center justify-start gap-3 text-body2 text-bk40">
-        <div className="cursor-pointer">로그아웃</div>
+        <div className="cursor-pointer" onClick={handleLogoutClick}>
+          로그아웃
+        </div>
         <div className="h-3 w-px bg-bk20" />
         <div className="cursor-pointer">탈퇴하기</div>
       </div>

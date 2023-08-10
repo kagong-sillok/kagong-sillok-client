@@ -1,6 +1,7 @@
 'use client';
 
 import Tabs from './Tabs';
+import { useGetUserInfo } from '@/apis/user/queries';
 import { SideMenu, Spacing } from '@/components';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ interface HeaderProps {
 export default function Header({ isBottomSheetUp }: HeaderProps) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
+  const { data: userInfoData } = useGetUserInfo({});
   const router = useRouter();
 
   return (
@@ -47,7 +49,13 @@ export default function Header({ isBottomSheetUp }: HeaderProps) {
         )}
       </header>
       <AnimatePresence>
-        {isMenuVisible && <SideMenu open={isMenuVisible} onClose={() => setIsMenuVisible(false)} />}
+        {isMenuVisible && (
+          <SideMenu
+            open={isMenuVisible}
+            onClose={() => setIsMenuVisible(false)}
+            userInfo={userInfoData}
+          />
+        )}
       </AnimatePresence>
     </>
   );

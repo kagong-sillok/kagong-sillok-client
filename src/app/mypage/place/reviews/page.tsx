@@ -7,9 +7,7 @@ function Reviews() {
 
   return (
     <div className="px-6">
-      {reviewsData?.pages.map(({ data }) =>
-        data.reviews.map((review) => <ReviewItem key={review.id} review={review} />)
-      )}
+      {reviewsData?.reviews?.map((review) => <ReviewItem key={review.id} review={review} />)}
     </div>
   );
 }

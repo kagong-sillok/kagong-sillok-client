@@ -7,13 +7,15 @@ import type { Review, ReviewPayload } from '@/types/review';
  * api 나오면 수정
  */
 export const getReviews = async (placeId: number) => {
-  const { data } = await ky.get('/db/reviews.json').json<APIResponse<{ reviews: Review[] }>>();
+  // const { data } = await ky.get('/db/reviews.json').json<APIResponse<{ reviews: Review[] }>>();
+  const { data } = await api.get<{ reviews: Review[] }>(`api/v1/reviews/${placeId}`);
 
   return data;
 };
 
 export const getMemberReviews = async (memberId: number) => {
-  const { data } = await ky.get('/db/reviews.json').json<APIResponse<{ reviews: Review[] }>>();
+  // const { data } = await ky.get('/db/reviews.json').json<APIResponse<{ reviews: Review[] }>>();
+  const { data } = await api.get<{ reviews: Review[] }>(`api/v1/reviews/member/${memberId}`);
 
   return data;
 };

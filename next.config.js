@@ -20,10 +20,11 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: [
-      'bucket-8th-team3.s3.ap-northeast-2.amazonaws.com',
-      'cdn.pixabay.com',
-      'https://kauth.kakao.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
     ],
   },
 };
