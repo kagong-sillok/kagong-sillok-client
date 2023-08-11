@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-  interface APIResponse<T> {
+  interface APIResponse<T = void> {
     result?: string;
     message?: string;
     data: T;

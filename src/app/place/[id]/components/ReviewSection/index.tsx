@@ -1,21 +1,29 @@
 'use client';
 import Tooltip from './Tooltip';
 import { useGetPlaceReviews } from '@/apis/review';
+import { useGetUserInfo } from '@/apis/user';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, Spacing } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function ReviewSection() {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
 
+  const router = useRouter();
   const pathname = usePathname();
   const params = useParams() as { id: string };
   const placeId = Number(params.id);
 
+  const { data: userInfoData } = useGetUserInfo({});
   const { data: reviewsData } = useGetPlaceReviews(placeId);
+
+  const handleReviewClick = () => {
+    if (!userInfoData?.id) return router.push('/auth/login');
+    setIsReviewSheetOpen(true);
+  };
 
   return (
     <>
@@ -43,7 +51,7 @@ export default function ReviewSection() {
 
         <div
           className="relative flex cursor-pointer justify-center gap-2"
-          onClick={() => setIsReviewSheetOpen(true)}
+          onClick={handleReviewClick}
         >
           <Tooltip className="absolute bottom-12">
             리뷰는 큰 힘이 돼요! 클릭해서 리뷰를 남겨주세요
@@ -66,7 +74,7 @@ export default function ReviewSection() {
         <ReviewList reviews={reviewsData.reviews} />
 
         <Spacing size={24} />
-        <Button type="ROUND_DEFAULT" onClick={() => setIsReviewSheetOpen(true)}>
+        <Button type="ROUND_DEFAULT" onClick={handleReviewClick}>
           리뷰 작성하기
         </Button>
       </section>
@@ -74,6 +82,7 @@ export default function ReviewSection() {
         isOpen={isReviewSheetOpen}
         onClose={() => setIsReviewSheetOpen(false)}
         placeId={placeId}
+        memberId={userInfoData?.id}
       />
     </>
   );

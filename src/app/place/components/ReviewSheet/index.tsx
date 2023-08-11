@@ -10,10 +10,11 @@ import type { SheetRef } from 'react-modal-sheet';
 interface ReviewSheetProps {
   isOpen: boolean;
   placeId: number;
+  memberId: number | undefined;
   onClose: () => void;
 }
 
-export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetProps) {
+export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: ReviewSheetProps) {
   const [currentSnap, setCurrentSnap] = useState(1);
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
   const [rating, setRating] = useState<number | null>(null);
@@ -25,6 +26,8 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
   const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
 
   const ref = useRef<SheetRef>();
+
+  if (!memberId) return null;
 
   const handleRatingClick = (selectRating: number) => {
     if (selectRating === rating) {
@@ -43,18 +46,20 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
   const handlePostReviewClick = async () => {
     if (!rating || !content) return;
 
-    const imageIds = await uploadImagesMutateAsync({
-      files: images,
-      folderName: 'review',
-    }).then((res) => res.images.map((image) => image.id));
+    const imageIds = !!images.length
+      ? await uploadImagesMutateAsync({
+          files: images,
+          folderName: 'review',
+        }).then((res) => res.images.map((image) => image.id))
+      : [];
 
     postReviewMutate({
       placeId,
       rating,
       content,
       imageIds,
+      memberId,
       reviewtagIds: selectedTabIds,
-      memberId: 1,
     });
   };
 
