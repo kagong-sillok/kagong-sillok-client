@@ -53,14 +53,19 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
         }).then((res) => res.images.map((image) => image.id))
       : [];
 
-    postReviewMutate({
-      placeId,
-      rating,
-      content,
-      imageIds,
-      memberId,
-      reviewTagIds: selectedTabIds,
-    });
+    postReviewMutate(
+      {
+        placeId,
+        rating,
+        content,
+        imageIds,
+        memberId,
+        reviewTagIds: selectedTabIds,
+      },
+      {
+        onSuccess: onClose,
+      }
+    );
   };
 
   return (
