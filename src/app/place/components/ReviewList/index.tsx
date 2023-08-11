@@ -1,6 +1,5 @@
 'use client';
 import { useGetImages } from '@/apis/image';
-import { useGetPlaceReviews } from '@/apis/review';
 import { RATING_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { format } from 'date-fns';
@@ -41,7 +40,7 @@ interface ReviewItemProps {
 }
 
 function ReviewItem({ review }: ReviewItemProps) {
-  const { imageIds, content, memberNickname, rating, writtenAt } = review;
+  const { imageIds, content, memberNickName, rating, writtenAt } = review;
   const { data: imagesData } = useGetImages(imageIds);
 
   return (
@@ -50,7 +49,7 @@ function ReviewItem({ review }: ReviewItemProps) {
       <div className="flex flex-grow flex-col overflow-hidden">
         <div className="flex h-10 justify-between">
           <div>
-            <p className="text-body2">{memberNickname}</p>
+            <p className="text-body2">{memberNickName}</p>
             <div className="flex items-center">
               <Image
                 src={`/assets/icons/40/emoji-rating${rating}_on.svg`}

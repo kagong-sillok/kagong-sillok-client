@@ -59,7 +59,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
       content,
       imageIds,
       memberId,
-      reviewtagIds: selectedTabIds,
+      reviewTagIds: selectedTabIds,
     });
   };
 

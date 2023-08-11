@@ -6,7 +6,7 @@ export interface Review {
   tagIds: number[];
   memberId: number;
   placeId: number;
-  memberNickname: string;
+  memberNickName: string;
   writtenAt: string;
 }
 
@@ -14,7 +14,7 @@ export interface ReviewPayload {
   rating: number;
   content: string;
   imageIds: number[];
-  reviewtagIds: number[];
+  reviewTagIds: number[];
   memberId: number;
   placeId: number;
 }
