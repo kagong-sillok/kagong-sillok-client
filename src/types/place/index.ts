@@ -37,6 +37,12 @@ export interface PlacesAround {
   longitudeBound: number;
 }
 
+export interface PlaceCondition {
+  id: number;
+  tagName: string;
+  tagContent: string;
+}
+
 export type LinkType = 'INSTAGRAM' | 'BLOG' | 'WEB';
 
 export type DayType =
@@ -47,8 +53,6 @@ export type DayType =
   | 'FRIDAY'
   | 'SATURDAY'
   | 'SUNDAY';
-
-export type PlaceConditionType = 'CLEAN' | 'WIFI' | 'SEAT' | 'TEMPERATURE' | 'TABLE' | 'QUIET';
 
 export type LineType =
   | '1'

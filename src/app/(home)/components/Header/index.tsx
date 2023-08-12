@@ -47,6 +47,7 @@ export default function Header({ isBottomSheetUp }: HeaderProps) {
             </button>
           </>
         )}
+        <Spacing size={12} />
       </header>
       <AnimatePresence>
         {isMenuVisible && (

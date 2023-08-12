@@ -1,32 +1,28 @@
+import { useGetPlaceConditions } from '@/apis/place';
 import { CONDITION_LIST } from '@/app/place/constants';
 import { Tab } from '@/components';
+import { PlaceCondition } from '@/types/place';
 import { useState } from 'react';
-
-type Condition = (typeof CONDITION_LIST)[number];
-
-type ConditionTabType = Condition | { id: 0; title: '전체' };
-
-const CONDITION_TAB_LIST: ConditionTabType[] = [
-  {
-    id: 0,
-    title: '전체',
-  },
-  ...CONDITION_LIST,
-];
 
 export default function Tabs() {
   const [selectedTabId, setSelectedTabId] = useState(0);
 
+  const { data: placeConditionsData } = useGetPlaceConditions();
+
+  const { tags } = placeConditionsData;
+
+  const tagsWithAll: PlaceCondition[] = [{ id: 0, tagName: '전체', tagContent: '전체' }, ...tags];
+
   return (
-    <div className="mb-3 flex !w-full flex-row gap-1 overflow-scroll px-4 scrollbar-hide">
-      {CONDITION_TAB_LIST.map((condition) => (
+    <div className="flex !w-full flex-row gap-1 overflow-scroll px-4 scrollbar-hide">
+      {tagsWithAll.map((tag) => (
         <Tab
-          key={condition.id}
-          id={condition.id}
-          isSelected={condition.id === selectedTabId}
+          key={tag.id}
+          id={tag.id}
+          isSelected={tag.id === selectedTabId}
           setSelectedTab={setSelectedTabId}
         >
-          {condition.title}
+          {tag.tagContent}
         </Tab>
       ))}
     </div>

@@ -1,10 +1,8 @@
 import { CONDITION_LIST } from '@/app/place/constants';
 import Image from 'next/image';
 
-import type { PlaceConditionType } from '@/types/place';
-
 interface KagongItemProps {
-  type: PlaceConditionType;
+  type: string;
   isFirst?: boolean;
 }
 

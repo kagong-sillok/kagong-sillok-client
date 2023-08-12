@@ -5,16 +5,19 @@ import { Loading } from '@/components';
 import { DEFAULT_COORDINATES } from '@/constants/map';
 import { HydrationProvider } from '@/providers/HydrationProvider';
 import { AsyncBoundary } from '@suspensive/react';
+import { Suspense } from 'react';
 
 export default function HomePage() {
   return (
-    <AsyncBoundary rejectedFallback={<div>Something went wrong</div>} pendingFallback={<Loading />}>
-      <HydrationProvider
-        queryFn={() => getPlacesAround(DEFAULT_COORDINATES)}
-        queryKey={Keys.placesAround(DEFAULT_COORDINATES)}
-      >
-        <HomeDetail />
-      </HydrationProvider>
-    </AsyncBoundary>
+    // <AsyncBoundary rejectedFallback={<div>Something went wrong</div>} pendingFallback={<Loading />}>
+    //   <HydrationProvider
+    //     queryFn={() => getPlacesAround(DEFAULT_COORDINATES)}
+    //     queryKey={Keys.placesAround(DEFAULT_COORDINATES)}
+    //   >
+    <Suspense fallback={<Loading />}>
+      <HomeDetail />
+    </Suspense>
+    //   </HydrationProvider>
+    // </AsyncBoundary>
   );
 }
