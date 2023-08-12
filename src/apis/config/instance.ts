@@ -6,9 +6,6 @@ import type { Input, Options } from 'ky/distribution/types/options';
 
 export const instance = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
   hooks: {
     beforeRequest: [setHeader],
     afterResponse: [retryRequest],
