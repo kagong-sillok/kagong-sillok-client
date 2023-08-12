@@ -1,4 +1,4 @@
-import { getPlace, getPlacesAround } from './apis';
+import { getPlace, getPlaceConditions, getPlacesAround } from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
 import { useQuery } from '@tanstack/react-query';
@@ -12,4 +12,8 @@ export function useGetPlace(id: number) {
 export function useGetPlacesAround(around: PlacesAround) {
   // TODO: useInfiniteQuery로 변경
   return useSuspenseQuery(Keys.placesAround(around), () => getPlacesAround(around));
+}
+
+export function useGetPlaceConditions() {
+  return useSuspenseQuery(Keys.placeConditions, () => getPlaceConditions());
 }

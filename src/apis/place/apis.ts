@@ -1,6 +1,6 @@
 import api from '@/apis/config/instance';
 
-import type { Place, PlacesAround } from '@/types/place';
+import type { Place, PlaceCondition, PlacesAround } from '@/types/place';
 
 export const getPlace = async (id: number) => {
   const { data } = await api.get<Place>(`api/v1/places/${id}`, { cache: 'no-store' });
@@ -13,6 +13,12 @@ export const getPlacesAround = async (params: PlacesAround) => {
     searchParams: { ...params },
     cache: 'no-store',
   });
+
+  return data;
+};
+
+export const getPlaceConditions = async () => {
+  const { data } = await api.get<{ tags: PlaceCondition[] }>('api/v1/tags/all');
 
   return data;
 };
