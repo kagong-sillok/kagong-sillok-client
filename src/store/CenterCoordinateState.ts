@@ -1,14 +1,14 @@
+import { DEFAULT_COORDINATES } from '@/constants/map';
 import { create } from 'zustand';
 
+import type { PlacesAround } from '@/types/place';
+
 interface CenterCoordinates {
-  coordinates: Coordinates;
-  setCenterCoordinates: (newState: Coordinates) => void;
+  coordinates: PlacesAround;
+  setCenterCoordinates: (newState: PlacesAround) => void;
 }
 
 export const useCenterCoordinateStore = create<CenterCoordinates>((set) => ({
-  coordinates: {
-    lat: 37.5642135,
-    lng: 127.0016985,
-  },
-  setCenterCoordinates: (newState) => set({ coordinates: newState }),
+  coordinates: DEFAULT_COORDINATES,
+  setCenterCoordinates: (newState) => set(() => ({ coordinates: newState })),
 }));

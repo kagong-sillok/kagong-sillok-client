@@ -1,6 +1,7 @@
 'use client';
 
 import Tabs from './Tabs';
+import { useSheetContext } from '../SheetProvider';
 import { useGetUserInfo } from '@/apis/user';
 import { SideMenu, Spacing } from '@/components';
 import { AnimatePresence } from 'framer-motion';
@@ -8,12 +9,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-interface HeaderProps {
-  isBottomSheetUp: boolean;
-}
-
-export default function Header({ isBottomSheetUp }: HeaderProps) {
+export default function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const isBottomSheetUp = useSheetContext((state) => state.isBottomSheetUp);
 
   const { data: userInfoData } = useGetUserInfo({});
   const router = useRouter();
@@ -39,14 +37,7 @@ export default function Header({ isBottomSheetUp }: HeaderProps) {
             readOnly
           />
         </div>
-        {!isBottomSheetUp && (
-          <>
-            <Tabs />
-            <button className="fixed left-1/2 top-[7.75rem] z-30 w-[138px] -translate-x-1/2 rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10">
-              이 지역에서 재검색
-            </button>
-          </>
-        )}
+        {!isBottomSheetUp && <Tabs />}
         <Spacing size={12} />
       </header>
       <AnimatePresence>

@@ -1,17 +1,20 @@
 'use client';
 
 import { useGetImages } from '@/apis/image';
+import { useGetPlacesAround } from '@/apis/place';
 import { Spacing } from '@/components';
+import { useCenterCoordinateStore } from '@/store/CenterCoordinateState';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import type { Place } from '@/types/place';
 
-interface PlaceListProps {
-  places: Place[];
-}
+export default function PlaceList() {
+  const { coordinates } = useCenterCoordinateStore();
+  const { data: placesAroundData } = useGetPlacesAround(coordinates);
 
-export default function PlaceList({ places }: PlaceListProps) {
+  const { places } = placesAroundData;
+
   return (
     <ul>
       {places.map((place) => (
