@@ -1,5 +1,4 @@
-import { Header, MapSection } from './components';
-import { SheetProvider } from './components/SheetProvider';
+import { Header, HomeBottomSheet, MapSection, SheetProvider } from './components';
 import { Keys, getPlaceConditions } from '@/apis/place';
 import { Loading } from '@/components';
 import { HydrationProvider } from '@/providers/HydrationProvider';
@@ -15,8 +14,8 @@ export default function HomePage() {
         <HydrationProvider queryFn={() => getPlaceConditions()} queryKey={Keys.placeConditions()}>
           <Header />
         </HydrationProvider>
-
         <MapSection />
+        <HomeBottomSheet />
       </SheetProvider>
     </QueryAsyncBoundary>
   );
