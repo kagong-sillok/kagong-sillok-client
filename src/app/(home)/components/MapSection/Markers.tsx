@@ -1,3 +1,4 @@
+'use client';
 import { useGetPlacesAround } from '@/apis/place';
 import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import { MapMarker } from 'react-kakao-maps-sdk';
