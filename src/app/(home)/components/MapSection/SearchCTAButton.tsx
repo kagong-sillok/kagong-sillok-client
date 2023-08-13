@@ -1,5 +1,5 @@
 import { useSheetContext } from '../SheetProvider';
-import { useCoordinatesStore } from '@/store/coordinateState';
+import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 
 interface SearchCTAButtonProps {
   mapRef?: React.MutableRefObject<kakao.maps.Map | null>;

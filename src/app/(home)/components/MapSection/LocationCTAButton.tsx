@@ -1,5 +1,5 @@
 import { Loading } from '@/components';
-import { useCoordinatesStore } from '@/store/coordinateState';
+import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import Image from 'next/image';
 import { useState } from 'react';
 

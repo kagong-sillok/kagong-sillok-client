@@ -3,7 +3,7 @@
 import { useGetImages } from '@/apis/image';
 import { useGetPlacesAround } from '@/apis/place';
 import { Spacing } from '@/components';
-import { useCoordinatesStore } from '@/store/coordinateState';
+import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

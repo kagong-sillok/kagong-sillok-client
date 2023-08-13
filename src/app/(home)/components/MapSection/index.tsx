@@ -5,7 +5,7 @@ import Markers from './Markers';
 import SearchCTAButton from './SearchCTAButton';
 import { useGetPlacesAround } from '@/apis/place';
 import { DEFAULT_COORDINATES } from '@/constants/map';
-import { useCoordinatesStore } from '@/store/coordinateState';
+import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import { Suspense } from '@suspensive/react';
 import { useEffect, useRef } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
