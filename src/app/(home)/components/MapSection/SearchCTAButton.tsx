@@ -1,5 +1,5 @@
 import { useSheetContext } from '../SheetProvider';
-import { useCenterCoordinateStore } from '@/store/CenterCoordinateState';
+import { useCoordinatesStore } from '@/store/coordinateState';
 
 interface SearchCTAButtonProps {
   mapRef?: React.MutableRefObject<kakao.maps.Map | null>;
@@ -7,7 +7,7 @@ interface SearchCTAButtonProps {
 
 export default function SearchCTAButton({ mapRef }: SearchCTAButtonProps) {
   const isBottomSheetUp = useSheetContext((state) => state.isBottomSheetUp);
-  const { setCenterCoordinates } = useCenterCoordinateStore();
+  const { setCoordinates: setCenterCoordinates } = useCoordinatesStore();
 
   const handleSearchClick = () => {
     const map = mapRef?.current as kakao.maps.Map;

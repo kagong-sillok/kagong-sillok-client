@@ -1,9 +1,9 @@
 import { useGetPlacesAround } from '@/apis/place';
-import { useCenterCoordinateStore } from '@/store/CenterCoordinateState';
+import { useCoordinatesStore } from '@/store/coordinateState';
 import { MapMarker } from 'react-kakao-maps-sdk';
 
 export default function Markers() {
-  const coordinates = useCenterCoordinateStore((state) => state.coordinates);
+  const coordinates = useCoordinatesStore((state) => state.coordinates);
 
   const { data: placesAroundData } = useGetPlacesAround(coordinates);
   const { places } = placesAroundData;

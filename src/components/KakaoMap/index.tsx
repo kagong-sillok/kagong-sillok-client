@@ -1,13 +1,13 @@
 'use client';
 
 import { DEFAULT_COORDINATES } from '@/constants/map';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map, MapMarker, type MapProps } from 'react-kakao-maps-sdk';
 
 import type { Place } from '@/types/place';
 
 interface KakaoMapProps {
   className?: string;
-  customCoordinates?: Coordinates;
+  customCoordinates?: MapProps['center'];
   places?: Place[];
 }
 

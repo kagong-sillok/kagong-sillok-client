@@ -1,5 +1,5 @@
 import { Loading } from '@/components';
-import { useCenterCoordinateStore } from '@/store/CenterCoordinateState';
+import { useCoordinatesStore } from '@/store/coordinateState';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -9,7 +9,7 @@ interface LocationCTAButtonProps {
 
 export default function LocationCTAButton({ mapRef }: LocationCTAButtonProps) {
   const [isLocationLoading, setIsLocationLoading] = useState(false);
-  const { setCenterCoordinates } = useCenterCoordinateStore();
+  const { setCoordinates: setCenterCoordinates } = useCoordinatesStore();
 
   const handleLocationClick = () => {
     setIsLocationLoading(true);

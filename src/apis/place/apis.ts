@@ -1,6 +1,6 @@
 import api from '@/apis/config/instance';
 
-import type { Place, PlaceCondition, PlacesAround } from '@/types/place';
+import type { Place, PlaceCondition, Coordinates } from '@/types/place';
 
 export const getPlace = async (id: number) => {
   const { data } = await api.get<Place>(`api/v1/places/${id}`, { cache: 'no-store' });
@@ -8,7 +8,7 @@ export const getPlace = async (id: number) => {
   return data;
 };
 
-export const getPlacesAround = async (params: PlacesAround) => {
+export const getPlacesAround = async (params: Coordinates) => {
   const { data } = await api.get<{ places: Place[] }>('api/v1/places/around', {
     searchParams: { ...params },
     cache: 'no-store',
