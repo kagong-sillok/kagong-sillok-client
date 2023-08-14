@@ -11,14 +11,9 @@ export const snapPoints = [-88, 65];
 
 export default function HomeBottomSheet() {
   const [isServer, setIsServer] = useState(true);
-
-  const { isBottomSheetUp, setIsBottomSheetUp } = useSheetContext((state) => ({
-    isBottomSheetUp: state.isBottomSheetUp,
-    setIsBottomSheetUp: state.setIsBottomSheetUp,
-  }));
+  const { isBottomSheetUp, setIsBottomSheetUp } = useSheetContext((state) => state);
 
   const ref = useRef<SheetRef>();
-
   const snapTo = (i: number) => ref.current?.snapTo(i);
 
   const handleSheetButtonClick = () => {

@@ -21,7 +21,7 @@ export default function Modal({ isOpen, onClose, children }: PropsWithChildren<M
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 z-50 flex h-screen w-full min-w-[360px] max-w-[448px] items-center justify-center bg-black bg-opacity-60 px-8"
+          className="fixed top-0 z-[999] flex h-screen w-full min-w-[360px] max-w-[448px] items-center justify-center bg-black bg-opacity-60 px-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

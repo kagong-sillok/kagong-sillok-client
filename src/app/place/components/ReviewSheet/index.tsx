@@ -2,7 +2,7 @@
 import Rating from './Rating';
 import { useImagesUpload } from '@/apis/image';
 import { usePostReviewMutation } from '@/apis/review';
-import { Button, ImageUpload, BottomSheet, Tabs, Spacing } from '@/components';
+import { Button, ImageUpload, BottomSheet, Tabs, Spacing, Modal } from '@/components';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
@@ -15,8 +15,9 @@ interface ReviewSheetProps {
 }
 
 export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: ReviewSheetProps) {
-  const [currentSnap, setCurrentSnap] = useState(1);
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
+  const [currentSnap, setCurrentSnap] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [rating, setRating] = useState<number | null>(null);
   const [selectedTabIds, setSelectedTabIds] = useState<number[]>([]);
   const [content, setContent] = useState('');
@@ -64,14 +65,19 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
       },
       {
         onSuccess: () => {
-          onClose();
-          setRating(null);
-          setContent('');
-          setImages([]);
-          setSelectedTabIds([]);
+          setIsModalOpen(true);
         },
       }
     );
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    onClose();
+    setRating(null);
+    setContent('');
+    setImages([]);
+    setSelectedTabIds([]);
   };
 
   return (
@@ -84,7 +90,6 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
         initialSnap={currentSnap}
         className={`${currentSnap === 1 ? '!overflow-hidden' : ''}`}
         isBackDrop
-        // isScrollable
       >
         <Spacing size={32} />
         <div className="h-full px-6">
@@ -128,6 +133,12 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
             <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
           </div>
         </div>
+        <Modal isOpen={isModalOpen}>
+          <Modal.Content>리뷰를 등록했어요!</Modal.Content>
+          <Modal.Footer>
+            <Button onClick={handleModalClose}>확인</Button>
+          </Modal.Footer>
+        </Modal>
       </BottomSheet>
       {isOpen && (
         <Button
