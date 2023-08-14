@@ -20,8 +20,6 @@ export default function MapSection() {
   const { refetch, isRefetching } = useGetPlacesAround(coordinates);
   const mapRef = useRef<kakao.maps.Map>(null);
 
-  console.log(coordinates);
-
   const handleLocationClick = () => {
     setLocationStatus((prev) => ({
       ...prev,
