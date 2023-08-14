@@ -88,7 +88,7 @@ export default function ReviewSection() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <Modal.Content>
           로그인이 필요한 서비스예요. <br />
-          <Link href="/auth/login">
+          <Link href="/auth/login" className="inline-block">
             <p className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2">
               로그인 하러가기
             </p>
