@@ -19,7 +19,7 @@ export default function PlacePage({ params }: PlacePageProps) {
         rejectedFallback={<div>에러가 발생했습니다.</div>}
         pendingFallback={<Loading />}
       >
-        <HydrationProvider queryKey={PlaceKeys.place(placeId)} queryFn={() => getPlace(placeId)}>
+        <HydrationProvider queryFn={() => getPlace(placeId)} queryKey={PlaceKeys.place(placeId)}>
           <PlaceDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>
