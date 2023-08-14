@@ -1,10 +1,11 @@
 .react-calendar {
   width: 100%;
   max-width: 100%;
-  height: 437px;
-  background: #6550e7;
+  height: 100%;
+  background: #00A7D9;
   color: #fff;
-  padding: 0 16px;
+  padding: 20px 16px;
+  padding-bottom: 40px;
 }
 
 .react-calendar--doubleView {
@@ -52,8 +53,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .react-calendar__navigation button {
@@ -82,7 +82,7 @@ abbr:where([title]) {
   width: 45px;
   height: 45px;
   position: relative;
-  color: #6550e7;
+  color: #00A7D9;
 }
 
 .react-calendar__tile .custom {

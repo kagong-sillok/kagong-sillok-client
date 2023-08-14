@@ -2,8 +2,10 @@
 
 import Dot from '@/app/mypage/components/Dot';
 import { RATING_TEXT } from '@/app/place/constants';
+import { ConfirmModal } from '@/components';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import type { Review } from '@/types/review';
 
@@ -13,6 +15,7 @@ interface ReviewItemProps {
 }
 
 export default function ReviewItem({ review, isLast = false }: ReviewItemProps) {
+  const [modalVisible, setModalVisible] = useState(false);
   const { id, rating, writtenAt, content } = review;
   const date = format(new Date(writtenAt), 'yy.MM.dd');
   return (
@@ -42,12 +45,19 @@ export default function ReviewItem({ review, isLast = false }: ReviewItemProps) 
         <div className="text-body2">{content}</div>
         <div
           className="mt-1 flex w-fit cursor-pointer flex-col justify-start text-body2 text-bk50 underline underline-offset-1"
-          onClick={() => console.log(id)}
+          onClick={() => setModalVisible(true)}
         >
           삭제
         </div>
       </div>
       {!isLast && <div className="h-px w-full bg-bk10" />}
+      {modalVisible && (
+        <ConfirmModal
+          message={'작성한 리뷰를 삭제할 경우 재작성이 불가합니다. 삭제하시겠습니까?'}
+          onOk={() => setModalVisible(false)}
+          onCancle={() => setModalVisible(false)}
+        />
+      )}
     </>
   );
 }

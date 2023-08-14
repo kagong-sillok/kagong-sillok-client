@@ -6,4 +6,5 @@ export { default as KakaoMap } from './KakaoMap';
 export { default as TopNavigationBar } from './TopNavigationBar';
 export { default as Spacing } from './Spacing';
 export { default as Loading } from './Loading';
+export { default as ConfirmModal } from './ConfirmModal';
 export * from './Tab';

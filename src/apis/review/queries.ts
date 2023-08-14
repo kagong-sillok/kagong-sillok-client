@@ -13,5 +13,7 @@ export function useGetPlaceReviews(placeId: number) {
  * 페이지네이션 예정
  */
 export function useGetMemberReviews(memberId: number) {
-  return useSuspenseQuery(Keys.memberReviews(memberId), () => getMemberReviews(memberId));
+  return useSuspenseQuery(Keys.memberReviews(memberId), () => getMemberReviews(memberId), {
+    enabled: memberId > 0,
+  });
 }
