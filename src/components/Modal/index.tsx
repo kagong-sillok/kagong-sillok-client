@@ -3,7 +3,15 @@ import { Button } from '@/components';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import cn from '@/utils/cn';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Children, cloneElement, isValidElement, useRef, type PropsWithChildren, use } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useRef,
+  type PropsWithChildren,
+  use,
+  useEffect,
+} from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,11 +25,19 @@ export default function Modal({ isOpen, onClose, children }: PropsWithChildren<M
     if (isOpen && onClose) onClose();
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 z-[999] flex h-screen w-full min-w-[360px] max-w-[448px] items-center justify-center bg-black bg-opacity-60 px-8"
+          className="fixed inset-x-0 top-0 z-[999] m-auto flex h-screen w-full min-w-[360px] max-w-[448px] items-center justify-center bg-black bg-opacity-60 px-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
