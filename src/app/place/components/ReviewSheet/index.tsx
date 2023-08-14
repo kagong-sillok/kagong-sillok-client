@@ -63,7 +63,13 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
         reviewTagIds: selectedTabIds,
       },
       {
-        onSuccess: onClose,
+        onSuccess: () => {
+          onClose();
+          setRating(null);
+          setContent('');
+          setImages([]);
+          setSelectedTabIds([]);
+        },
       }
     );
   };
@@ -82,11 +88,12 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
       >
         <Spacing size={32} />
         <div className="h-full px-6">
-          <h3 className="mb-5 text-head3">
+          <h3 className="text-head3">
             스타벅스 동대문점은
             <br />
             어떠셨나요?
           </h3>
+          <Spacing size={20} />
           <Rating rating={rating} onClick={handleRatingClick} />
 
           <Spacing size={36} />
@@ -124,7 +131,6 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
       </BottomSheet>
       {isOpen && (
         <Button
-          type="DEFAULT"
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
           disabled={!rating || !content}
           onClick={handlePostReviewClick}
