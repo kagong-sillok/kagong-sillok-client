@@ -30,7 +30,7 @@ export interface Place {
   ];
 }
 
-export interface PlacesAround {
+export interface Coordinates {
   latitude: number;
   longitude: number;
   latitudeBound: number;

@@ -1,26 +1,21 @@
 'use client';
 
 import PlaceList from './PlaceList';
+import { useSheetContext } from '../SheetProvider';
 import { BottomSheet } from '@/components';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
-import type { Place } from '@/types/place';
 import type { SheetRef } from 'react-modal-sheet';
 
 export const snapPoints = [-88, 65];
 
-interface HomeBottomSheetProps {
-  places: Place[];
-  isBottomSheetUp: boolean;
-  setIsBottomSheetUp: (isBottomSheetUp: boolean) => void;
-}
-
-export default function HomeBottomSheet({
-  isBottomSheetUp,
-  setIsBottomSheetUp,
-  places,
-}: HomeBottomSheetProps) {
+export default function HomeBottomSheet() {
   const [isServer, setIsServer] = useState(true);
+
+  const { isBottomSheetUp, setIsBottomSheetUp } = useSheetContext((state) => ({
+    isBottomSheetUp: state.isBottomSheetUp,
+    setIsBottomSheetUp: state.setIsBottomSheetUp,
+  }));
 
   const ref = useRef<SheetRef>();
 
@@ -67,7 +62,7 @@ export default function HomeBottomSheet({
         <Suspense
           fallback={<div className="text-center text-body2 text-bk40">잠시만 기다려주세요</div>}
         >
-          <PlaceList places={places} />
+          <PlaceList />
         </Suspense>
       </BottomSheet>
     </>

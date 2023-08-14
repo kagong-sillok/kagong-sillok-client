@@ -1,23 +1,22 @@
-import HomeDetail from './components/HomeDetail';
-import { getPlacesAround } from '@/apis/place';
-import { Keys } from '@/apis/place/keys';
+import { Header, HomeBottomSheet, MapSection, SheetProvider } from './components';
+import { Keys, getPlaceConditions } from '@/apis/place';
 import { Loading } from '@/components';
-import { DEFAULT_COORDINATES } from '@/constants/map';
 import { HydrationProvider } from '@/providers/HydrationProvider';
-import { AsyncBoundary } from '@suspensive/react';
-import { Suspense } from 'react';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function HomePage() {
   return (
-    // <AsyncBoundary rejectedFallback={<div>Something went wrong</div>} pendingFallback={<Loading />}>
-    //   <HydrationProvider
-    //     queryFn={() => getPlacesAround(DEFAULT_COORDINATES)}
-    //     queryKey={Keys.placesAround(DEFAULT_COORDINATES)}
-    //   >
-    <Suspense fallback={<Loading />}>
-      <HomeDetail />
-    </Suspense>
-    //   </HydrationProvider>
-    // </AsyncBoundary>
+    <QueryAsyncBoundary
+      rejectedFallback={<div>에러가 발생했습니다.</div>}
+      pendingFallback={<Loading />}
+    >
+      <SheetProvider>
+        <HydrationProvider queryFn={() => getPlaceConditions()} queryKey={Keys.placeConditions()}>
+          <Header />
+        </HydrationProvider>
+        <MapSection />
+        <HomeBottomSheet />
+      </SheetProvider>
+    </QueryAsyncBoundary>
   );
 }

@@ -8,9 +8,4 @@ declare global {
   }
 
   type Modify<T, R> = Omit<T, keyof R> & R;
-
-  type Coordinates = {
-    lat: number;
-    lng: number;
-  };
 }
