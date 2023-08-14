@@ -26,7 +26,7 @@ function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void 
       <Calendar
         onChange={setValue}
         value={value}
-        calendarType="US"
+        calendarType="gregory"
         tileContent={({ date, view }) => {
           const formatedDate = format(new Date(date), 'yyyy.MM.dd');
           const status = marks.includes(formatedDate) ? 'on' : 'off';

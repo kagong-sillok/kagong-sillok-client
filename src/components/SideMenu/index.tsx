@@ -19,6 +19,7 @@ const IconButton = ({ label, icon, link }: IconButtonProps) => {
     <Link
       href={link}
       className="flex w-20 cursor-pointer flex-col items-center justify-center gap-2"
+      as={link}
     >
       {icon}
       <div>{label}</div>
