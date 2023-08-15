@@ -7,4 +7,5 @@ export { default as TopNavigationBar } from './TopNavigationBar';
 export { default as Spacing } from './Spacing';
 export { default as Loading } from './Loading';
 export { default as ConfirmModal } from './ConfirmModal';
+export { default as Modal } from './Modal';
 export * from './Tab';

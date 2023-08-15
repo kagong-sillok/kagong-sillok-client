@@ -6,6 +6,7 @@ import TimeInfo from './TimeInfo';
 import { CONDITION_LIST, LINK_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { Place } from '@/types/place';
 
@@ -64,12 +65,12 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
           <KagongItem key={type} type={type} isFirst={index === 0} />
         ))}
       </div>
-      <a
+      <Link
         href="/"
         className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
       >
         해당 카페에 자세히 알고 싶다면?
-      </a>
+      </Link>
     </section>
   );
 }
