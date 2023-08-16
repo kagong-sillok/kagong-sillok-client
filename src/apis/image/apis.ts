@@ -1,7 +1,7 @@
 import api from '@/apis/config/instance';
 import { ImageObject } from '@/types/Image';
-import { myBucket } from '@/utils/uploadImage';
-import { S3 } from 'aws-sdk';
+import { s3 } from '@/utils/uploadImage';
+import { PutObjectCommand, type PutObjectCommandInput } from '@aws-sdk/client-s3';
 
 import type { ImagesResponse, UploadImagesPayload } from './types';
 
@@ -40,8 +40,8 @@ const postImages = async (payload: ImageObject[]) => {
 /**
  * S3에 이미지를 업로드합니다.
  */
-const uploadImage = async (file: File, folderName: string): Promise<ImageObject> => {
-  const params: S3.Types.PutObjectRequest = {
+const uploadImage = async (file: File, folderName: string) => {
+  const params: PutObjectCommandInput = {
     Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
     Key: folderName + '/' + file.name,
     Body: file,
@@ -49,10 +49,14 @@ const uploadImage = async (file: File, folderName: string): Promise<ImageObject>
     ContentType: file.type,
   };
 
-  const data = await myBucket.upload(params).promise();
+  const res = await s3.send(new PutObjectCommand(params));
+
+  if (res.$metadata.httpStatusCode !== 200) {
+    throw new Error('Failed to upload image');
+  }
 
   return {
-    url: data.Location,
+    url: `https://${process.env.NEXT_PUBLIC_AWS_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${folderName}/${file.name}`,
     extension: file.type.split('/')[1],
     width: 100,
     height: 100,
