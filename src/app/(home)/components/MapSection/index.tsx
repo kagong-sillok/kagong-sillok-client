@@ -8,6 +8,7 @@ import { DEFAULT_COORDINATES } from '@/constants/map';
 import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import { Suspense } from '@suspensive/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
@@ -16,9 +17,11 @@ export default function MapSection() {
     isLocationLoading: false,
     readyRefetch: false,
   });
+
   const { coordinates, setCoordinates } = useCoordinatesStore();
   const { refetch, isRefetching } = useGetPlacesAround(coordinates);
   const mapRef = useRef<kakao.maps.Map>(null);
+  const router = useRouter();
 
   const handleLocationClick = () => {
     setLocationStatus((prev) => ({
@@ -63,6 +66,7 @@ export default function MapSection() {
         }}
         isPanto={true}
         level={6}
+        maxLevel={8}
         onDragEnd={(map) => {
           const center = map.getCenter();
           const latitude = center.getLat();
@@ -94,7 +98,7 @@ interface SearchButtonProps {
 }
 
 function SearchButton({ onClick }: SearchButtonProps) {
-  const isBottomSheetUp = useSheetContext((state) => state.isBottomSheetUp);
+  const { isBottomSheetUp } = useSheetContext();
 
   return (
     <>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useSheetContext } from '../SheetProvider';
 import { useGetImages } from '@/apis/image';
 import { useGetPlacesAround } from '@/apis/place';
 import { Spacing } from '@/components';
@@ -10,10 +11,23 @@ import { useRouter } from 'next/navigation';
 import type { Place } from '@/types/place';
 
 export default function PlaceList() {
+  const { selectedPlaceId } = useSheetContext();
   const { coordinates } = useCoordinatesStore();
   const { data: placesAroundData } = useGetPlacesAround(coordinates);
 
   const { places } = placesAroundData;
+
+  if (selectedPlaceId) {
+    const selectedPlace = places.find((place) => place.id === selectedPlaceId);
+
+    if (selectedPlace) {
+      return (
+        <ul>
+          <PlaceItem place={selectedPlace} />
+        </ul>
+      );
+    }
+  }
 
   return (
     <ul>
