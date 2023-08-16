@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 export default function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const isBottomSheetUp = useSheetContext((state) => state.isBottomSheetUp);
+  const { isBottomSheetUp } = useSheetContext();
 
   const { data: userInfoData } = useGetUserInfo({});
   const router = useRouter();
