@@ -14,8 +14,6 @@ export default function GalleryDetail() {
 
   const { reviewImages, totalImageCount } = reviewImagesData;
 
-  console.log(selectedImageUrl);
-
   return (
     <div className="grid grid-cols-3 gap-1">
       {reviewImages.map((reviewImage, index) => (

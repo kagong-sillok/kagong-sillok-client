@@ -64,6 +64,7 @@ export default function GalleryModal({
             <Image
               src={reviewImages[currentImageIndex].imageUrl}
               alt={name}
+              className="object-cover"
               sizes="(max-width: 360px) 360px, (max-width: 448px) 448px, 100vw"
               fill
             />

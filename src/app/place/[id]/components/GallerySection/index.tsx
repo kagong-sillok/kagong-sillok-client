@@ -12,10 +12,9 @@ export default function GallerySection() {
   const placeId = Number(params.id);
 
   const { data: reviewImagesData } = useGetReviewImages(placeId);
+  const { reviewImages, totalImageCount } = reviewImagesData;
 
   if (reviewImagesData.totalImageCount === 0) return null;
-
-  const { reviewImages, totalImageCount } = reviewImagesData;
 
   return (
     <section>
