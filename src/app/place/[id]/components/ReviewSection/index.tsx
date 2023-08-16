@@ -19,6 +19,7 @@ export default function ReviewSection() {
 
   const { data: userInfoData } = useGetUserInfo({});
   const { data: reviewsData } = useGetPlaceReviews(placeId);
+  const { reviews } = reviewsData;
 
   const handleReviewClick = () => {
     if (!userInfoData?.id) return setIsModalOpen(true);
@@ -30,21 +31,23 @@ export default function ReviewSection() {
       <section>
         <div className="flex justify-between">
           <h5 className="text-sub1">
-            리뷰 <span className="text-violet/default">{reviewsData.reviews.length}</span>
+            리뷰 <span className="text-violet/default">{reviews.length}</span>
           </h5>
-          <Link
-            href={`${pathname}/review`}
-            className="flex cursor-pointer items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60"
-          >
-            리뷰 더보기
-            <Image
-              src="/assets/icons/16/Arrow-right.svg"
-              alt="Arrow-right"
-              width={16}
-              height={16}
-              className="invert-[40%] filter"
-            />
-          </Link>
+          {reviews.length !== 0 && (
+            <Link
+              href={`${pathname}/review`}
+              className="flex cursor-pointer items-center gap-0.5 text-[14px] font-normal leading-5 text-bk60"
+            >
+              리뷰 더보기
+              <Image
+                src="/assets/icons/16/Arrow-right.svg"
+                alt="Arrow-right"
+                width={16}
+                height={16}
+                className="invert-[40%] filter"
+              />
+            </Link>
+          )}
         </div>
 
         <Spacing size={47} />
@@ -71,7 +74,7 @@ export default function ReviewSection() {
         <hr className="text-bk10" />
         <Spacing size={24} />
 
-        <ReviewList reviews={reviewsData.reviews.slice(0, 5)} />
+        <ReviewList reviews={reviews.slice(0, 5)} />
 
         <Spacing size={24} />
         <Button type="ROUND_DEFAULT" onClick={handleReviewClick}>

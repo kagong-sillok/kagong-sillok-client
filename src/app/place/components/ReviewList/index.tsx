@@ -14,15 +14,11 @@ interface ReviewListProps {
 export default function ReviewList({ reviews }: ReviewListProps) {
   if (!reviews.length) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3">
-        <Image
-          src="/assets/icons/40/emoji-rating3_off.svg"
-          alt="emoji-rating0_off"
-          width={40}
-          height={40}
-        />
-        <p className="text-body2 text-bk40">아직 리뷰가 없어요</p>
-      </div>
+      <p className="text-center">
+        <span className="text-body2">아직 작성된 리뷰가 없어요.</span>
+        <br />
+        <span className="text-sub2">첫 리뷰를 남겨주세요!</span>
+      </p>
     );
   }
 
