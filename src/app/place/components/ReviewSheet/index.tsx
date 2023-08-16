@@ -2,7 +2,8 @@
 import Rating from './Rating';
 import { useImagesUpload } from '@/apis/image';
 import { usePostReviewMutation } from '@/apis/review';
-import { Button, ImageUpload, BottomSheet, Tabs, Spacing, Modal } from '@/components';
+import { useGetUserInfo } from '@/apis/user';
+import { Button, ImageUpload, BottomSheet, Tabs, Spacing, Modal, LoginModal } from '@/components';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
@@ -10,11 +11,10 @@ import type { SheetRef } from 'react-modal-sheet';
 interface ReviewSheetProps {
   isOpen: boolean;
   placeId: number;
-  memberId: number | undefined;
   onClose: () => void;
 }
 
-export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: ReviewSheetProps) {
+export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetProps) {
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
   const [currentSnap, setCurrentSnap] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,12 +23,11 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   const [content, setContent] = useState('');
   const [images, setImages] = useState<File[]>([]);
 
+  const { data: userInfoData } = useGetUserInfo({});
   const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
   const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
 
   const ref = useRef<SheetRef>();
-
-  if (!memberId) return null;
 
   const handleRatingClick = (selectRating: number) => {
     if (selectRating === rating) {
@@ -45,6 +44,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   };
 
   const handlePostReviewClick = async () => {
+    if (!userInfoData?.id) throw new Error('로그인이 필요합니다.');
     if (!rating || !content) return;
 
     const imageIds = !!images.length
@@ -60,7 +60,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
         rating,
         content,
         imageIds,
-        memberId,
+        memberId: userInfoData.id,
         reviewTagIds: selectedTabIds,
       },
       {
