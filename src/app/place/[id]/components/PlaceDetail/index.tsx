@@ -31,7 +31,7 @@ export default function PlaceDetail() {
         <Spacing size={40} />
         <ReviewSection />
         <Spacing size={40} />
-        <GallerySection imageIds={placeData.imageIds} />
+        <GallerySection />
         <Spacing size={100} />
       </div>
       <Footer />

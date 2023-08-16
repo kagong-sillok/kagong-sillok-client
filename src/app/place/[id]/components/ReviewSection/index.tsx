@@ -13,7 +13,6 @@ export default function ReviewSection() {
   const [isReviewSheetOpen, setIsReviewSheetOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const router = useRouter();
   const pathname = usePathname();
   const params = useParams() as { id: string };
   const placeId = Number(params.id);
@@ -72,7 +71,7 @@ export default function ReviewSection() {
         <hr className="text-bk10" />
         <Spacing size={24} />
 
-        <ReviewList reviews={reviewsData.reviews} />
+        <ReviewList reviews={reviewsData.reviews.slice(0, 6)} />
 
         <Spacing size={24} />
         <Button type="ROUND_DEFAULT" onClick={handleReviewClick}>

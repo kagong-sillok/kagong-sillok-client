@@ -1,4 +1,4 @@
-import { getMemberReviews, getPlaceReviews } from './apis';
+import { getMemberReviews, getPlaceReviews, getReviewImages } from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
@@ -16,4 +16,8 @@ export function useGetMemberReviews(memberId: number) {
   return useSuspenseQuery(Keys.memberReviews(memberId), () => getMemberReviews(memberId), {
     enabled: memberId > 0,
   });
+}
+
+export function useGetReviewImages(placeId: number) {
+  return useSuspenseQuery(Keys.reviewImages(placeId), () => getReviewImages(placeId));
 }

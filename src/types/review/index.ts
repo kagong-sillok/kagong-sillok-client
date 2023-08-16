@@ -18,3 +18,14 @@ export interface ReviewPayload {
   memberId: number;
   placeId: number;
 }
+
+export interface ReviewImage {
+  imageUrl: string;
+  memberName: string;
+  memberProfileUrl: string;
+}
+
+export interface ReviewImages {
+  totalImageCount: number;
+  reviewImages: ReviewImage[];
+}

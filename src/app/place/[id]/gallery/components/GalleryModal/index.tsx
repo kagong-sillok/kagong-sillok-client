@@ -1,27 +1,30 @@
+'use client';
+import { useGetPlace } from '@/apis/place';
+import { useGetReviewImages } from '@/apis/review';
 import { TopNavigationBar } from '@/components';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { useState } from 'react';
 
 interface GalleryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  name: string;
-  images: { url: string; userId: number; userNickname: string }[];
   selectedImageUrl: string;
 }
 
-export default function GalleryModal({
-  isOpen,
-  onClose,
-  name,
-  images,
-  selectedImageUrl,
-}: GalleryModalProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+export default function GalleryModal({ isOpen, onClose, selectedImageUrl }: GalleryModalProps) {
+  const params = useParams() as { id: string };
+  const placeId = Number(params.id);
 
-  useEffect(() => {
-    setCurrentImageIndex(images.findIndex(({ url }) => url === selectedImageUrl));
-  }, [selectedImageUrl, images]);
+  const { data: placeData } = useGetPlace(placeId);
+  const { data: reviewImagesData } = useGetReviewImages(placeId);
+
+  const { name } = placeData;
+  const { reviewImages, totalImageCount } = reviewImagesData;
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(
+    reviewImages.findIndex(({ imageUrl }) => imageUrl === selectedImageUrl)
+  );
 
   if (!isOpen) return null;
 
@@ -33,26 +36,24 @@ export default function GalleryModal({
         rightNode={
           <div>
             <span className="mr-1 text-body2">{currentImageIndex + 1}</span>
-            <span className="text-caption text-bk50">/ {images.length}</span>
+            <span className="text-caption text-bk50">/ {totalImageCount}</span>
           </div>
         }
         className="bg-opacity-0 invert filter"
       />
       <div className="relative w-full before:block before:pb-[100%]">
-        {images[currentImageIndex]?.url && (
-          <Image
-            src={images[currentImageIndex].url}
-            alt={name}
-            sizes="(max-width: 360px) 360px, (max-width: 448px) 448px, 100vw"
-            fill
-          />
-        )}
+        <Image
+          src={reviewImages[currentImageIndex].imageUrl}
+          alt={name}
+          sizes="(max-width: 360px) 360px, (max-width: 448px) 448px, 100vw"
+          fill
+        />
       </div>
       <div className="absolute top-1/2 flex w-full -translate-y-1/2 items-center justify-between invert filter">
         <div
           className="flex h-9 w-9 cursor-pointer items-center justify-center bg-bk100 bg-opacity-40"
           onClick={() => {
-            if (currentImageIndex === 0) return setCurrentImageIndex(images.length - 1);
+            if (currentImageIndex === 0) return setCurrentImageIndex(totalImageCount - 1);
             setCurrentImageIndex((prev) => prev - 1);
           }}
         >
@@ -61,7 +62,7 @@ export default function GalleryModal({
         <div
           className="flex h-9 w-9 cursor-pointer items-center justify-center bg-bk100 bg-opacity-40"
           onClick={() => {
-            if (currentImageIndex === images.length - 1) return setCurrentImageIndex(0);
+            if (currentImageIndex === totalImageCount - 1) return setCurrentImageIndex(0);
             setCurrentImageIndex((prev) => prev + 1);
           }}
         >
@@ -69,8 +70,14 @@ export default function GalleryModal({
         </div>
       </div>
       <div className="absolute bottom-6 left-6 flex items-center">
-        <div className="mr-[15px] h-10 w-10 shrink-0 rounded-full bg-bk20"></div>
-        <p className="text-body2 text-white">{images[currentImageIndex]?.userNickname}</p>
+        <div className="mr-[15px] h-10 w-10 shrink-0 rounded-full bg-bk20">
+          <Image
+            src={reviewImages[currentImageIndex].memberProfileUrl}
+            alt="member"
+            layout="fill"
+          />
+        </div>
+        <p className="text-body2 text-white">{reviewImages[currentImageIndex].memberName}</p>
       </div>
     </div>
   );
