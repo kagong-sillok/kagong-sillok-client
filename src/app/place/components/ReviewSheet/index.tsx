@@ -72,12 +72,13 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
     onClose();
+    setIsModalOpen(false);
     setRating(null);
     setContent('');
     setImages([]);
     setSelectedTabIds([]);
+    setSnapPoints([-70, 280]);
   };
 
   return (
@@ -133,13 +134,13 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
             <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
           </div>
         </div>
-        <Modal isOpen={isModalOpen}>
-          <Modal.Content>리뷰를 등록했어요!</Modal.Content>
-          <Modal.Footer>
-            <Button onClick={handleModalClose}>확인</Button>
-          </Modal.Footer>
-        </Modal>
       </BottomSheet>
+      <Modal isOpen={isModalOpen}>
+        <Modal.Content>리뷰를 등록했어요!</Modal.Content>
+        <Modal.Footer>
+          <Button onClick={handleModalClose}>확인</Button>
+        </Modal.Footer>
+      </Modal>
       {isOpen && (
         <Button
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
