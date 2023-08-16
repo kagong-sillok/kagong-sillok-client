@@ -71,7 +71,7 @@ export default function ReviewSection() {
         <hr className="text-bk10" />
         <Spacing size={24} />
 
-        <ReviewList reviews={reviewsData.reviews.slice(0, 6)} />
+        <ReviewList reviews={reviewsData.reviews.slice(0, 5)} />
 
         <Spacing size={24} />
         <Button type="ROUND_DEFAULT" onClick={handleReviewClick}>
