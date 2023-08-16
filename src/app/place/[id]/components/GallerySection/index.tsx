@@ -13,7 +13,7 @@ export default function GallerySection() {
 
   const { data: reviewImagesData } = useGetReviewImages(placeId);
 
-  if (!reviewImagesData) return null;
+  if (reviewImagesData.totalImageCount === 0) return null;
 
   const { reviewImages, totalImageCount } = reviewImagesData;
 

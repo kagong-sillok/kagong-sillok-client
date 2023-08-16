@@ -16,17 +16,21 @@ export default function GalleryPage({ params }: GalleryPageProps) {
   const placeId = Number(params.id);
 
   return (
-    <Suspense fallback={null}>
-      <HydrationProvider queryFn={() => getPlace(placeId)} queryKey={PlaceKeys.place(placeId)}>
-        <GalleryTopNavigationBar />
-      </HydrationProvider>
-      <HydrationProvider
-        queryFn={() => getReviewImages(placeId)}
-        queryKey={ReviewKeys.reviewImages(placeId)}
-      >
-        <GalleryDetail />
-      </HydrationProvider>
+    <main>
+      <Suspense fallback={null}>
+        <HydrationProvider queryFn={() => getPlace(placeId)} queryKey={PlaceKeys.place(placeId)}>
+          <GalleryTopNavigationBar />
+        </HydrationProvider>
+      </Suspense>
+      <Suspense fallback={null}>
+        <HydrationProvider
+          queryFn={() => getReviewImages(placeId)}
+          queryKey={ReviewKeys.reviewImages(placeId)}
+        >
+          <GalleryDetail />
+        </HydrationProvider>
+      </Suspense>
       <Footer />
-    </Suspense>
+    </main>
   );
 }

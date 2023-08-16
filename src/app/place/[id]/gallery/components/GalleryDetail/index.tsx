@@ -6,14 +6,15 @@ import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
 export default function GalleryDetail() {
-  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
   const params = useParams() as { id: string };
   const placeId = Number(params.id);
 
   const { data: reviewImagesData } = useGetReviewImages(placeId);
 
-  const { reviewImages } = reviewImagesData;
+  const { reviewImages, totalImageCount } = reviewImagesData;
+
+  console.log(selectedImageUrl);
 
   return (
     <div className="grid grid-cols-3 gap-1">
@@ -23,7 +24,6 @@ export default function GalleryDetail() {
           className="relative w-full cursor-pointer before:block before:pb-[100%]"
           onClick={() => {
             setSelectedImageUrl(reviewImage.imageUrl);
-            setIsGalleryModalOpen(true);
           }}
         >
           <Image
@@ -36,8 +36,10 @@ export default function GalleryDetail() {
         </div>
       ))}
       <GalleryModal
-        isOpen={isGalleryModalOpen}
-        onClose={() => setIsGalleryModalOpen(false)}
+        isOpen={!!selectedImageUrl}
+        onClose={() => setSelectedImageUrl('')}
+        reviewImages={reviewImages}
+        totalImageCount={totalImageCount}
         selectedImageUrl={selectedImageUrl}
       />
     </div>
