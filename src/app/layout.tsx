@@ -4,6 +4,20 @@ import localFont from 'next/font/local';
 import Script from 'next/script';
 import '@/styles/globals.css';
 
+export const metadata = {
+  title: '카공실록',
+  description: '카공실록은 카페에서 공부를 하는 카공족을 위한 카공카페 검색 플랫폼입니다.',
+  openGraph: {
+    title: '카공실록',
+    images: [
+      {
+        url: '/assets/Icons/logo.png',
+      },
+    ],
+    type: 'website',
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={pretendard.className}>
