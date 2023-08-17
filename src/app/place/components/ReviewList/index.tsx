@@ -83,7 +83,7 @@ function ReviewItem({ review }: ReviewItemProps) {
           ))}
         </div>
         <Spacing size={10} />
-        <p className="text-body2">{content}</p>
+        <p className="whitespace-pre-line text-body2">{content}</p>
       </div>
     </div>
   );
