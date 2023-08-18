@@ -40,7 +40,7 @@ export default function ReviewItem({ review, isLast = false }: ReviewItemProps) 
               <div>{RATING_TEXT[rating - 1]}</div>
             </div>
           </div>
-          <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
+          <Image src="/assets/icons/null.svg" width={64} height={64} alt="default" />
         </div>
         <div className="text-body2">{content}</div>
         <div

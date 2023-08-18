@@ -7,11 +7,14 @@ import '@/styles/globals.css';
 export const metadata = {
   title: '카공실록',
   description: '카공실록은 카페에서 공부를 하는 카공족을 위한 카공카페 검색 플랫폼입니다.',
+  icons: {
+    icon: '/assets/icons/logo.png',
+  },
   openGraph: {
     title: '카공실록',
     images: [
       {
-        url: '/assets/Icons/logo.png',
+        url: '/assets/icons/logo.png',
       },
     ],
     type: 'website',

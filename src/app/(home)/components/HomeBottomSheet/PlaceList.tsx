@@ -68,7 +68,7 @@ function PlaceItem({ place }: PlaceItemProps) {
           <Spacing size={8} />
           <div className="flex gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/Icons/40/emoji-rating${Math.round(rating ?? 3)}_on.svg`}
+              src={`/assets/icons/40/emoji-rating${Math.round(rating ?? 3)}_on.svg`}
               height={16}
               width={16}
               alt="emoji"
@@ -81,7 +81,7 @@ function PlaceItem({ place }: PlaceItemProps) {
         </div>
         <div className="relative h-16 w-16">
           <Image
-            src={imagesData?.images[0]?.url ?? '/assets/Icons/null.svg'}
+            src={imagesData?.images[0]?.url ?? '/assets/icons/null.svg'}
             alt="thumbnail"
             className="object-cover"
             sizes="100%"

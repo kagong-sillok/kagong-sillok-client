@@ -46,7 +46,7 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
   const { nickname, email, profileImage, loginCount } = userInfo || {
     nickname: '로그인이 필요합니다.',
     email: '',
-    profileImage: '/assets/Icons/profileImage.svg',
+    profileImage: '/assets/icons/profileImage.svg',
     loginCount: 0,
   };
 

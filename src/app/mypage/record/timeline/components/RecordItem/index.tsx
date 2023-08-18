@@ -22,7 +22,7 @@ export default function RecordItem({ data }: RecordItemProps) {
             <div>{date}</div>
           </div>
         </div>
-        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
+        <Image src="/assets/icons/null.svg" width={64} height={64} alt="default" />
       </div>
     </>
   );
