@@ -82,14 +82,8 @@ const renderElements = (elements: React.ReactElement[]) => {
 };
 
 function Footer({ children }: PropsWithChildren) {
-  const validChildren = Children.toArray(children).filter(
-    (child) =>
-      isValidElement(child) &&
-      (
-        child.type as {
-          name: string;
-        }
-      ).name === 'Button'
+  const validChildren = Children.toArray(children).filter((child) =>
+    isValidElement(child)
   ) as React.ReactElement[];
 
   return <div className="flex h-[60px] justify-end p-[10px]">{renderElements(validChildren)}</div>;

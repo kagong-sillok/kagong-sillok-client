@@ -74,7 +74,7 @@ export default function ReviewSection() {
         <ReviewList reviews={reviewsData.reviews.slice(0, 5)} />
 
         <Spacing size={24} />
-        <Button type="ROUND_DEFAULT" onClick={handleReviewClick}>
+        <Button variant="ROUND_DEFAULT" onClick={handleReviewClick}>
           리뷰 작성하기
         </Button>
       </section>
