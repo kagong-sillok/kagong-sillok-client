@@ -77,7 +77,7 @@ export default function GalleryModal({
               }}
             >
               <Image
-                src="/assets/Icons/16/Arrow-left.svg"
+                src="/assets/icons/16/Arrow-left.svg"
                 alt="Arrow-left"
                 width={28}
                 height={28}
@@ -91,7 +91,7 @@ export default function GalleryModal({
               }}
             >
               <Image
-                src="/assets/Icons/16/Arrow-right.svg"
+                src="/assets/icons/16/Arrow-right.svg"
                 alt="Arrow-right"
                 width={28}
                 height={28}

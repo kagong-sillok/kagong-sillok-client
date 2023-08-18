@@ -51,7 +51,7 @@ export default function Markers() {
             <Image
               onClick={() => handleMarkerClick(place.id, place.latitude, place.longitude)}
               draggable={false}
-              src={`/assets/Icons/marker.svg`}
+              src={`/assets/icons/marker.svg`}
               alt="marker"
               fill
             />

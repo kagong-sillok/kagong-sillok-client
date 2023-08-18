@@ -125,7 +125,7 @@ function LocationButton({ onClick }: LocationButtonProps) {
         className="absolute bottom-[81px] right-6 z-30 rounded-full bg-white p-3 drop-shadow-md transition-colors active:bg-bk20"
         onClick={onClick}
       >
-        <Image src="/assets/Icons/16/Location.svg" width={16} height={16} alt="location" />
+        <Image src="/assets/icons/16/Location.svg" width={16} height={16} alt="location" />
       </button>
     </>
   );

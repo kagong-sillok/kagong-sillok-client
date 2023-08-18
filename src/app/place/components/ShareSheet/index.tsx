@@ -25,13 +25,13 @@ export default function ShareSheet({ isOpen, onClose }: ShareSheetProps) {
         <p className="mb-4 ml-6 text-body2">공유하기</p>
         <div className="px-8">
           <div className="mb-4 flex justify-between">
-            <ShareIcon name="카카오톡" src="/assets/Icons/28/KakaoTalk.svg" />
-            <ShareIcon name="Instagram" src="/assets/Icons/28/Instagram.svg" />
-            <ShareIcon name="메시지" src="/assets/Icons/28/Message.svg" />
-            <ShareIcon name="URL 복사" src="/assets/Icons/28/Link.svg" />
+            <ShareIcon name="카카오톡" src="/assets/icons/28/KakaoTalk.svg" />
+            <ShareIcon name="Instagram" src="/assets/icons/28/Instagram.svg" />
+            <ShareIcon name="메시지" src="/assets/icons/28/Message.svg" />
+            <ShareIcon name="URL 복사" src="/assets/icons/28/Link.svg" />
           </div>
           <div className="flex justify-between">
-            <ShareIcon name="더보기" src="/assets/Icons/28/More.svg" />
+            <ShareIcon name="더보기" src="/assets/icons/28/More.svg" />
           </div>
         </div>
       </div>
