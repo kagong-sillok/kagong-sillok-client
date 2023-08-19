@@ -1,27 +1,24 @@
-import { postLogin } from '@/apis/auth';
-import { setCookie } from 'cookies-next';
-import { redirect } from 'next/navigation';
+'use client';
 
-export default async function Redirect({
+import { useLogin } from '@/apis/auth';
+import { useEffect } from 'react';
+
+export default function Redirect({
   searchParams,
 }: {
   searchParams: {
     code: string;
   };
 }) {
-  redirect(`/auth/login?code=${JSON.stringify(searchParams)}`);
-  // await postLogin({
-  //   authorizationCode: searchParams?.code,
-  //   redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
-  // }).then((res) => {
-  //   setCookie('accessToken', res.accessToken, {
-  //     expires: new Date(res.accessTokenExpireDateTime),
-  //   });
-  //   setCookie('refreshToken', res.refreshToken, {
-  //     expires: new Date(res.refreshTokenExpireDateTime),
-  //   });
-  //   redirect('/');
-  // });
+  const { mutate } = useLogin();
 
-  // return <></>;
+  useEffect(() => {
+    mutate({
+      authorizationCode: searchParams.code,
+      redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <></>;
 }
