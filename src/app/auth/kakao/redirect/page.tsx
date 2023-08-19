@@ -1,24 +1,19 @@
-'use client';
+import { postLogin } from '@/apis/auth';
+import { redirect } from 'next/navigation';
 
-import { useLogin } from '@/apis/auth';
-import { useEffect } from 'react';
-
-export default function Redirect({
+export default async function Redirect({
   searchParams,
 }: {
   searchParams: {
     code: string;
   };
 }) {
-  const { mutate } = useLogin();
-
-  useEffect(() => {
-    mutate({
-      authorizationCode: searchParams.code,
-      redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  await postLogin({
+    authorizationCode: searchParams.code,
+    redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
+  }).then(() => {
+    redirect('/');
+  });
 
   return <></>;
 }
