@@ -9,11 +9,10 @@ export default async function Redirect({
   };
 }) {
   await postLogin({
-    authorizationCode: searchParams.code,
+    authorizationCode: searchParams?.code,
     redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
   }).then(() => {
     redirect('/');
   });
-
-  return <></>;
+  return <p>{searchParams?.code}</p>;
 }
