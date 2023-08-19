@@ -9,18 +9,19 @@ export default async function Redirect({
     code: string;
   };
 }) {
-  await postLogin({
-    authorizationCode: searchParams?.code,
-    redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
-  }).then((res) => {
-    setCookie('accessToken', res.accessToken, {
-      expires: new Date(res.accessTokenExpireDateTime),
-    });
-    setCookie('refreshToken', res.refreshToken, {
-      expires: new Date(res.refreshTokenExpireDateTime),
-    });
-    redirect('/');
-  });
+  redirect(`/auth/login?code=${JSON.stringify(searchParams)}`);
+  // await postLogin({
+  //   authorizationCode: searchParams?.code,
+  //   redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
+  // }).then((res) => {
+  //   setCookie('accessToken', res.accessToken, {
+  //     expires: new Date(res.accessTokenExpireDateTime),
+  //   });
+  //   setCookie('refreshToken', res.refreshToken, {
+  //     expires: new Date(res.refreshTokenExpireDateTime),
+  //   });
+  //   redirect('/');
+  // });
 
-  return <></>;
+  // return <></>;
 }
