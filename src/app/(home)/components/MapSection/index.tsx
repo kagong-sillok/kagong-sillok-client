@@ -1,64 +1,25 @@
 'use client';
 
 import Markers from './Markers';
-import { useSheetContext } from '../SheetProvider';
+import SearchButton from './SearchButton';
+import HomeSheet from '../HomeSheet';
 import { useGetPlacesAround } from '@/apis/place';
 import { Loading } from '@/components';
 import { DEFAULT_COORDINATES } from '@/constants/map';
 import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import { Suspense } from '@suspensive/react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
 export default function MapSection() {
-  const [locationStatus, setLocationStatus] = useState({
-    isLocationLoading: false,
-    readyRefetch: false,
-  });
-
   const { coordinates, setCoordinates } = useCoordinatesStore();
   const { refetch, isRefetching } = useGetPlacesAround(coordinates);
   const mapRef = useRef<kakao.maps.Map>(null);
-  const router = useRouter();
-
-  const handleLocationClick = () => {
-    setLocationStatus((prev) => ({
-      ...prev,
-      isLocationLoading: true,
-    }));
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      mapRef?.current?.setCenter(new kakao.maps.LatLng(latitude, longitude));
-      setCoordinates({
-        ...coordinates,
-        latitude,
-        longitude,
-      });
-
-      setLocationStatus((prev) => ({
-        ...prev,
-        readyRefetch: true,
-      }));
-    });
-  };
-
-  useEffect(() => {
-    if (locationStatus.readyRefetch && !isRefetching) {
-      refetch();
-      setLocationStatus({
-        isLocationLoading: false,
-        readyRefetch: false,
-      });
-    }
-  }, [locationStatus.readyRefetch, isRefetching, refetch]);
 
   return (
     <section>
       <Map
-        className="h-screen w-full min-w-[360px]"
+        className="h-[100dvh] w-full min-w-[360px]"
         ref={mapRef}
         center={{
           lat: DEFAULT_COORDINATES.latitude,
@@ -83,50 +44,14 @@ export default function MapSection() {
         }}
       >
         <SearchButton onClick={() => refetch()} />
+
         <Suspense.CSROnly>
           <Markers />
         </Suspense.CSROnly>
-        <LocationButton onClick={handleLocationClick} />
+
+        <HomeSheet />
       </Map>
-      {(locationStatus.isLocationLoading || isRefetching) && <Loading />}
+      {isRefetching && <Loading />}
     </section>
-  );
-}
-
-interface SearchButtonProps {
-  onClick: () => void;
-}
-
-function SearchButton({ onClick }: SearchButtonProps) {
-  const { isBottomSheetUp } = useSheetContext();
-
-  return (
-    <>
-      {!isBottomSheetUp && (
-        <button
-          className="fixed left-1/2 top-[7.75rem] z-30 w-[138px] -translate-x-1/2 rounded-full bg-white py-2.5 text-body2 text-bk100 drop-shadow-md transition-colors active:bg-bk10"
-          onClick={onClick}
-        >
-          이 지역에서 재검색
-        </button>
-      )}
-    </>
-  );
-}
-
-interface LocationButtonProps {
-  onClick: () => void;
-}
-
-function LocationButton({ onClick }: LocationButtonProps) {
-  return (
-    <>
-      <button
-        className="absolute bottom-[81px] right-6 z-30 rounded-full bg-white p-3 drop-shadow-md transition-colors active:bg-bk20"
-        onClick={onClick}
-      >
-        <Image src="/assets/icons/16/Location.svg" width={16} height={16} alt="location" />
-      </button>
-    </>
   );
 }
