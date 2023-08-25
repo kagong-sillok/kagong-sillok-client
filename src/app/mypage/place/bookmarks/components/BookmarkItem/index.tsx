@@ -1,4 +1,5 @@
 import { Dot } from '@/app/mypage/components';
+import { isPlaceOpen } from '@/utils/isPlaceOpen';
 import Image from 'next/image';
 
 import type { Place } from '@/types/place';
@@ -9,7 +10,9 @@ interface BookmarkItemProps {
 }
 
 export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
-  const { name, tags, rating, isOpen } = data;
+  const { name, reviewTags, rating, businessHours } = data;
+  const isOpen = isPlaceOpen(businessHours);
+
   return (
     <>
       <div className="flex w-full items-center justify-between gap-4 py-6">
@@ -17,10 +20,10 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
           <div className="text-sub1">{name}</div>
 
           <div className="flex items-center gap-1.5">
-            {tags.map((el) => {
+            {reviewTags.map((el) => {
               return (
-                <div key={el} className="text-caption text-bk50">
-                  {el}
+                <div key={el.id} className="text-caption text-bk50">
+                  {el.tagContent}
                 </div>
               );
             })}
