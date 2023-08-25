@@ -16,7 +16,7 @@ export default function PlaceList() {
   const { coordinates } = useCoordinatesStore();
   const { data: placesAroundData } = useGetPlacesAround(coordinates);
 
-  const { places } = placesAroundData;
+  const places = placesAroundData?.places ?? [];
 
   const renderPlaces = !!selectedPlaceId
     ? places.filter((place) => place.id === selectedPlaceId)

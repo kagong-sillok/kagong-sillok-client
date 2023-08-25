@@ -15,7 +15,6 @@ export default function Markers() {
   const map = useMap();
 
   const { data: placesAroundData } = useGetPlacesAround(coordinates);
-  const { places } = placesAroundData;
 
   const handleMarkerClick = (
     placeId: Place['id'],
@@ -33,7 +32,7 @@ export default function Markers() {
 
   return (
     <>
-      {places.map((place) => (
+      {placesAroundData?.places.map((place) => (
         <CustomOverlayMap
           key={place.id}
           position={{
