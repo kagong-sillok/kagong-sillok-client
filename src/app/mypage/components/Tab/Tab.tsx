@@ -12,7 +12,6 @@ function Tab({ label, active, href }: TabProps) {
   return (
     <Link
       href={href}
-      as={href}
       className="bg-slate-400 flex w-full cursor-pointer flex-col items-center justify-end "
     >
       <div className={tabLabel}>{label}</div>
