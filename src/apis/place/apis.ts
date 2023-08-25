@@ -10,6 +10,17 @@ export const getPlace = async (id: number) => {
   return data;
 };
 
+export const getPlaceWithTitle = async (title: string) => {
+  const { data } = await api.get<{ places: Place[] }>(`api/v1/places`, {
+    searchParams: {
+      title: title,
+    },
+    cache: 'no-store',
+  });
+
+  return data;
+};
+
 export const getPlaceWithTags = async (id: number) => {
   const { data } = await api.get<Place>(`api/v1/places/with-tags/${id}`, {
     cache: 'no-store',
