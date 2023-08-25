@@ -29,7 +29,7 @@ export default function Search() {
     <div className="h-screen bg-white">
       <div className="flex h-14 items-center px-6">
         <Link href="/">
-          <Image src="/assets/Icons/28/Back.svg" width={28} height={28} alt="back" />
+          <Image src="/assets/icons/28/Back.svg" width={28} height={28} alt="back" />
         </Link>
         <input
           type="text"

@@ -10,7 +10,6 @@ export default function Footer() {
     <>
       <footer>
         <Button
-          type="DEFAULT"
           className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full min-w-[360px] max-w-[448px]"
           onClick={() => setIsLogTimeSheetOpen(true)}
         >

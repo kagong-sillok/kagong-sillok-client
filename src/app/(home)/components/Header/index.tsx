@@ -11,17 +11,17 @@ import { useState } from 'react';
 
 export default function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const isBottomSheetUp = useSheetContext((state) => state.isBottomSheetUp);
+  const { isBottomSheetUp } = useSheetContext();
 
   const { data: userInfoData } = useGetUserInfo({});
   const router = useRouter();
 
   return (
     <>
-      <header className="fixed top-0 z-20 max-h-[112px] w-full max-w-[448px] bg-white text-bk100">
+      <header className="fixed top-0 z-20 max-h-[7rem] w-full max-w-[28rem] bg-white text-bk100">
         <div className="mx-4 my-3 flex items-center bg-background px-3.5 py-2">
           <Image
-            src={'/assets/Icons/28/Menu.svg'}
+            src={'/assets/icons/28/Menu.svg'}
             alt="menu"
             width={28}
             height={28}

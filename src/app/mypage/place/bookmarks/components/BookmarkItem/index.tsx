@@ -40,7 +40,7 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
             <div>{isOpen ? '영업중' : '영업종료'}</div>
           </div>
         </div>
-        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
+        <Image src="/assets/icons/null.svg" width={64} height={64} alt="default" />
       </div>
       {!isLast && <div className="h-px w-full bg-bk10" />}
     </>

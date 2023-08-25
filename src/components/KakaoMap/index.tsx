@@ -31,7 +31,7 @@ const KakaoMap = ({ className, customCoordinates, places }: KakaoMapProps) => {
               lng: place.longitude,
             }}
             image={{
-              src: '/assets/Icons/marker.svg',
+              src: '/assets/icons/marker.svg',
               size: {
                 width: 72,
                 height: 72,

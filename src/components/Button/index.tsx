@@ -1,27 +1,33 @@
+import cn from '@/utils/cn';
+
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type: 'DEFAULT' | 'ROUND_DEFAULT';
+  variant?: 'DEFAULT' | 'ROUND_DEFAULT';
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 export default function Button({
-  type,
+  variant = 'DEFAULT',
   children,
   className,
   disabled = false,
+  fullWidth = true,
   ...props
 }: ButtonProps) {
-  const buttonStyle = {
-    DEFAULT:
-      'bg-black py-4 text-button1 text-white active:bg-bk80 disabled:bg-bk10 disabled:text-bk40',
-    ROUND_DEFAULT: `rounded-full border border-black py-[11px] text-button2 text-black disabled:border-bk20 ${
-      disabled ? '' : 'active:bg-bk10'
-    }`,
-  }[type];
-
   return (
     <button
-      className={`w-full disabled:text-bk40 ${buttonStyle} ${className ?? ''}`}
+      className={cn(
+        'flex items-center justify-center px-8',
+        {
+          'bg-black py-4 text-button1 text-white active:bg-bk80 disabled:bg-bk10 disabled:text-bk40':
+            variant === 'DEFAULT',
+          'rounded-full border border-black py-[11px] text-button2 text-black active:bg-bk10 disabled:border-bk20':
+            variant === 'ROUND_DEFAULT',
+          'w-full': fullWidth,
+        },
+        className
+      )}
       disabled={disabled}
       {...props}
     >

@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.28.0",
+    "@aws-sdk/util-utf8-browser": "^3.259.0",
     "@suspensive/react": "^1.11.3",
     "@suspensive/react-query": "^1.11.3",
     "@tanstack/react-query": "^4.32.0",
     "@tanstack/react-query-devtools": "^4.32.0",
-    "aws-sdk": "^2.1430.0",
+    "clsx": "^2.0.0",
     "cookies-next": "^2.1.2",
     "date-fns": "^2.30.0",
     "ky": "^0.33.3",
@@ -24,6 +26,8 @@
     "react-dom": "18.2.0",
     "react-kakao-maps-sdk": "^1.1.11",
     "react-modal-sheet": "^2.0.0",
+    "sharp": "^0.32.5",
+    "tailwind-merge": "^1.14.0",
     "typescript": "5.1.6",
     "zustand": "^4.3.9"
   },

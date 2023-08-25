@@ -13,12 +13,12 @@ export default function Redirect({
   const { mutate } = useLogin();
 
   useEffect(() => {
+    if (!searchParams.code) return;
     mutate({
       authorizationCode: searchParams.code,
       redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI as string,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mutate, searchParams.code]);
 
   return <></>;
 }

@@ -19,6 +19,17 @@ export default function PlaceTopNavigationBar({ name }: PlaceTopNavigationBarPro
 
   const router = useRouter();
 
+  const handleShareClick = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: '카공실록',
+        url: window.location.href,
+      });
+    } else {
+      setIsShareSheetOpen(true);
+    }
+  };
+
   return (
     <>
       <TopNavigationBar
@@ -40,7 +51,7 @@ export default function PlaceTopNavigationBar({ name }: PlaceTopNavigationBarPro
               alt="Share"
               width={28}
               height={28}
-              onClick={() => setIsShareSheetOpen(true)}
+              onClick={handleShareClick}
               className="cursor-pointer"
             />
           </>
