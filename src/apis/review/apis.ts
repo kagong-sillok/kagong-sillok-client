@@ -27,6 +27,8 @@ export const postReview = async (payload: ReviewPayload) => {
 
 export const deleteReview = async (reviewId: number) => {
   const { data } = await api.delete(`api/v1/reviews/${reviewId}`);
+
+  return data;
 };
 
 export const getReviewImages = async (placeId: number) => {

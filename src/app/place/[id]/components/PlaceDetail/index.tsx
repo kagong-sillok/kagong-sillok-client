@@ -1,13 +1,13 @@
 'use client';
 import { GallerySection, InfoSection, PlaceTopNavigationBar, ReviewSection } from '..';
-import { useGetPlace } from '@/apis/place';
+import { useGetPlaceWithTags } from '@/apis/place';
 import { Footer } from '@/app/place/components';
 import { KakaoMap, Spacing } from '@/components';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
 export default function PlaceDetail() {
   const { id: placeId } = useNumberParams<['id']>();
-  const { data: placeData } = useGetPlace(placeId);
+  const { data: placeData } = useGetPlaceWithTags(placeId);
 
   return (
     <>

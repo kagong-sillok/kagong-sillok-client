@@ -19,17 +19,20 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
 
   const isOpen = isPlaceOpen(businessHours);
 
+  const tags =
+    reviewTags?.length > 0
+      ? sortTagsByFrequency(reviewTags).slice(0, 3)
+      : [{ tagContent: '조용한' }, { tagContent: '나만알고싶은' }, { tagContent: '노트북' }];
+
   return (
     <section>
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
-          {sortTagsByFrequency(reviewTags || [])
-            .slice(0, 3)
-            .map((tag) => (
-              <p key={tag.tagContent} className="text-violet/default text-caption">
-                #{tag.tagContent.replace(/ /g, '')}
-              </p>
-            ))}
+          {tags.map((tag) => (
+            <p key={tag.tagContent} className="text-caption text-point/default">
+              #{tag.tagContent.replace(/ /g, '')}
+            </p>
+          ))}
         </div>
         <Tag.OpenClosed type={isOpen ? 'OPEN' : 'CLOSED'} />
       </div>
@@ -57,9 +60,9 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
         <IconFlex
           iconNode={<Image src="/assets/icons/16/Site.svg" alt="Site" fill />}
           textNode={links.map(({ linkType, url }) => (
-            <a key={url} href={url} className="mr-2">
+            <Link key={url} href={url} className="mr-2" target="_blank">
               {LINK_TEXT[linkType]}
-            </a>
+            </Link>
           ))}
         />
       </div>
@@ -72,8 +75,9 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
         ))}
       </div>
       <Link
-        href="/"
+        href={links[0]?.url}
         className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
+        target="_blank"
       >
         해당 카페에 자세히 알고 싶다면?
       </Link>

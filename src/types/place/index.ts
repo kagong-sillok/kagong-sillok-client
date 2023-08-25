@@ -24,7 +24,7 @@ export interface Place {
   longitude: number;
   images: ImageObjectWithId[];
   reviewTags: PlaceCondition[];
-  rating: number; // 아직 api에 없음
+  ratingAverage?: number;
   phone: string; // 02-1234-1234
   links: {
     linkType: LinkType;
