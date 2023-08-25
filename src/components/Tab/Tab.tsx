@@ -4,7 +4,7 @@ interface TabProps {
   children: React.ReactNode;
   id: number;
   isSelected: boolean;
-  setSelectedTab: Dispatch<SetStateAction<number>>;
+  setSelectedTab: (id: number) => void;
 }
 
 export default memo(function Tab({ children, id, isSelected, setSelectedTab }: TabProps) {

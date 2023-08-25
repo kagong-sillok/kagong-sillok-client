@@ -1,6 +1,6 @@
 'use client';
 
-import Tabs from './Tabs';
+import TagList from './TagList';
 import { useSheetContext } from '../SheetProvider';
 import { useMemberTotalDuration } from '@/apis/record';
 import { useGetUserInfo } from '@/apis/user';
@@ -40,7 +40,7 @@ export default function Header() {
             readOnly
           />
         </div>
-        {!isBottomSheetUp && <Tabs />}
+        {!isBottomSheetUp && <TagList />}
         <Spacing size={12} />
       </header>
       <Suspense.CSROnly fallback={null}>

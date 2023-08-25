@@ -2,20 +2,22 @@
 import { createContext, useContext } from 'react';
 import { createStore, useStore } from 'zustand';
 
-import type { Place } from '@/types/place';
-
 interface SheetStore {
   isBottomSheetUp: boolean;
-  selectedPlaceId: Place['id'] | null;
+  selectedPlaceId: number | null;
+  selectedTagId: number;
   setIsBottomSheetUp: (isBottomSheetUp: boolean) => void;
-  setSelectedPlaceId: (selectedPlaceId: Place['id'] | null) => void;
+  setSelectedPlaceId: (selectedPlaceId: number | null) => void;
+  setSelectedTagId: (selectedTagId: number) => void;
 }
 
 const sheetStore = createStore<SheetStore>((set) => ({
   isBottomSheetUp: false,
   selectedPlaceId: null,
+  selectedTagId: 0,
   setIsBottomSheetUp: (isBottomSheetUp) => set({ isBottomSheetUp }),
   setSelectedPlaceId: (selectedPlaceId) => set({ selectedPlaceId }),
+  setSelectedTagId: (selectedTagId) => set({ selectedTagId }),
 }));
 
 const sheetContext = createContext<typeof sheetStore | null>(null);

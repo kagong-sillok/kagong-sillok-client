@@ -3,10 +3,9 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
+import cn from '@/utils/cn';
 import { Navigation, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import cn from '@/utils/cn';
 
 interface TimePickerProps {
   slideList: string[];

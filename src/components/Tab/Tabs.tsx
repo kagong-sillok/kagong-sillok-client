@@ -44,12 +44,7 @@ export default function Tabs({ selectedTabIds, setSelectedTabIds }: TabsProps) {
   return (
     <div className="mb-4 grid grid-cols-3 gap-2 p-3">
       {Tabs.map((tab) => (
-        <Tab
-          key={tab.id}
-          id={tab.id}
-          isSelected={tab.isSelected}
-          setSelectedTab={handleSelectTab as Dispatch<SetStateAction<number>>} // TODO: Tab 컴포넌트의 setSelectedTab prop 대신 handleSelectTab 함수를 넘겨주도록 수정
-        >
+        <Tab key={tab.id} id={tab.id} isSelected={tab.isSelected} setSelectedTab={handleSelectTab}>
           {tab.text}
         </Tab>
       ))}

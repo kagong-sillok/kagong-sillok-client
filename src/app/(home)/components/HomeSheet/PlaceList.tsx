@@ -12,14 +12,16 @@ import { useRouter } from 'next/navigation';
 import type { Place } from '@/types/place';
 
 export default function PlaceList() {
-  const { selectedPlaceId } = useSheetContext();
+  const { selectedPlaceId, selectedTagId } = useSheetContext();
   const { coordinates } = useCoordinatesStore();
   const { data: placesAroundData } = useGetPlacesAround(coordinates);
 
   const { places } = placesAroundData;
 
-  const renderPlaces = selectedPlaceId
+  const renderPlaces = !!selectedPlaceId
     ? places.filter((place) => place.id === selectedPlaceId)
+    : !!selectedTagId
+    ? places.filter((place) => place.reviewTags.some((tag) => tag.id === selectedTagId))
     : places;
 
   return (
@@ -36,7 +38,7 @@ interface PlaceItemProps {
 }
 
 function PlaceItem({ place }: PlaceItemProps) {
-  const { id, name, reviewTags, rating, images, businessHours } = place;
+  const { id, name, reviewTags, ratingAverage, images, businessHours } = place;
 
   const router = useRouter();
 
@@ -61,7 +63,7 @@ function PlaceItem({ place }: PlaceItemProps) {
           <Spacing size={8} />
           <div className="flex gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/icons/40/emoji-rating${Math.round(rating ?? 3)}_on.svg`}
+              src={`/assets/icons/40/emoji-rating${Math.round(ratingAverage ?? 3)}_on.svg`}
               height={16}
               width={16}
               alt="emoji"
