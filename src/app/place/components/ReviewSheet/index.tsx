@@ -3,7 +3,7 @@ import Rating from './Rating';
 import { useImagesUpload } from '@/apis/image';
 import { usePostReviewMutation } from '@/apis/review';
 import { Button, ImageUpload, BottomSheet, Tabs, Spacing, Modal } from '@/components';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
 
@@ -28,8 +28,6 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
 
   const ref = useRef<SheetRef>();
 
-  if (!memberId) return null;
-
   const handleRatingClick = (selectRating: number) => {
     if (selectRating === rating) {
       setRating(null);
@@ -45,7 +43,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   };
 
   const handlePostReviewClick = async () => {
-    if (!rating || !content) return;
+    if (!rating || !content || !memberId) return;
 
     const imageIds = !!images.length
       ? await uploadImagesMutateAsync({
@@ -80,6 +78,12 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
     setSelectedTabIds([]);
     setSnapPoints([-70, 280]);
   };
+
+  const handleUpload = useCallback((imageFiles: File[]) => {
+    setImages(imageFiles);
+  }, []);
+
+  if (!memberId) return null;
 
   return (
     <>
@@ -131,7 +135,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
           <div>
             <p className="text-center text-body2 text-bk60">사진도 등록하고 카공을 공유해요!</p>
             <Spacing size={16} />
-            <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
+            <ImageUpload images={images} onUpload={handleUpload} />
           </div>
         </div>
       </BottomSheet>

@@ -5,6 +5,7 @@ import Tag from './Tag';
 import TimeInfo from './TimeInfo';
 import { CONDITION_LIST, LINK_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
+import { isPlaceOpen } from '@/utils/isPlaceOpen';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,15 +14,17 @@ import type { Place } from '@/types/place';
 interface InfoSectionProps extends Omit<Place, 'longitude' | 'latitude' | 'imageIds' | 'rating'> {}
 
 export default function InfoSection({ ...place }: InfoSectionProps) {
-  const { tags, isOpen, address, name, businessHours, phone, links } = place;
+  const { reviewTags, address, name, businessHours, phone, links } = place;
+
+  const isOpen = isPlaceOpen(businessHours);
 
   return (
     <section>
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
-          {tags?.map((tag) => (
-            <p key={tag} className="text-violet/default text-caption">
-              {tag}
+          {reviewTags?.map((tag) => (
+            <p key={tag.tagContent} className="text-violet/default text-caption">
+              {tag.tagContent}
             </p>
           ))}
         </div>

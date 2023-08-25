@@ -1,5 +1,4 @@
 'use client';
-import { useGetImages } from '@/apis/image';
 import { RATING_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { format } from 'date-fns';
@@ -14,14 +13,9 @@ interface ReviewListProps {
 export default function ReviewList({ reviews }: ReviewListProps) {
   if (!reviews.length) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3">
-        <Image
-          src="/assets/icons/40/emoji-rating3_off.svg"
-          alt="emoji-rating0_off"
-          width={40}
-          height={40}
-        />
-        <p className="text-body2 text-bk40">아직 리뷰가 없어요</p>
+      <div className="flex flex-col items-center">
+        <span className="text-body2">아직 작성된 리뷰가 없어요.</span>
+        <span className="text-sub2">첫 리뷰를 남겨주세요!</span>
       </div>
     );
   }
@@ -40,8 +34,7 @@ interface ReviewItemProps {
 }
 
 function ReviewItem({ review }: ReviewItemProps) {
-  const { imageIds, content, memberNickName, rating, writtenAt } = review;
-  const { data: imagesData } = useGetImages(imageIds);
+  const { images, content, memberNickName, rating, writtenAt } = review;
 
   return (
     <div className="flex gap-3.5">
@@ -66,11 +59,9 @@ function ReviewItem({ review }: ReviewItemProps) {
         </div>
         <Spacing size={13} />
         <div
-          className={`flex items-center gap-0.5 overflow-x-scroll ${
-            imagesData?.images?.length ? '' : 'hidden'
-          }`}
+          className={`flex items-center gap-0.5 overflow-x-scroll ${images.length ? '' : 'hidden'}`}
         >
-          {imagesData?.images?.map((image, index) => (
+          {images.map((image, index) => (
             <div key={image.url + index} className="relative h-24 w-24 flex-shrink-0">
               <Image
                 src={image.url}
