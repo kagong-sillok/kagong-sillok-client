@@ -4,7 +4,9 @@ import ky from 'ky';
 import type { Review, ReviewImages, ReviewPayload } from '@/types/review';
 
 export const getPlaceReviews = async (placeId: number) => {
-  const { data } = await api.get<{ reviews: Review[] }>(`api/v1/reviews/place/${placeId}`);
+  const { data } = await api.get<{ reviews: Review[] }>(`api/v1/reviews/place/${placeId}`, {
+    cache: 'no-store',
+  });
 
   return data;
 };

@@ -3,7 +3,9 @@ import api from '@/apis/config/instance';
 import type { Place, PlaceCondition, Coordinates } from '@/types/place';
 
 export const getPlace = async (id: number) => {
-  const { data } = await api.get<Place>(`api/v1/places/${id}`);
+  const { data } = await api.get<Place>(`api/v1/places/${id}`, {
+    cache: 'no-store',
+  });
 
   return data;
 };

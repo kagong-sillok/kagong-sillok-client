@@ -3,10 +3,12 @@ import Tooltip from './Tooltip';
 import { useGetPlaceReviews } from '@/apis/review';
 import { useGetUserInfo } from '@/apis/user';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
-import { Button, Modal, Spacing } from '@/components';
+import { Button, LoginModal, Spacing } from '@/components';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import { getMonth } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export default function ReviewSection() {
@@ -14,8 +16,7 @@ export default function ReviewSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const pathname = usePathname();
-  const params = useParams() as { id: string };
-  const placeId = Number(params.id);
+  const { id: placeId } = useNumberParams<['id']>();
 
   const { data: userInfoData } = useGetUserInfo({});
   const { data: reviewsData } = useGetPlaceReviews(placeId);
@@ -82,21 +83,8 @@ export default function ReviewSection() {
         isOpen={isReviewSheetOpen}
         onClose={() => setIsReviewSheetOpen(false)}
         placeId={placeId}
-        memberId={userInfoData?.id}
       />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <Modal.Content>
-          로그인이 필요한 서비스예요. <br />
-          <Link href="/auth/login" className="inline-block">
-            <p className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2">
-              로그인 하러가기
-            </p>
-          </Link>
-        </Modal.Content>
-        <Modal.Footer>
-          <Button onClick={() => setIsModalOpen(false)}>확인</Button>
-        </Modal.Footer>
-      </Modal>
+      <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
