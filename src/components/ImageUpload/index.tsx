@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { memo } from 'react';
 
 interface ImageUploadProps {
   images: File[];
@@ -6,7 +7,7 @@ interface ImageUploadProps {
   className?: string;
 }
 
-export default function ImageUpload({ images, onUpload, className }: ImageUploadProps) {
+function ImageUpload({ images, onUpload, className }: ImageUploadProps) {
   const handleUpload = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -45,21 +46,36 @@ export default function ImageUpload({ images, onUpload, className }: ImageUpload
       </div>
       <div className="flex gap-2 overflow-hidden overflow-x-scroll">
         {images.map((image, index) => (
-          <div key={index} className="relative h-[72px] w-[72px] flex-shrink-0">
-            <Image src={URL.createObjectURL(image)} alt="image" className="object-cover" fill />
-            <Image
-              src="/assets/icons/16/Delete.svg"
-              alt="close"
-              className="absolute right-1 top-1 cursor-pointer"
-              width={16}
-              height={16}
-              onClick={() => {
-                onUpload(images.filter((_, i) => i !== index));
-              }}
-            />
-          </div>
+          <Thumbnail
+            key={image.lastModified + index}
+            image={image}
+            onClick={() => onUpload(images.filter((_, i) => i !== index))}
+          />
         ))}
       </div>
     </div>
   );
 }
+
+interface ThumbnailProps {
+  image: File;
+  onClick: () => void;
+}
+
+const Thumbnail = function Thumbnail({ image, onClick }: ThumbnailProps) {
+  return (
+    <div className="relative h-[72px] w-[72px] flex-shrink-0">
+      <Image src={URL.createObjectURL(image)} alt="image" className="object-cover" fill />
+      <Image
+        src="/assets/icons/16/Delete.svg"
+        alt="close"
+        className="absolute right-1 top-1 cursor-pointer"
+        width={16}
+        height={16}
+        onClick={onClick}
+      />
+    </div>
+  );
+};
+
+export default memo(ImageUpload);

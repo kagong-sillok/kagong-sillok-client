@@ -1,8 +1,9 @@
 import { PlaceDetail } from './components';
 import { Keys as PlaceKeys, getPlace } from '@/apis/place';
+import ErrorPage from '@/app/error';
 import { Loading } from '@/components';
 import { HydrationProvider } from '@/providers/HydrationProvider';
-import { Suspense } from 'react';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 interface PlacePageProps {
   params: {
@@ -15,11 +16,11 @@ export default function PlacePage({ params }: PlacePageProps) {
 
   return (
     <main>
-      <Suspense fallback={<Loading />}>
+      <QueryAsyncBoundary rejectedFallback={<ErrorPage />} pendingFallback={<Loading />}>
         <HydrationProvider queryFn={() => getPlace(placeId)} queryKey={PlaceKeys.place(placeId)}>
           <PlaceDetail />
         </HydrationProvider>
-      </Suspense>
+      </QueryAsyncBoundary>
     </main>
   );
 }
