@@ -1,4 +1,10 @@
-import { getPlace, getPlaceByTagId, getPlaceConditions, getPlacesAround } from './apis';
+import {
+  getPlace,
+  getPlaceByTagId,
+  getPlaceConditions,
+  getPlacesAround,
+  getPlaceWithTitle,
+} from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
 import { useQuery } from '@tanstack/react-query';
@@ -7,6 +13,12 @@ import type { Coordinates } from '@/types/place';
 
 export function useGetPlace(id: number) {
   return useSuspenseQuery(Keys.place(id), () => getPlace(id));
+}
+
+export function useGetPlaceWithTitle(title: string) {
+  return useQuery(Keys.placeWithTitle(title), () => getPlaceWithTitle(title), {
+    enabled: title !== '',
+  });
 }
 
 export function useGetPlaceWithTags(id: number) {
