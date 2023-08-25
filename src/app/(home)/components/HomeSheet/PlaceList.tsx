@@ -1,7 +1,6 @@
 'use client';
 
 import { useSheetContext } from '../SheetProvider';
-import { useGetImages } from '@/apis/image';
 import { useGetPlacesAround } from '@/apis/place';
 import { Spacing } from '@/components';
 import { useCoordinatesStore } from '@/store/useCoordinatesStore';
@@ -10,6 +9,8 @@ import { useRouter } from 'next/navigation';
 
 import type { Place } from '@/types/place';
 
+const isOpen = true;
+
 export default function PlaceList() {
   const { selectedPlaceId } = useSheetContext();
   const { coordinates } = useCoordinatesStore();
@@ -17,21 +18,13 @@ export default function PlaceList() {
 
   const { places } = placesAroundData;
 
-  if (selectedPlaceId) {
-    const selectedPlace = places.find((place) => place.id === selectedPlaceId);
-
-    if (selectedPlace) {
-      return (
-        <ul>
-          <PlaceItem place={selectedPlace} />
-        </ul>
-      );
-    }
-  }
+  const renderPlaces = selectedPlaceId
+    ? places.filter((place) => place.id === selectedPlaceId)
+    : places;
 
   return (
     <ul>
-      {places.map((place) => (
+      {renderPlaces.map((place) => (
         <PlaceItem key={place.id} place={place} />
       ))}
     </ul>
@@ -43,9 +36,7 @@ interface PlaceItemProps {
 }
 
 function PlaceItem({ place }: PlaceItemProps) {
-  const { id, name, tags, rating, isOpen, imageIds } = place;
-
-  const { data: imagesData } = useGetImages(imageIds);
+  const { id, name, reviewTags, rating, images } = place;
 
   const router = useRouter();
 
@@ -59,9 +50,9 @@ function PlaceItem({ place }: PlaceItemProps) {
           <p className="text-sub1">{name}</p>
           <Spacing size={2} />
           <div className="h-fit text-caption text-bk50">
-            {tags?.map((tag) => (
-              <span key={tag} className="mr-1.5">
-                {tag}
+            {reviewTags.slice(0, 3).map((tag) => (
+              <span key={tag.tagContent} className="mr-1.5">
+                {tag.tagContent}
               </span>
             ))}
           </div>
@@ -81,7 +72,7 @@ function PlaceItem({ place }: PlaceItemProps) {
         </div>
         <div className="relative h-16 w-16">
           <Image
-            src={imagesData?.images[0]?.url ?? '/assets/icons/null.svg'}
+            src={images[0]?.url ?? '/assets/icons/null.svg'}
             alt="thumbnail"
             className="object-cover"
             sizes="100%"

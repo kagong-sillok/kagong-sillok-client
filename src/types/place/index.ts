@@ -1,3 +1,5 @@
+import type { ImageObjectWithId } from '../Image';
+
 export interface BusinessHour {
   dayOfWeek: DayType;
   open: string;
@@ -20,10 +22,9 @@ export interface Place {
   address: string;
   latitude: number;
   longitude: number;
-  imageIds: number[];
-  tags: string[]; // ['#조용한', '#나만알고싶은', '#노트북']
-  rating: number;
-  isOpen: boolean;
+  images: ImageObjectWithId[];
+  reviewTags: PlaceCondition[];
+  rating: number; // 아직 api에 없음
   phone: string; // 02-1234-1234
   links: {
     linkType: LinkType;

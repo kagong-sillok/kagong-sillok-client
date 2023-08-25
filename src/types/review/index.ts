@@ -1,8 +1,10 @@
+import type { ImageObjectWithId } from '../Image';
+
 export interface Review {
   id: number;
   rating: number;
   content: string;
-  imageIds: number[];
+  images: ImageObjectWithId[];
   tagIds: number[];
   memberId: number;
   placeId: number;
