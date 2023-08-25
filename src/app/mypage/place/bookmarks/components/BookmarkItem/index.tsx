@@ -10,7 +10,7 @@ interface BookmarkItemProps {
 }
 
 export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
-  const { name, reviewTags, rating, businessHours } = data;
+  const { name, reviewTags, ratingAverage, businessHours } = data;
   const isOpen = isPlaceOpen(businessHours);
 
   return (
@@ -31,8 +31,8 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
 
           <div className="mt-1.5 flex items-center gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/icons/40/emoji-rating${rating}_on.svg`}
-              alt={`emoji-rating${rating}`}
+              src={`/assets/icons/40/emoji-ratingAverage${ratingAverage ?? 3}_on.svg`}
+              alt={`emoji-rating${ratingAverage}`}
               width={16}
               height={16}
               className="cursor-pointer"

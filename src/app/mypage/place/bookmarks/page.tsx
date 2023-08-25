@@ -13,7 +13,7 @@ const bookmarkList: APIResponse<{ places: Place[] }> = {
         longitude: 127.001285,
         images: [],
         reviewTags: [],
-        rating: 4,
+        ratingAverage: 4,
         phone: '02-1234-1234',
         links: [{ linkType: 'WEB', url: 'https://www.starbucks.co.kr/' }],
         businessHours: [
@@ -34,7 +34,7 @@ const bookmarkList: APIResponse<{ places: Place[] }> = {
         longitude: 127.12722,
         images: [],
         reviewTags: [],
-        rating: 3,
+        ratingAverage: 3,
         phone: '02-1234-1234',
         links: [{ linkType: 'WEB', url: 'https://www.starbucks.co.kr/' }],
         businessHours: [
@@ -54,7 +54,7 @@ const bookmarkList: APIResponse<{ places: Place[] }> = {
         latitude: 37.5620135,
         longitude: 127.0016985,
         images: [],
-        rating: 2,
+        ratingAverage: 2,
         reviewTags: [],
         phone: '02-1234-1234',
         links: [{ linkType: 'WEB', url: 'https://www.starbucks.co.kr/' }],
