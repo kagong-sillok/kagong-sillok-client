@@ -1,9 +1,13 @@
 'use client';
+import { useMemberTotalDuration } from '@/apis/record';
 import { Spacing } from '@/components';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { User } from '@/types/user';
+import { Suspense } from '@suspensive/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { deleteCookie } from 'cookies-next';
+import { formatDuration } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,12 +42,14 @@ interface SideMenuProps {
   open: boolean;
   onClose: () => void;
   userInfo: User | undefined;
+  totalDutation: number;
 }
 
-export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
+export default function SideMenu({ open, onClose, userInfo, totalDutation }: SideMenuProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const ref = useRef<HTMLDivElement>(null);
+
   useOnClickOutside(ref, onClose);
 
   const { nickname, email, profileImage, loginCount } = userInfo || {
@@ -53,11 +59,7 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
     loginCount: 0,
   };
 
-  if (!open) return <></>;
-
-  const handleUserClick = () => {
-    router.push(userInfo ? `/mypage` : '/auth/login');
-  };
+  if (!open) return null;
 
   const handleLogoutClick = () => {
     deleteCookie('accessToken');
@@ -66,8 +68,6 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
 
     router.push('/auth/login');
   };
-
-  console.log(userInfo);
 
   return (
     <motion.div
@@ -81,7 +81,7 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
         <div className="flex flex-col items-center justify-center gap-5">
           <div
             className="flex w-full cursor-pointer items-center justify-start gap-3"
-            onClick={handleUserClick}
+            onClick={() => router.push(userInfo ? `/mypage` : '/auth/login')}
           >
             <Image
               src={profileImage}
@@ -106,7 +106,20 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
                 <div className="h-10 w-px bg-background opacity-30" />
                 <div className="flex w-[88px] flex-col items-start justify-center  gap-0.5 text-background">
                   <div className="text-caption opacity-60">카공기록</div>
-                  <div className="text-sub2 ">8시간 20분</div>
+                  <Suspense.CSROnly fallback={null}>
+                    <div className="text-sub2">
+                      {formatDuration(
+                        {
+                          hours: Math.floor(totalDutation / 60),
+                          minutes: totalDutation % 60,
+                        },
+                        {
+                          locale: ko,
+                          zero: true,
+                        }
+                      )}
+                    </div>
+                  </Suspense.CSROnly>
                 </div>
               </div>
               <div className="flex w-full items-center justify-between text-caption">

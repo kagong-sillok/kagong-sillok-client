@@ -3,7 +3,7 @@ import { Button, Spacing } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function NotFoundPage() {
+export default function ErrorPage() {
   return (
     <main>
       <header className="fixed top-0 z-20 flex h-14 w-full min-w-[360px] max-w-[448px] justify-end py-[14px] pr-6">

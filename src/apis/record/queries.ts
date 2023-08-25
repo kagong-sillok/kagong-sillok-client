@@ -26,3 +26,11 @@ export function useMemberRecords(memberId: number) {
     refetchOnMount: 'always',
   });
 }
+
+export function useMemberTotalDuration(memberId: number) {
+  return useSuspenseQuery(Keys.memberRecords(memberId), () => getMemberRecords(memberId), {
+    enabled: memberId > 0,
+    refetchOnMount: 'always',
+    select: (data) => data.studyRecords.reduce((acc, cur) => acc + cur.duration, 0) || 0,
+  });
+}
