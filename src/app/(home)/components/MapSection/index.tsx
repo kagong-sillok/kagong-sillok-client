@@ -27,7 +27,6 @@ export default function MapSection() {
         }}
         isPanto={true}
         level={6}
-        maxLevel={8}
         onDragEnd={(map) => {
           const center = map.getCenter();
           const latitude = center.getLat();

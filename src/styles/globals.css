@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .gradient-text-t-to-b {
+    opacity: 0.4;
+    background: linear-gradient(180deg, #FFF 0%, #000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-b-to-t {
+    opacity: 0.4;
+    background: linear-gradient(180deg, #000 0%, #FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 * {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -35,3 +51,4 @@
 .react-modal-sheet-container {
   border-radius: 0 !important;
 }
+

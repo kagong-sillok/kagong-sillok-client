@@ -8,6 +8,7 @@ export interface Review {
   tagIds: number[];
   memberId: number;
   placeId: number;
+  memberProfileUrl: string;
   memberNickName: string;
   writtenAt: string;
   placeName: string;

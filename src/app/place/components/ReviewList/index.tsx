@@ -34,11 +34,13 @@ interface ReviewItemProps {
 }
 
 function ReviewItem({ review }: ReviewItemProps) {
-  const { images, content, memberNickName, rating, writtenAt } = review;
+  const { images, content, memberNickName, memberProfileUrl, rating, writtenAt } = review;
 
   return (
     <div className="flex gap-3.5">
-      <div className="h-10 w-10 shrink-0 rounded-full bg-bk20"></div>
+      <div className="relative h-10 w-10">
+        <Image src={memberProfileUrl} alt="profileImage" className="rounded-full" fill />
+      </div>
       <div className="flex flex-grow flex-col overflow-hidden">
         <div className="flex h-10 justify-between">
           <div>

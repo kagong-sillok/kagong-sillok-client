@@ -62,6 +62,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-kakao-maps-sdk", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:1.1.11"],\
             ["react-modal-sheet", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.0.0"],\
             ["sharp", "npm:0.32.5"],\
+            ["swiper", "npm:10.2.0"],\
             ["tailwind-merge", "npm:1.14.0"],\
             ["tailwind-scrollbar-hide", "npm:1.1.7"],\
             ["tailwindcss", "npm:3.3.3"],\
@@ -4426,6 +4427,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-kakao-maps-sdk", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:1.1.11"],\
             ["react-modal-sheet", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:2.0.0"],\
             ["sharp", "npm:0.32.5"],\
+            ["swiper", "npm:10.2.0"],\
             ["tailwind-merge", "npm:1.14.0"],\
             ["tailwind-scrollbar-hide", "npm:1.1.7"],\
             ["tailwindcss", "npm:3.3.3"],\
@@ -7775,6 +7777,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/supports-preserve-symlinks-flag-npm-1.0.0-f17c4d0028-53b1e247e6.zip/node_modules/supports-preserve-symlinks-flag/",\
           "packageDependencies": [\
             ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["swiper", [\
+        ["npm:10.2.0", {\
+          "packageLocation": "./.yarn/cache/swiper-npm-10.2.0-f03bf90787-b81fe81c72.zip/node_modules/swiper/",\
+          "packageDependencies": [\
+            ["swiper", "npm:10.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\

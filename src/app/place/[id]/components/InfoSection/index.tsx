@@ -6,6 +6,7 @@ import TimeInfo from './TimeInfo';
 import { CONDITION_LIST, LINK_TEXT } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { isPlaceOpen } from '@/utils/isPlaceOpen';
+import { sortTagsByFrequency } from '@/utils/sortTagsByFrequency';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,11 +23,13 @@ export default function InfoSection({ ...place }: InfoSectionProps) {
     <section>
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
-          {reviewTags?.map((tag) => (
-            <p key={tag.tagContent} className="text-violet/default text-caption">
-              {tag.tagContent}
-            </p>
-          ))}
+          {sortTagsByFrequency(reviewTags || [])
+            .slice(0, 3)
+            .map((tag) => (
+              <p key={tag.tagContent} className="text-violet/default text-caption">
+                #{tag.tagContent.replace(/ /g, '')}
+              </p>
+            ))}
         </div>
         <Tag.OpenClosed type={isOpen ? 'OPEN' : 'CLOSED'} />
       </div>

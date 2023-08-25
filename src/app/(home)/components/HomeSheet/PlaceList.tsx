@@ -5,6 +5,7 @@ import { useGetPlacesAround } from '@/apis/place';
 import { Spacing } from '@/components';
 import { useCoordinatesStore } from '@/store/useCoordinatesStore';
 import { isPlaceOpen } from '@/utils/isPlaceOpen';
+import { sortTagsByFrequency } from '@/utils/sortTagsByFrequency';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -49,11 +50,13 @@ function PlaceItem({ place }: PlaceItemProps) {
           <p className="text-sub1">{name}</p>
           <Spacing size={2} />
           <div className="h-fit text-caption text-bk50">
-            {reviewTags.slice(0, 3).map((tag) => (
-              <span key={tag.tagContent} className="mr-1.5">
-                {tag.tagContent}
-              </span>
-            ))}
+            {sortTagsByFrequency(reviewTags)
+              .slice(0, 3)
+              .map((tag) => (
+                <span key={tag.tagContent} className="mr-1.5">
+                  #{tag.tagContent.replace(/ /g, '')}
+                </span>
+              ))}
           </div>
           <Spacing size={8} />
           <div className="flex gap-1.5 text-caption text-bk100">
@@ -63,8 +66,6 @@ function PlaceItem({ place }: PlaceItemProps) {
               width={16}
               alt="emoji"
             />
-            <span className="text-bk30">•</span>
-            <span>80m</span>
             <span className="text-bk30">•</span>
             <span>{isPlaceOpen(businessHours) ? '영업중' : '영업종료'}</span>
           </div>

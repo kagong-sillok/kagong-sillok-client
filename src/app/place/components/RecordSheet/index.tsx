@@ -1,9 +1,12 @@
 'use client';
+
+import TimePicker from './TimePicker';
 import { useImagesUpload } from '@/apis/image';
 import { usePostStudyRecord } from '@/apis/record';
 import { useGetUserInfo } from '@/apis/user';
 import { Button, ImageUpload, BottomSheet, Modal } from '@/components';
 import { getDate, getMonth, getYear } from 'date-fns';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 
@@ -19,6 +22,11 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [images, setImages] = useState<File[]>([]);
   const [description, setDescription] = useState('');
+  const [duration, setDuration] = useState({
+    hour: '0',
+    minute: '0',
+  });
+
   const ref = useRef<SheetRef>();
 
   const { data: userInfoData } = useGetUserInfo({});
@@ -50,7 +58,7 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         studyYear: getYear(date),
         description,
         imageIds,
-        duration: 80,
+        duration: Number(duration.hour) * 60 + Number(duration.minute),
       },
       {
         onSuccess: () => {
@@ -76,6 +84,7 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         snapPoints={[-70]}
         initialSnap={0}
         isBackDrop={true}
+        disableDrag
       >
         <div className="h-full px-6 pb-20 pt-8">
           <h3 className="mb-8 text-head3">
@@ -88,18 +97,23 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
           <hr className="my-6 text-bk10" />
 
           <p className="mb-4 text-center text-body2 text-bk60">카공을 얼마나 했나요?</p>
-          <div className="mx-auto flex h-28 w-28 items-center justify-between text-head2">
-            <div className="flex flex-col items-center">
-              <p>00</p>
-              <p>01</p>
-              <p>02</p>
-            </div>
-            <span className="text-body1">:</span>
-            <div className="flex flex-col items-center">
-              <p>00</p>
-              <p>30</p>
-              <p>00</p>
-            </div>
+          <div className="relative mx-auto flex h-28 w-32 items-center justify-center text-head2">
+            {/* <div className="absolute left-0 top-0 w-full bg-yellow" /> */}
+            <TimePicker
+              currentSlide={duration.hour}
+              slideList={Array.from({ length: 24 }, (_, index) => '' + index)}
+              onSlideChange={(activeIndex) =>
+                setDuration((prev) => ({ ...prev, hour: activeIndex }))
+              }
+            />
+            <Image src="/assets/icons/colon.svg" alt="colon" width={2} height={10} />
+            <TimePicker
+              currentSlide={duration.minute}
+              slideList={Array.from({ length: 6 }, (_, index) => '' + index * 10)}
+              onSlideChange={(activeIndex) =>
+                setDuration((prev) => ({ ...prev, minute: activeIndex }))
+              }
+            />
           </div>
 
           <hr className="mb-6 mt-8 text-bk10" />
@@ -125,12 +139,21 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         <Button
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
           onClick={handleSubmit}
+          disabled={!description}
         >
           카공 기록등록
         </Button>
       )}
       <Modal isOpen={isModalOpen}>
-        <Modal.Content>카공 기록을 등록했어요!</Modal.Content>
+        <Modal.Content>
+          카공 기록을 등록했어요!
+          <br />
+          <Link href="/mypage/record" className="inline-block">
+            <p className="cursor-pointer text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2">
+              기록 보러가기
+            </p>
+          </Link>
+        </Modal.Content>
         <Modal.Footer>
           <Button onClick={handleModalClose}>확인</Button>
         </Modal.Footer>
