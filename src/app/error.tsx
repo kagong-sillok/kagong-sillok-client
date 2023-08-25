@@ -1,3 +1,4 @@
+'use client';
 import { Button, Spacing } from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +12,7 @@ export default function NotFoundPage() {
         </Link>
       </header>
       <div className="flex h-screen flex-col justify-center px-6">
-        <h3 className="text-head3">페이지를 찾을 수 없습니다!</h3>
+        <h3 className="text-head3">오류가 발생했습니다!</h3>
         <Spacing size={8} />
         <p className="text-caption text-bk40">
           존재하지 않는 주소를 입력하셨거나, <br />

@@ -90,6 +90,7 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
               width={52}
               height={52}
               className="rounded-full"
+              priority
             />
             <div className="flex flex-col items-start justify-center gap-0.5">
               <div className="text-sub1">{nickname}</div>
