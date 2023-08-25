@@ -1,6 +1,5 @@
 'use client';
 
-import records from '../../../../../../../public/db/records.json';
 import { StudyRecord, TimeLineDate, TimelineRecord } from '@/types/record';
 import { format } from 'date-fns';
 import Image from 'next/image';
@@ -24,8 +23,7 @@ function Monthly({
   data: { studyRecords: TimelineRecord[] } | undefined;
 }) {
   const [value, setValue] = useState<Value>(new Date());
-  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
-  const studyDays = recordList.data.studyRecords.map((el) => el.studyDate);
+  const studyDays = data?.studyRecords.map((el) => el.studyDate);
 
   const handleChange = (date: Date) => {
     const [year, month] = format(date, 'yyyy-MM-dd').split('-');
@@ -48,7 +46,7 @@ function Monthly({
         calendarType="gregory"
         tileContent={({ date, view }) => {
           const formatedDate = format(new Date(date), 'yyyy-MM-dd');
-          const status = studyDays.includes(formatedDate) ? 'on' : 'off';
+          const status = studyDays?.includes(formatedDate) ? 'on' : 'off';
           return view === 'month' ? (
             <div className="custom">
               <Image

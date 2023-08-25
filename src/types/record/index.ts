@@ -1,3 +1,4 @@
+import { ImageObjectWithId } from '../Image';
 import { BusinessHours, LinkType } from '../place';
 
 export interface StudyRecord {
@@ -8,7 +9,7 @@ export interface StudyRecord {
   studyDate: string; // '2023-07-27'
   description: string;
   duration: number;
-  imageIds: number[];
+  images: ImageObjectWithId[];
   writtenAt: string; // '2023-07-27T15:21:09.332Z'
 }
 
@@ -18,7 +19,7 @@ export interface TimelineRecord {
   studyDate: string; // '2023-07-27'
   description: string;
   duration: number;
-  imageIds: number[];
+  images: ImageObjectWithId[];
   writtenAt: string; // '2023-07-27T15:21:09.332Z'
 }
 
@@ -28,7 +29,7 @@ export interface PlaceRecord {
   address: string;
   latitude: number;
   longitude: number;
-  imageIds: number[];
+  images: ImageObjectWithId[];
   phone: string;
   links: {
     linkType: LinkType;
@@ -43,7 +44,7 @@ export interface MemberRecord {
   studyDate: string; // '2023-07-27'
   description: string;
   duration: number;
-  imageIds: number[];
+  images: ImageObjectWithId[];
   writtenAt: string; // '2023-07-27T15:21:09.332Z'
 }
 

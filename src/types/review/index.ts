@@ -11,6 +11,7 @@ export interface Review {
   memberProfileUrl: string;
   memberNickName: string;
   writtenAt: string;
+  placeName: string;
 }
 
 export interface ReviewPayload {

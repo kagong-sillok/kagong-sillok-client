@@ -1,6 +1,5 @@
 'use client';
 
-import records from '../../../../../../../public/db/records.json';
 import { StudyRecord, TimelineRecord } from '@/types/record';
 import { format, startOfWeek } from 'date-fns';
 import Image from 'next/image';
@@ -20,8 +19,7 @@ function Weekly({
   const [year, month, day] = format(startOfWeek(today), 'yyyy-MM-dd').split('-');
   const days = Array.from({ length: 7 }, (_, i) => `${year}-${month}-${Number(day) + i}`);
 
-  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
-  const studyDays = recordList.data.studyRecords.map((el) => el.studyDate);
+  const studyDays = data?.studyRecords.map((el) => el.studyDate);
 
   return (
     <div className="relative flex h-40 w-full flex-col items-center justify-center gap-[15px] bg-point/default px-6 py-5">
@@ -56,7 +54,7 @@ function Weekly({
       <div className="relative flex w-full items-center justify-between">
         {days.map((el) => {
           const [year, month, day] = el.split('-');
-          const status = studyDays.includes(el) ? 'on' : 'off';
+          const status = studyDays?.includes(el) ? 'on' : 'off';
           return (
             <div
               key={el}

@@ -1,4 +1,5 @@
 import api from '../config/instance';
+import { Place } from '@/types/place';
 
 import type { StudyRecordPayload } from './types';
 import type { MemberRecord, PlaceRecord, TimelineRecord } from '@/types/record';
@@ -14,9 +15,7 @@ export const getTimelineRecords = async (memberId: number, year: number, month: 
 };
 
 export const getPlaceRecords = async (memberId: number) => {
-  const { data } = await api.get<{ places: PlaceRecord[] }>(
-    `api/v1/study-records/places/${memberId}`
-  );
+  const { data } = await api.get<{ places: Place[] }>(`api/v1/study-records/places/${memberId}`);
   return data;
 };
 

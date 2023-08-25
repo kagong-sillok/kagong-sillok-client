@@ -35,7 +35,7 @@ function LayoutHeader() {
     <>
       <TopNavigationBar
         title={page === 'RECORD' ? '카공기록' : ''}
-        onBackClick={() => router.back()}
+        onBackClick={() => router.push('/')}
         rightNode={
           <Image
             src="/assets/icons/28/Close.svg"
