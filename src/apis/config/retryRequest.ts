@@ -1,5 +1,5 @@
 import { postRefresh } from '../auth';
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 import ky from 'ky';
 
 import type { AfterResponseHook } from 'ky';
@@ -23,7 +23,8 @@ export const retryRequest: AfterResponseHook = async (request, options, response
         return ky(request, options);
       } catch (error) {
         console.log(error);
-        window.alert('로그인이 필요합니다.');
+        deleteCookie('accessToken');
+        deleteCookie('refreshToken');
         window.location.href = '/auth/login'; // TODO: Next의 Redirect가 안돼서 일단 이렇게 처리
       }
     }
