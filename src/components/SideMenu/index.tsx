@@ -1,5 +1,6 @@
 'use client';
 import { Spacing } from '@/components';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { User } from '@/types/user';
 import { useQueryClient } from '@tanstack/react-query';
 import { deleteCookie } from 'cookies-next';
@@ -7,6 +8,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 interface IconButtonProps {
   label: string;
@@ -42,6 +44,8 @@ interface SideMenuProps {
 export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, onClose);
 
   const { nickname, email, profileImage, loginCount } = userInfo || {
     nickname: '로그인이 필요합니다.',
@@ -64,14 +68,16 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
     router.push('/auth/login');
   };
 
+  console.log(userInfo);
+
   return (
     <motion.div
-      className="absolute left-0 top-0 z-50 flex h-screen w-full items-start justify-start"
+      className="absolute left-0 top-0 z-50 h-screen w-full bg-bk100 bg-opacity-60"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
     >
-      <div className="h-full w-72 bg-white px-6 py-5">
+      <div ref={ref} className="relative h-full w-72 shrink bg-white px-6 py-5">
         <Spacing size={20} />
         <div className="flex flex-col items-center justify-center gap-5">
           <div
@@ -90,36 +96,40 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
               <div className="text-caption text-bk40">{email}</div>
             </div>
           </div>
-          <div className="flex w-full items-center justify-start gap-4 bg-bk100 p-4">
-            <div className="flex w-[88px] flex-col items-start justify-center gap-0.5 text-background">
-              <div className="text-caption opacity-60">카공실록 방문일</div>
-              <div className="text-sub2 ">{loginCount}일</div>
-            </div>
-            <div className="h-10 w-px bg-background opacity-30" />
-            <div className="flex w-[88px] flex-col items-start justify-center  gap-0.5 text-background">
-              <div className="text-caption opacity-60">카공기록</div>
-              <div className="text-sub2 ">8시간 20분</div>
-            </div>
-          </div>
-          <div className="flex w-full items-center justify-between text-caption">
-            {pages.map((item) => {
-              return (
-                <IconButton
-                  key={item.link}
-                  label={item.label}
-                  icon={
-                    <Image
-                      src="/assets/icons/28/Bookmark.svg"
-                      alt="Bookmark"
-                      width={28}
-                      height={28}
+          {userInfo && (
+            <>
+              <div className="flex w-full items-center justify-start gap-4 bg-bk100 p-4">
+                <div className="flex w-[88px] flex-col items-start justify-center gap-0.5 text-background">
+                  <div className="text-caption opacity-60">카공실록 방문일</div>
+                  <div className="text-sub2 ">{loginCount}일</div>
+                </div>
+                <div className="h-10 w-px bg-background opacity-30" />
+                <div className="flex w-[88px] flex-col items-start justify-center  gap-0.5 text-background">
+                  <div className="text-caption opacity-60">카공기록</div>
+                  <div className="text-sub2 ">8시간 20분</div>
+                </div>
+              </div>
+              <div className="flex w-full items-center justify-between text-caption">
+                {pages.map((item) => {
+                  return (
+                    <IconButton
+                      key={item.link}
+                      label={item.label}
+                      icon={
+                        <Image
+                          src="/assets/icons/28/Bookmark.svg"
+                          alt="Bookmark"
+                          width={28}
+                          height={28}
+                        />
+                      }
+                      link={item.link}
                     />
-                  }
-                  link={item.link}
-                />
-              );
-            })}
-          </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
         <div className="my-6 h-px w-full bg-bk10" />
         <div className="flex flex-col items-center justify-center gap-5">
@@ -146,28 +156,27 @@ export default function SideMenu({ open, onClose, userInfo }: SideMenuProps) {
           </div>
           <div className="flex w-full items-center justify-between">
             <div className="text-sub2">버전정보</div>
-            <div className="text-caption text-bk40">1.3.6</div>
+            <div className="text-caption text-bk40">1.0.0</div>
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-5 left-6 z-50 flex w-full items-center justify-start gap-3 text-body2 text-bk40">
-        <div className="cursor-pointer" onClick={handleLogoutClick}>
-          로그아웃
-        </div>
-        <div className="h-3 w-px bg-bk20" />
-        <div className="cursor-pointer">탈퇴하기</div>
-      </div>
-      <div className="relative h-full w-full">
         <Image
           src="/assets/icons/28/Close.svg"
           alt="Close"
           width={28}
           height={28}
-          className="absolute left-5 top-[14px] z-10 cursor-pointer invert filter"
+          className="absolute -right-[44px] top-[14px] z-10 cursor-pointer invert filter"
           onClick={onClose}
         />
-        <div className={`h-full w-full cursor-pointer bg-bk100 opacity-60`} onClick={onClose} />
       </div>
+      {userInfo && (
+        <div className="absolute bottom-5 left-6 z-50 flex w-full items-center justify-start gap-3 text-body2 text-bk40">
+          <div className="cursor-pointer" onClick={handleLogoutClick}>
+            로그아웃
+          </div>
+          <div className="h-3 w-px bg-bk20" />
+          <div className="cursor-pointer">탈퇴하기</div>
+        </div>
+      )}
     </motion.div>
   );
 }

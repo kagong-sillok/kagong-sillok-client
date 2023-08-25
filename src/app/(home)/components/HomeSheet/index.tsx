@@ -27,7 +27,6 @@ export default function HomeSheet() {
 
   return (
     <>
-      <SheetButton onClick={() => snapTo(isBottomSheetUp ? snapPoints.length - 1 : 0)} />
       <BottomSheet
         ref={ref}
         isOpen={!isServer}
@@ -37,6 +36,7 @@ export default function HomeSheet() {
         initialSnap={1}
         onSnap={(index) => setIsBottomSheetUp(index === 0)}
       >
+        <SheetButton onClick={() => snapTo(isBottomSheetUp ? snapPoints.length - 1 : 0)} />
         {!isBottomSheetUp && <LocationButton />}
         <Suspense
           fallback={<div className="text-center text-body2 text-bk40">잠시만 기다려주세요</div>}
