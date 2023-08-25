@@ -1,7 +1,9 @@
 'use client';
-import { usePostStudyRecordMutation } from '@/apis/record';
+import { useImagesUpload } from '@/apis/image';
+import { usePostStudyRecord } from '@/apis/record';
 import { useGetUserInfo } from '@/apis/user';
-import { Button, ImageUpload, BottomSheet } from '@/components';
+import { Button, ImageUpload, BottomSheet, Modal } from '@/components';
+import { getDate, getMonth, getYear } from 'date-fns';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 
@@ -9,28 +11,61 @@ import type { SheetRef } from 'react-modal-sheet';
 
 interface RecordSheetProps {
   isOpen: boolean;
-  onClose: () => void;
   placeId: number;
+  onClose: () => void;
 }
 
 export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [images, setImages] = useState<File[]>([]);
   const [description, setDescription] = useState('');
+  const ref = useRef<SheetRef>();
 
   const { data: userInfoData } = useGetUserInfo({});
-
   const memberId = userInfoData?.id as number;
 
-  const { data } = usePostStudyRecordMutation(memberId);
-
-  const ref = useRef<SheetRef>();
+  const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
+  const { mutate: postStudyRecordMutate } = usePostStudyRecord(memberId);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 10) e.target.value = e.target.value.slice(0, 10);
     setDescription(e.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    const date = new Date();
+    const imageIds = !!images.length
+      ? await uploadImagesMutateAsync({
+          files: images,
+          folderName: 'review',
+        }).then((res) => res.images.map((image) => image.id))
+      : [];
+
+    postStudyRecordMutate(
+      {
+        memberId,
+        placeId,
+        studyDay: getDate(date),
+        studyMonth: getMonth(date) + 1,
+        studyYear: getYear(date),
+        description,
+        imageIds,
+        duration: 80,
+      },
+      {
+        onSuccess: () => {
+          setIsModalOpen(true);
+        },
+      }
+    );
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    onClose();
+    setImages([]);
+    setDescription('');
+  };
 
   return (
     <>
@@ -94,6 +129,12 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
           카공 기록등록
         </Button>
       )}
+      <Modal isOpen={isModalOpen}>
+        <Modal.Content>카공 기록을 등록했어요!</Modal.Content>
+        <Modal.Footer>
+          <Button onClick={handleModalClose}>확인</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { postStudyRecord } from './apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export function usePostStudyRecordMutation(memberId: number) {
+export function usePostStudyRecord(memberId: number) {
   const queryClient = useQueryClient();
 
   return useMutation(postStudyRecord, {

@@ -5,9 +5,10 @@ import { useGetUserInfo } from '@/apis/user';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, LoginModal, Spacing } from '@/components';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { getMonth } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export default function ReviewSection() {
