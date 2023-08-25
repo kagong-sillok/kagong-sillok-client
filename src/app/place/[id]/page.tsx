@@ -2,7 +2,6 @@ import { PlaceDetail } from './components';
 import { Keys as PlaceKeys, getPlace } from '@/apis/place';
 import { Loading } from '@/components';
 import { HydrationProvider } from '@/providers/HydrationProvider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { Suspense } from 'react';
 
 interface PlacePageProps {
