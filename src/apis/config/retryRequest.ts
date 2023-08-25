@@ -25,7 +25,6 @@ export const retryRequest: AfterResponseHook = async (request, options, response
         console.log(error);
         deleteCookie('accessToken');
         deleteCookie('refreshToken');
-        window.location.href = '/auth/login'; // TODO: Next의 Redirect가 안돼서 일단 이렇게 처리
       }
     }
   }

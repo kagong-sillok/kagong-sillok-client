@@ -6,7 +6,5 @@ import { useQuery } from '@tanstack/react-query';
 import type { UserInfoParams } from './types';
 
 export function useGetUserInfo(params: UserInfoParams) {
-  return useQuery(Keys.userInfo(params), () => getUserInfo(params), {
-    enabled: isLogin(),
-  });
+  return useQuery(Keys.userInfo(params), () => getUserInfo(params));
 }

@@ -24,6 +24,15 @@ export default function PlaceList() {
     ? places.filter((place) => place.reviewTags.some((tag) => tag.id === selectedTagId))
     : places;
 
+  if (!renderPlaces.length)
+    return (
+      <div className="flex h-full flex-col items-center justify-center">
+        <Image src="/assets/icons/36/info.svg" alt="info" width={36} height={36} />
+        <Spacing size={10} />
+        <p className="text-caption text-bk60">주변에 카페가 없어요.</p>
+      </div>
+    );
+
   return (
     <ul>
       {renderPlaces.map((place) => (

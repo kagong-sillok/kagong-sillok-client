@@ -5,7 +5,6 @@ import { useSheetContext } from '../SheetProvider';
 import { useMemberTotalDuration } from '@/apis/record';
 import { useGetUserInfo } from '@/apis/user';
 import { SideMenu, Spacing } from '@/components';
-import { Suspense } from '@suspensive/react';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -43,18 +42,16 @@ export default function Header() {
         {!isBottomSheetUp && <TagList />}
         <Spacing size={12} />
       </header>
-      <Suspense.CSROnly fallback={null}>
-        <AnimatePresence>
-          {isMenuVisible && (
-            <SideMenu
-              open={isMenuVisible}
-              onClose={() => setIsMenuVisible(false)}
-              userInfo={userInfoData}
-              totalDutation={totalDutationData || 0}
-            />
-          )}
-        </AnimatePresence>
-      </Suspense.CSROnly>
+      <AnimatePresence>
+        {isMenuVisible && (
+          <SideMenu
+            open={isMenuVisible}
+            onClose={() => setIsMenuVisible(false)}
+            userInfo={userInfoData}
+            totalDutation={totalDutationData || 0}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

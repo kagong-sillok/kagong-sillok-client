@@ -1,6 +1,7 @@
 import { getTimelineRecords, getPlaceRecords, getMemberRecords } from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export function useTimelineRecords(memberId: number, year: number, month: number) {
   return useSuspenseQuery(
@@ -28,7 +29,7 @@ export function useMemberRecords(memberId: number) {
 }
 
 export function useMemberTotalDuration(memberId: number) {
-  return useSuspenseQuery(Keys.memberRecords(memberId), () => getMemberRecords(memberId), {
+  return useQuery(Keys.memberRecords(memberId), () => getMemberRecords(memberId), {
     enabled: memberId > 0,
     refetchOnMount: 'always',
     select: (data) => data.studyRecords.reduce((acc, cur) => acc + cur.duration, 0) || 0,

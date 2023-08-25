@@ -27,8 +27,10 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
 
   const memberId = userInfoData?.id as number;
 
-  const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
-  const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
+  const { mutateAsync: uploadImagesMutateAsync, isLoading: isUploadImagesLoading } =
+    useImagesUpload();
+  const { mutate: postReviewMutate, isLoading: isPostReviewLoading } =
+    usePostReviewMutation(placeId);
 
   const ref = useRef<SheetRef>();
 
@@ -150,7 +152,7 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
       {isOpen && (
         <Button
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
-          disabled={!rating || !content}
+          disabled={!rating || !content || isUploadImagesLoading || isPostReviewLoading}
           onClick={handlePostReviewClick}
         >
           리뷰등록

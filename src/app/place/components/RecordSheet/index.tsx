@@ -32,8 +32,10 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
   const { data: userInfoData } = useGetUserInfo({});
   const memberId = userInfoData?.id as number;
 
-  const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
-  const { mutate: postStudyRecordMutate } = usePostStudyRecord(memberId);
+  const { mutateAsync: uploadImagesMutateAsync, isLoading: isUploadImagesLoading } =
+    useImagesUpload();
+  const { mutate: postStudyRecordMutate, isLoading: isPostStudyRecordLoading } =
+    usePostStudyRecord(memberId);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 10) e.target.value = e.target.value.slice(0, 10);
@@ -139,7 +141,7 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         <Button
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
           onClick={handleSubmit}
-          disabled={!description}
+          disabled={!description || isUploadImagesLoading || isPostStudyRecordLoading}
         >
           카공 기록등록
         </Button>

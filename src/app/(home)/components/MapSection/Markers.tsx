@@ -32,31 +32,39 @@ export default function Markers() {
 
   return (
     <>
-      {placesAroundData?.places.map((place) => (
-        <CustomOverlayMap
-          key={place.id}
-          position={{
-            lat: place.latitude,
-            lng: place.longitude,
-          }}
-        >
-          <motion.div
-            className={cn('relative h-[72px] w-[72px]')}
-            initial={{ scale: 0, y: 40 }}
-            animate={{ scale: 1, y: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+      {placesAroundData?.places.map((place) => {
+        const isPlaceSelected = selectedPlaceId === place.id;
+        return (
+          <CustomOverlayMap
+            key={place.id}
+            position={{
+              lat: place.latitude,
+              lng: place.longitude,
+            }}
+            xAnchor={0.5}
+            yAnchor={isPlaceSelected ? 0.5 : 1}
           >
-            <Image
-              onClick={() => handleMarkerClick(place.id, place.latitude, place.longitude)}
-              draggable={false}
-              src={`/assets/icons/marker.svg`}
-              alt="marker"
-              fill
-            />
-          </motion.div>
-        </CustomOverlayMap>
-      ))}
+            <motion.div
+              className={cn('relative', {
+                'h-[72px] w-[72px]': isPlaceSelected,
+                'h-[19px] w-[19px]': !isPlaceSelected,
+              })}
+              initial={isPlaceSelected ? { scale: 0, y: 40 } : { scale: 0, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Image
+                onClick={() => handleMarkerClick(place.id, place.latitude, place.longitude)}
+                draggable={false}
+                src={`/assets/icons/${isPlaceSelected ? 'marker' : 'small_marker'}.svg`}
+                alt="marker"
+                fill
+              />
+            </motion.div>
+          </CustomOverlayMap>
+        );
+      })}
     </>
   );
 }
