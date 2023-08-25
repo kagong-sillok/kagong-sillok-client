@@ -71,7 +71,7 @@ function PlaceItem({ place }: PlaceItemProps) {
         </div>
         <div className="relative h-16 w-16">
           <Image
-            src={images[0]?.url ?? '/assets/icons/null.svg'}
+            src={images[0]?.url || '/assets/icons/null.svg'}
             alt="thumbnail"
             className="object-cover"
             sizes="100%"
