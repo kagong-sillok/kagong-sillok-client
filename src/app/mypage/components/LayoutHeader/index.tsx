@@ -1,9 +1,10 @@
 'use client';
 
 import { Tab, TabGroup, Header } from '..';
+import { useGetUserInfo } from '@/apis/user';
 import { TopNavigationBar } from '@/components';
 import Image from 'next/image';
-import { useSelectedLayoutSegments, useRouter } from 'next/navigation';
+import { useSelectedLayoutSegments, useRouter, redirect } from 'next/navigation';
 
 import type { PageType, UserData, ViewType } from '@/types/mypage';
 
@@ -20,13 +21,16 @@ const views: TabItems = {
   ],
 };
 
-// 아직 유저 데이터가 없어 임시로 만든 데이터임
-const userData: UserData = { name: '카페처돌이', time: '2023-06-01T01:20:00' };
-
 function LayoutHeader() {
+  const { data: userInfoData } = useGetUserInfo({});
   const segments = useSelectedLayoutSegments();
   const router = useRouter();
   const page = segments[0].toUpperCase();
+
+  if (!userInfoData) {
+    redirect('/auth/login');
+  }
+
   return (
     <>
       <TopNavigationBar
@@ -43,7 +47,7 @@ function LayoutHeader() {
           />
         }
       />
-      <Header page={page as PageType} user={userData} />
+      <Header page={page as PageType} user={userInfoData} />
       <TabGroup>
         {segments.length > 0 &&
           views[page as PageType].map((el) => {
