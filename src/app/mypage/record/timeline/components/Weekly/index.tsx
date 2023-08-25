@@ -1,5 +1,7 @@
 'use client';
 
+import records from '../../../../../../../public/db/records.json';
+import { StudyRecord, TimelineRecord } from '@/types/record';
 import { format, startOfWeek } from 'date-fns';
 import Image from 'next/image';
 
@@ -7,10 +9,19 @@ import type { CalendarType } from '@/types/mypage';
 
 const koDays = ['일', '월', '화', '수', '목', '금', '토'];
 
-function Weekly({ onViewChange }: { onViewChange: (type: CalendarType) => void }) {
+function Weekly({
+  onViewChange,
+  data,
+}: {
+  onViewChange: (type: CalendarType) => void;
+  data: { studyRecords: TimelineRecord[] } | undefined;
+}) {
   const today = new Date();
   const [year, month, day] = format(startOfWeek(today), 'yyyy-MM-dd').split('-');
-  const days = Array.from({ length: 7 }, (_, i) => Number(day) + i);
+  const days = Array.from({ length: 7 }, (_, i) => `${year}-${month}-${Number(day) + i}`);
+
+  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
+  const studyDays = recordList.data.studyRecords.map((el) => el.studyDate);
 
   return (
     <div className="relative flex h-40 w-full flex-col items-center justify-center gap-[15px] bg-point/default px-6 py-5">
@@ -44,18 +55,20 @@ function Weekly({ onViewChange }: { onViewChange: (type: CalendarType) => void }
       </div>
       <div className="relative flex w-full items-center justify-between">
         {days.map((el) => {
+          const [year, month, day] = el.split('-');
+          const status = studyDays.includes(el) ? 'on' : 'off';
           return (
             <div
               key={el}
               className="flex h-[45px] w-11 flex-col items-center justify-center gap-[5px] text-caption text-background"
             >
               <Image
-                src="/assets/icons/24/calendar_off.svg"
+                src={`/assets/icons/24/calendar_${status}.svg`}
                 alt="calendar_off"
                 width={24}
                 height={24}
               />
-              <div>{el}</div>
+              <div>{day}</div>
             </div>
           );
         })}

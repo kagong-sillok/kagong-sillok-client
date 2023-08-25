@@ -1,19 +1,36 @@
 'use client';
 
+import records from '../../../../../../../public/db/records.json';
+import { StudyRecord, TimeLineDate, TimelineRecord } from '@/types/record';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Calendar } from 'react-calendar';
+
 import '@/styles/calendar.css';
-
 import type { CalendarType } from '@/types/mypage';
-import type { LooseValue } from 'react-calendar/dist/cjs/shared/types';
 
-// 임시 데이터
-const marks = ['2023.06.01', '2023.06.11', '2023.06.14'];
+type ValuePiece = Date | null;
 
-function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void }) {
-  const [value, setValue] = useState<LooseValue>(new Date());
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+function Monthly({
+  onViewChange,
+  updateCurrentDate,
+  data,
+}: {
+  onViewChange: (type: CalendarType) => void;
+  updateCurrentDate: (date: TimeLineDate) => void;
+  data: { studyRecords: TimelineRecord[] } | undefined;
+}) {
+  const [value, setValue] = useState<Value>(new Date());
+  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
+  const studyDays = recordList.data.studyRecords.map((el) => el.studyDate);
+
+  const handleChange = (date: Date) => {
+    const [year, month] = format(date, 'yyyy-MM-dd').split('-');
+    updateCurrentDate({ year: Number(year), month: Number(month) });
+  };
 
   return (
     <div className="relative">
@@ -25,11 +42,13 @@ function Monthly({ onViewChange }: { onViewChange: (type: CalendarType) => void 
       </div>
       <Calendar
         onChange={setValue}
+        onClickMonth={(value: Date) => handleChange(value)}
+        onClickYear={(value: Date) => handleChange(value)}
         value={value}
         calendarType="gregory"
         tileContent={({ date, view }) => {
-          const formatedDate = format(new Date(date), 'yyyy.MM.dd');
-          const status = marks.includes(formatedDate) ? 'on' : 'off';
+          const formatedDate = format(new Date(date), 'yyyy-MM-dd');
+          const status = studyDays.includes(formatedDate) ? 'on' : 'off';
           return view === 'month' ? (
             <div className="custom">
               <Image

@@ -1,3 +1,4 @@
+import { useGetImages } from '@/apis/image';
 import { Dot } from '@/app/mypage/components';
 import { format } from 'date-fns';
 import Image from 'next/image';
@@ -9,8 +10,11 @@ interface RecordItemProps {
 }
 
 export default function RecordItem({ data }: RecordItemProps) {
-  const { placeName, description, studyDate } = data;
+  const { placeName, description, studyDate, imageIds } = data;
   const date = format(new Date(studyDate), "h'시간' m'분'");
+  const { data: imagesData } = useGetImages(imageIds);
+  const imgSrc = imagesData?.images.length ? imagesData?.images[0].url : '/assets/Icons/null.svg';
+
   return (
     <>
       <div className="flex w-full items-center justify-between gap-4">
@@ -22,7 +26,7 @@ export default function RecordItem({ data }: RecordItemProps) {
             <div>{date}</div>
           </div>
         </div>
-        <Image src="/assets/Icons/null.svg" width={64} height={64} alt="default" />
+        <Image src={imgSrc} width={64} height={64} alt="default" />
       </div>
     </>
   );
