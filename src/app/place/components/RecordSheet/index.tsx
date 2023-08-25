@@ -125,6 +125,7 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         <Button
           className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
           onClick={handleSubmit}
+          disabled={!description}
         >
           카공 기록등록
         </Button>
