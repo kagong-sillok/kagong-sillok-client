@@ -3483,6 +3483,7 @@ __metadata:
     react-kakao-maps-sdk: ^1.1.11
     react-modal-sheet: ^2.0.0
     sharp: ^0.32.5
+    swiper: ^10.2.0
     tailwind-merge: ^1.14.0
     tailwind-scrollbar-hide: ^1.1.7
     tailwindcss: ^3.3.3
@@ -6414,6 +6415,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "swiper@npm:10.2.0"
+  checksum: b81fe81c72b92d0c7d0ba0eb1ea96a7e29de6b67d059fc9d01a0c5285dcadd66f25d258f32c05f87bf54663cf8b09d26b38be5029c064c4822768782772cc025
   languageName: node
   linkType: hard
 

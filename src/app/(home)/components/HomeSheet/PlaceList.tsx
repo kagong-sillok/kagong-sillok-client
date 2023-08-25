@@ -67,8 +67,6 @@ function PlaceItem({ place }: PlaceItemProps) {
               alt="emoji"
             />
             <span className="text-bk30">•</span>
-            <span>80m</span>
-            <span className="text-bk30">•</span>
             <span>{isPlaceOpen(businessHours) ? '영업중' : '영업종료'}</span>
           </div>
         </div>

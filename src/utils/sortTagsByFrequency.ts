@@ -1,7 +1,6 @@
 import type { PlaceCondition } from '@/types/place';
 
 export function sortTagsByFrequency(Tags: PlaceCondition[]) {
-  console.log(Tags);
   const tagCounts = new Map();
 
   const sortedTags = Tags.reduce<PlaceCondition[]>((result, item) => {
