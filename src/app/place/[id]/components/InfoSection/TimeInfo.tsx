@@ -2,6 +2,7 @@
 import { DAYS_OF_WEEK } from '@/app/place/constants';
 import { Spacing } from '@/components';
 import { formatTime } from '@/utils/formatTime';
+import { getCurrentDay } from '@/utils/getCurrentDay';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -9,11 +10,14 @@ import type { Place } from '@/types/place';
 
 interface TimeInfoProps {
   businessHours: Place['businessHours'];
-  isPlaceOpen: Place['isOpen'];
+  isPlaceOpen: boolean;
 }
 
 export default function TimeInfo({ businessHours, isPlaceOpen }: TimeInfoProps) {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+
+  const currentDay = getCurrentDay(new Date());
+  const currentBusinessHour = businessHours.filter(({ dayOfWeek }) => dayOfWeek === currentDay)[0];
 
   return (
     <>
@@ -22,8 +26,7 @@ export default function TimeInfo({ businessHours, isPlaceOpen }: TimeInfoProps) 
           {isPlaceOpen ? '영업중' : '영업종료'}
         </span>
         <p className="circle relative pl-2.5 text-[13px]">
-          {/* TODO: 현재 요일에 맞게 종료 시간 보이게 하기 */}
-          {formatTime(businessHours[0].close)} 영업종료
+          {formatTime(currentBusinessHour.close)} 영업종료
         </p>
         <Image
           src={`/assets/icons/16/Arrow-${isToggleOpen ? 'down' : 'up'}.svg`}
