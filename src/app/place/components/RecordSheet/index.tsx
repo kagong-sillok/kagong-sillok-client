@@ -1,25 +1,36 @@
 'use client';
+import { usePostStudyRecordMutation } from '@/apis/record';
+import { useGetUserInfo } from '@/apis/user';
 import { Button, ImageUpload, BottomSheet } from '@/components';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 import type { SheetRef } from 'react-modal-sheet';
 
-interface TimeLogSheetProps {
+interface RecordSheetProps {
   isOpen: boolean;
   onClose: () => void;
+  placeId: number;
 }
 
-export default function TimeLogSheet({ isOpen, onClose }: TimeLogSheetProps) {
+export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetProps) {
   const [images, setImages] = useState<File[]>([]);
-  const [text, setText] = useState('');
+  const [description, setDescription] = useState('');
+
+  const { data: userInfoData } = useGetUserInfo({});
+
+  const memberId = userInfoData?.id as number;
+
+  const { data } = usePostStudyRecordMutation(memberId);
 
   const ref = useRef<SheetRef>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 10) e.target.value = e.target.value.slice(0, 10);
-    setText(e.target.value);
+    setDescription(e.target.value);
   };
+
+  const handleSubmit = () => {};
 
   return (
     <>
@@ -76,7 +87,10 @@ export default function TimeLogSheet({ isOpen, onClose }: TimeLogSheetProps) {
         </div>
       </BottomSheet>
       {isOpen && (
-        <Button className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]">
+        <Button
+          className="fixed inset-x-0 bottom-0 z-[60] mx-auto w-full min-w-[360px] max-w-[448px]"
+          onClick={handleSubmit}
+        >
           카공 기록등록
         </Button>
       )}

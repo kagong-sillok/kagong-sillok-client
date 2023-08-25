@@ -3,12 +3,10 @@ import { GallerySection, InfoSection, PlaceTopNavigationBar, ReviewSection } fro
 import { useGetPlace } from '@/apis/place';
 import { Footer } from '@/app/place/components';
 import { KakaoMap, Spacing } from '@/components';
-import { useParams } from 'next/navigation';
+import { useNumberParams } from '@/hooks/useNumberParams';
 
 export default function PlaceDetail() {
-  const params = useParams() as { id: string };
-  const placeId = Number(params.id);
-
+  const { id: placeId } = useNumberParams<['id']>();
   const { data: placeData } = useGetPlace(placeId);
 
   return (

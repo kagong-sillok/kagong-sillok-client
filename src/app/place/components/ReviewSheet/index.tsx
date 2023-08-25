@@ -2,6 +2,7 @@
 import Rating from './Rating';
 import { useImagesUpload } from '@/apis/image';
 import { usePostReviewMutation } from '@/apis/review';
+import { useGetUserInfo } from '@/apis/user';
 import { Button, ImageUpload, BottomSheet, Tabs, Spacing, Modal } from '@/components';
 import { useCallback, useRef, useState } from 'react';
 
@@ -10,11 +11,10 @@ import type { SheetRef } from 'react-modal-sheet';
 interface ReviewSheetProps {
   isOpen: boolean;
   placeId: number;
-  memberId: number | undefined;
   onClose: () => void;
 }
 
-export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: ReviewSheetProps) {
+export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetProps) {
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
   const [currentSnap, setCurrentSnap] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +22,10 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   const [selectedTabIds, setSelectedTabIds] = useState<number[]>([]);
   const [content, setContent] = useState('');
   const [images, setImages] = useState<File[]>([]);
+
+  const { data: userInfoData } = useGetUserInfo({});
+
+  const memberId = userInfoData?.id as number;
 
   const { mutateAsync: uploadImagesMutateAsync } = useImagesUpload();
   const { mutate: postReviewMutate } = usePostReviewMutation(placeId);
@@ -43,7 +47,7 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   };
 
   const handlePostReviewClick = async () => {
-    if (!rating || !content || !memberId) return;
+    if (!rating || !content) return;
 
     const imageIds = !!images.length
       ? await uploadImagesMutateAsync({
@@ -82,8 +86,6 @@ export default function ReviewSheet({ isOpen, placeId, memberId, onClose }: Revi
   const handleUpload = useCallback((imageFiles: File[]) => {
     setImages(imageFiles);
   }, []);
-
-  if (!memberId) return null;
 
   return (
     <>

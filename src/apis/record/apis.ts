@@ -1,5 +1,7 @@
 import api from '../config/instance';
-import { MemberRecord, PlaceRecord, TimelineRecord } from '@/types/record';
+
+import type { StudyRecordPayload } from './types';
+import type { MemberRecord, PlaceRecord, TimelineRecord } from '@/types/record';
 
 export const getTimelineRecords = async (memberId: number, year: number, month: number) => {
   const { data } = await api.get<{ studyRecords: TimelineRecord[] }>(
@@ -22,5 +24,12 @@ export const getMemberRecords = async (memberId: number) => {
   const { data } = await api.get<{ studyRecords: MemberRecord[] }>(
     `api/v1/study-records/member/${memberId}`
   );
+  return data;
+};
+
+export const postStudyRecord = async (payload: StudyRecordPayload) => {
+  const { data } = await api.post('api/v1/study-records', {
+    json: payload,
+  });
   return data;
 };
