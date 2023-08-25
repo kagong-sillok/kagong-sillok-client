@@ -1,4 +1,4 @@
-import { getMemberReviews, getPlaceReviews, getReviewImages } from './apis';
+import { getMemberReviews, getPlaceReviews, getReviewImages, deleteReview } from './apis';
 import { Keys } from './keys';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
@@ -15,7 +15,12 @@ export function useGetPlaceReviews(placeId: number) {
 export function useGetMemberReviews(memberId: number) {
   return useSuspenseQuery(Keys.memberReviews(memberId), () => getMemberReviews(memberId), {
     enabled: memberId > 0,
+    refetchOnMount: 'always',
   });
+}
+
+export function useDeletePlaceReview(reviewId: number) {
+  return useSuspenseQuery(Keys.deleteReview(reviewId), () => deleteReview(reviewId));
 }
 
 export function useGetReviewImages(placeId: number) {

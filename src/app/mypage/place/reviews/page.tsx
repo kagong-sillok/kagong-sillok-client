@@ -5,11 +5,13 @@ import { useGetUserInfo } from '@/apis/user';
 
 function Reviews() {
   const { data: userInfoData } = useGetUserInfo({});
-  const { data: reviewsData } = useGetMemberReviews(userInfoData?.id || -1); // memberId 들어가야 함
+  const { data: reviewsData } = useGetMemberReviews(userInfoData?.id || -1);
 
   return (
     <div className="px-6">
-      {reviewsData?.reviews?.map((review) => <ReviewItem key={review.id} review={review} />)}
+      {reviewsData?.reviews?.map((review) => (
+        <ReviewItem key={review.id} review={review} userId={userInfoData?.id || -1} />
+      ))}
     </div>
   );
 }

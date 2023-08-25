@@ -1,5 +1,7 @@
 'use client';
 
+import { useGetImages } from '@/apis/image';
+import { useDeleteReviewMutation } from '@/apis/review';
 import Dot from '@/app/mypage/components/Dot';
 import { RATING_TEXT } from '@/app/place/constants';
 import { ConfirmModal } from '@/components';
@@ -12,12 +14,18 @@ import type { Review } from '@/types/review';
 interface ReviewItemProps {
   review: Review;
   isLast?: boolean;
+  userId: number;
 }
 
-export default function ReviewItem({ review, isLast = false }: ReviewItemProps) {
+export default function ReviewItem({ review, isLast = false, userId }: ReviewItemProps) {
   const [modalVisible, setModalVisible] = useState(false);
-  const { id, rating, writtenAt, content } = review;
+  const { id, rating, writtenAt, content, imageIds } = review;
+  const { data: imagesData } = useGetImages(imageIds);
   const date = format(new Date(writtenAt), 'yy.MM.dd');
+
+  const { mutate: deleteReview } = useDeleteReviewMutation(userId);
+  const imgSrc = imagesData?.images.length ? imagesData?.images[0].url : '/assets/Icons/null.svg';
+
   return (
     <>
       <div className="flex flex-col justify-start gap-3 py-6">
@@ -40,7 +48,7 @@ export default function ReviewItem({ review, isLast = false }: ReviewItemProps) 
               <div>{RATING_TEXT[rating - 1]}</div>
             </div>
           </div>
-          <Image src="/assets/icons/null.svg" width={64} height={64} alt="default" />
+          <Image src={imgSrc} width={64} height={64} alt="default" />
         </div>
         <div className="text-body2">{content}</div>
         <div
@@ -54,7 +62,9 @@ export default function ReviewItem({ review, isLast = false }: ReviewItemProps) 
       {modalVisible && (
         <ConfirmModal
           message={'작성한 리뷰를 삭제할 경우 재작성이 불가합니다. 삭제하시겠습니까?'}
-          onOk={() => setModalVisible(false)}
+          onOk={() => {
+            deleteReview(id, { onSuccess: () => setModalVisible(false) });
+          }}
           onCancle={() => setModalVisible(false)}
         />
       )}

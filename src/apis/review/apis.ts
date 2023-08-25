@@ -28,6 +28,10 @@ export const postReview = async (payload: ReviewPayload) => {
   return data;
 };
 
+export const deleteReview = async (reviewId: number) => {
+  const { data } = await api.delete(`api/v1/reviews/${reviewId}`);
+};
+
 export const getReviewImages = async (placeId: number) => {
   const { data } = await api.get<ReviewImages>(`api/v1/reviews/images/${placeId}`);
 

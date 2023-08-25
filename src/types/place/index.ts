@@ -4,6 +4,16 @@ export interface BusinessHour {
   close: string;
 }
 
+export type BusinessHours = [
+  Modify<BusinessHour, { dayOfWeek: 'MONDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'TUESDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'WEDNESDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'THURSDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'FRIDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'SATURDAY' }>,
+  Modify<BusinessHour, { dayOfWeek: 'SUNDAY' }>,
+];
+
 export interface Place {
   id: number;
   name: string;
@@ -19,15 +29,7 @@ export interface Place {
     linkType: LinkType;
     url: string;
   }[];
-  businessHours: [
-    Modify<BusinessHour, { dayOfWeek: 'MONDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'TUESDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'WEDNESDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'THURSDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'FRIDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'SATURDAY' }>,
-    Modify<BusinessHour, { dayOfWeek: 'SUNDAY' }>,
-  ];
+  businessHours: BusinessHours;
 }
 
 export interface Coordinates {

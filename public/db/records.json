@@ -6,22 +6,44 @@
         "placeName": "스타벅스 동대문공원점",
         "latitude": 37.565289,
         "longitude": 127.001285,
-        "studyDate": "2023-07-27",
-        "description": "스터디",
+        "studyDate":  "2023-08-01",
+        "description": "알고리즘",
         "duration": 3,
         "imageIds": [],
-        "writtenAt": "2023-07-27T15:26:45.536Z"
+        "writtenAt":"2023-08-01T15:21:09.332Z"
       },
       {
         "id": 2,
         "placeName": "스타벅스 동대문공원점",
         "latitude": 37.565289,
         "longitude": 127.001285,
-        "studyDate": "2023-07-25",
+        "studyDate": "2023-08-17",
         "description": "모각코",
         "duration": 2,
         "imageIds": [],
-        "writtenAt": "2023-07-27T15:26:45.536Z"
+        "writtenAt": "2023-08-17T15:26:45.536Z"
+      },
+      {
+        "id": 3,
+        "placeName": "스타벅스 동대문공원점",
+        "latitude": 37.565289,
+        "longitude": 127.001285,
+        "studyDate": "2023-08-17",
+        "description": "스터디했음",
+        "duration": 1,
+        "imageIds": [],
+        "writtenAt": "2023-08-17T15:26:45.536Z"
+      },
+      {
+        "id": 4,
+        "placeName": "스타벅스 동대문공원점",
+        "latitude": 37.565289,
+        "longitude": 127.001285,
+        "studyDate": "2023-08-21",
+        "description": "모각코",
+        "duration": 1,
+        "imageIds": [],
+        "writtenAt": "2023-08-21T15:26:45.536Z"
       }
     ]
   }
