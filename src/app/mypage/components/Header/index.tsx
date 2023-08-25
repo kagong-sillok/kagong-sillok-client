@@ -1,5 +1,7 @@
+import { useMemberTotalDuration } from '@/apis/record';
 import { User } from '@/types/user';
-import { format } from 'date-fns';
+import { format, formatDuration } from 'date-fns';
+import { ko } from 'date-fns/locale';
 
 import type { PageType } from '@/types/mypage';
 
@@ -22,9 +24,17 @@ const getHeader = (page: PageType, time: string) => {
 };
 
 function Header({ page, user }: HeaderProps) {
-  // const time = format(new Date(user.time), "h'시간' m'분'");
-  const time = '8시간20분';
-  // TODO: 유저 데이터에 시간 추가되면 수정 예정
+  const { data: totalDutationData } = useMemberTotalDuration(user?.id || -1);
+  const time = formatDuration(
+    {
+      hours: Math.floor((totalDutationData || 0) / 60),
+      minutes: (totalDutationData || 0) % 60,
+    },
+    {
+      locale: ko,
+      zero: true,
+    }
+  );
 
   return (
     <div className="pb-8 pl-6 pt-5 text-head3">

@@ -10,6 +10,7 @@ export interface Review {
   placeId: number;
   memberNickName: string;
   writtenAt: string;
+  placeName: string;
 }
 
 export interface ReviewPayload {

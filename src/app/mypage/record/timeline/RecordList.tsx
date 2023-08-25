@@ -8,22 +8,27 @@ import { ko } from 'date-fns/locale';
 import React from 'react';
 
 function RecordList({ data }: { data: { studyRecords: TimelineRecord[] } | undefined }) {
-  const recordList: APIResponse<{ studyRecords: StudyRecord[] }> = records; //TODO: API로 변경
-  const formatData = () => {
-    const data = {} as { [key: string]: StudyRecord[] };
-    recordList.data.studyRecords.forEach((el) => {
-      if (data[el.studyDate]) {
-        data[el.studyDate].push(el);
-      } else {
-        data[el.studyDate] = [el];
-      }
-    });
-    return data;
+  const test = () => {
+    const result = {} as { [key: string]: TimelineRecord[] };
+    if (data?.studyRecords.length) {
+      data.studyRecords.forEach((el) => {
+        if (result[el.studyDate]) {
+          result[el.studyDate].push(el);
+        } else {
+          result[el.studyDate] = [el];
+        }
+      });
+    }
+    return result;
   };
+
+  if (!data?.studyRecords.length) {
+    return <></>;
+  }
 
   return (
     <>
-      {Object.entries(formatData()).map(([key, value]) => {
+      {Object.entries(test()).map(([key, value]) => {
         const date = format(new Date(key), 'MM월 dd일 EEEE', { locale: ko });
 
         return (
@@ -32,7 +37,7 @@ function RecordList({ data }: { data: { studyRecords: TimelineRecord[] } | undef
               <div className="min-w-fit flex-nowrap break-keep text-caption text-bk60">{date}</div>
               <div className="h-[1px] w-full bg-bk20" />
             </div>
-            {value.map((item: StudyRecord) => {
+            {value.map((item: TimelineRecord) => {
               return <RecordItem key={item.id} data={item} />;
             })}
           </div>

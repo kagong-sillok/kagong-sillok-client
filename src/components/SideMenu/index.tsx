@@ -32,10 +32,10 @@ const IconButton = ({ label, icon, link }: IconButtonProps) => {
   );
 };
 
-const pages: { label: string; link: string }[] = [
-  { label: '카공기록', link: '/mypage/record' },
-  { label: '찜한 카페', link: '/mypage/place/bookmarks' },
-  { label: '작성한 리뷰', link: '/mypage/place/reviews' },
+const pages: { label: string; link: string; icon: string }[] = [
+  { label: '카공기록', link: '/mypage/record', icon: 'History' },
+  { label: '찜한 카페', link: '/mypage/place/bookmarks', icon: 'Bookmark' },
+  { label: '작성한 리뷰', link: '/mypage/place/reviews', icon: 'Review' },
 ];
 
 interface SideMenuProps {
@@ -130,7 +130,7 @@ export default function SideMenu({ open, onClose, userInfo, totalDutation }: Sid
                       label={item.label}
                       icon={
                         <Image
-                          src="/assets/icons/28/Bookmark.svg"
+                          src={`/assets/icons/28/${item.icon}.svg`}
                           alt="Bookmark"
                           width={28}
                           height={28}

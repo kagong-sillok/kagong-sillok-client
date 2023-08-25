@@ -1,19 +1,28 @@
 import { useGetImages } from '@/apis/image';
 import { Dot } from '@/app/mypage/components';
-import { format } from 'date-fns';
+import { formatDuration } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import Image from 'next/image';
 
-import type { StudyRecord } from '@/types/record';
+import type { TimelineRecord } from '@/types/record';
 
 interface RecordItemProps {
-  data: StudyRecord;
+  data: TimelineRecord;
 }
 
 export default function RecordItem({ data }: RecordItemProps) {
-  const { placeName, description, studyDate, imageIds } = data;
-  const date = format(new Date(studyDate), "h'시간' m'분'");
-  const { data: imagesData } = useGetImages(imageIds);
-  const imgSrc = imagesData?.images.length ? imagesData?.images[0].url : '/assets/Icons/null.svg';
+  const { placeName, description, studyDate, images, duration } = data;
+  const date = formatDuration(
+    {
+      hours: Math.floor(duration / 60),
+      minutes: duration % 60,
+    },
+    {
+      locale: ko,
+      zero: true,
+    }
+  );
+  const imgSrc = images[0]?.url || '/assets/Icons/null.svg';
 
   return (
     <>
