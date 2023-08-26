@@ -27,10 +27,6 @@ function LayoutHeader() {
   const router = useRouter();
   const page = segments[0].toUpperCase();
 
-  if (!userInfoData) {
-    redirect('/auth/login');
-  }
-
   return (
     <>
       <TopNavigationBar
