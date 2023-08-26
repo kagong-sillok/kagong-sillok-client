@@ -1,5 +1,4 @@
 'use client';
-import { useMemberTotalDuration } from '@/apis/record';
 import { Spacing } from '@/components';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { User } from '@/types/user';
@@ -71,7 +70,7 @@ export default function SideMenu({ open, onClose, userInfo, totalDutation }: Sid
 
   return (
     <motion.div
-      className="absolute left-0 top-0 z-50 h-full w-full bg-bk100 bg-opacity-60"
+      className="fixed top-0 z-50 mx-auto h-full w-full min-w-[360px] max-w-[448px] bg-bk100 bg-opacity-60"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}

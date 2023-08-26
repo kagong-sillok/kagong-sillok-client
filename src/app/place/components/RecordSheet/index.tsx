@@ -4,7 +4,7 @@ import TimePicker from './TimePicker';
 import { useImagesUpload } from '@/apis/image';
 import { usePostStudyRecord } from '@/apis/record';
 import { useGetUserInfo } from '@/apis/user';
-import { Button, ImageUpload, BottomSheet, Modal } from '@/components';
+import { Button, ImageUpload, BottomSheet, Modal, Spacing } from '@/components';
 import { getDate, getMonth, getYear } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -100,7 +100,6 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
 
           <p className="mb-4 text-center text-body2 text-bk60">카공을 얼마나 했나요?</p>
           <div className="relative mx-auto flex h-28 w-32 items-center justify-center text-head2">
-            {/* <div className="absolute left-0 top-0 w-full bg-yellow" /> */}
             <TimePicker
               currentSlide={duration.hour}
               slideList={Array.from({ length: 24 }, (_, index) => '' + index)}
@@ -127,14 +126,15 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
             alt="공부내용"
             maxLength={10}
             onChange={handleChange}
-            className="mb-10 w-full bg-background p-4 text-body2 outline-none"
+            className="w-full bg-background p-4 text-body2 outline-none"
           />
-          <Link
+          <Spacing size={30} />
+          {/* <Link
             href="/"
             className="block text-center text-[14px] font-normal leading-6 text-bk60 underline underline-offset-2"
           >
             리뷰도 쓰러가기
-          </Link>
+          </Link> */}
         </div>
       </BottomSheet>
       {isOpen && (

@@ -40,9 +40,10 @@ export default function TimePicker({ slideList, currentSlide, onSlideChange }: T
           {({ isNext, isActive, isPrev }) => (
             <div
               className={cn('flex flex-col items-center', {
-                'gradient-text-t-to-b': isPrev,
-                '': isActive,
-                'gradient-text-b-to-t': isNext,
+                // 'gradient-text-t-to-b': isPrev,
+                'text-bk100': isActive,
+                'text-bk40': !isActive,
+                // 'gradient-text-b-to-t': isNext,
               })}
             >
               {slide.padStart(2, '0')}

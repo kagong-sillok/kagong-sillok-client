@@ -11,6 +11,8 @@ export default function MapSection() {
   const mapRef = useRef<kakao.maps.Map>(null);
   const { coordinates } = useCoordinatesStore();
 
+  console.log(coordinates);
+
   return (
     <section>
       <Map
