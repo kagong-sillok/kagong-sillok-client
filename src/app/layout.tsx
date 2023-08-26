@@ -24,9 +24,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={pretendard.className}>
-      <body className="relative mx-auto h-full min-h-screen w-full min-w-[360px] max-w-[448px] bg-background scrollbar-hide">
+      <body className="relative mx-auto h-full min-h-[100dvh] w-full min-w-[360px] max-w-[448px] bg-background scrollbar-hide">
         <ReactQueryProvider>
-          <div className="min-h-screen bg-white">{children}</div>
+          <div className="min-h-[100dvh] bg-white">{children}</div>
         </ReactQueryProvider>
         <Script
           type="text/javascript"

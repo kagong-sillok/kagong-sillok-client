@@ -71,7 +71,7 @@ export default function SideMenu({ open, onClose, userInfo, totalDutation }: Sid
 
   return (
     <motion.div
-      className="absolute left-0 top-0 z-50 h-screen w-full bg-bk100 bg-opacity-60"
+      className="absolute left-0 top-0 z-50 h-full w-full bg-bk100 bg-opacity-60"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}

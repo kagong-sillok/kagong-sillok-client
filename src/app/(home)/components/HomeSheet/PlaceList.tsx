@@ -51,6 +51,11 @@ function PlaceItem({ place }: PlaceItemProps) {
 
   const router = useRouter();
 
+  const tags =
+    reviewTags?.length > 0
+      ? sortTagsByFrequency(reviewTags).slice(0, 3)
+      : [{ tagContent: '조용한' }, { tagContent: '나만알고싶은' }, { tagContent: '노트북' }];
+
   return (
     <li className="h-[115px] w-full">
       <div
@@ -61,13 +66,11 @@ function PlaceItem({ place }: PlaceItemProps) {
           <p className="text-sub1">{name}</p>
           <Spacing size={2} />
           <div className="h-fit text-caption text-bk50">
-            {sortTagsByFrequency(reviewTags)
-              .slice(0, 3)
-              .map((tag) => (
-                <span key={tag.tagContent} className="mr-1.5">
-                  #{tag.tagContent.replace(/ /g, '')}
-                </span>
-              ))}
+            {tags.map((tag) => (
+              <span key={tag.tagContent} className="mr-1.5">
+                #{tag.tagContent.replace(/ /g, '')}
+              </span>
+            ))}
           </div>
           <Spacing size={8} />
           <div className="flex gap-1.5 text-caption text-bk100">
