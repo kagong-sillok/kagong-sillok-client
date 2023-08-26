@@ -22,7 +22,7 @@ export default function RecordItem({ data }: RecordItemProps) {
       zero: true,
     }
   );
-  const imgSrc = images[0]?.url || '/assets/Icons/null.svg';
+  const imgSrc = images[0]?.url || '/assets/icons/null.svg';
 
   return (
     <>

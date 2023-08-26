@@ -31,7 +31,7 @@ export default function BookmarkItem({ data, isLast }: BookmarkItemProps) {
 
           <div className="mt-1.5 flex items-center gap-1.5 text-caption text-bk100">
             <Image
-              src={`/assets/icons/40/emoji-ratingAverage${ratingAverage ?? 3}_on.svg`}
+              src={`/assets/icons/40/emoji-rating${ratingAverage ?? 3}_on.svg`}
               alt={`emoji-rating${ratingAverage}`}
               width={16}
               height={16}
