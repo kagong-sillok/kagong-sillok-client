@@ -2,9 +2,11 @@
 
 import { RecordItem } from './components';
 import records from '../../../../../public/db/records.json';
+import { Spacing } from '@/components';
 import { StudyRecord, TimelineRecord } from '@/types/record';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import Image from 'next/image';
 import React from 'react';
 
 function RecordList({ data }: { data: { studyRecords: TimelineRecord[] } | undefined }) {
@@ -23,7 +25,19 @@ function RecordList({ data }: { data: { studyRecords: TimelineRecord[] } | undef
   };
 
   if (!data?.studyRecords.length) {
-    return <></>;
+    return (
+      <div className="flex h-full flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/36/info.svg"
+          alt="info"
+          width={36}
+          height={36}
+          className="mt-[40px]"
+        />
+        <Spacing size={10} />
+        <p className="text-caption text-bk60">카공을 기록해 보세요.</p>
+      </div>
+    );
   }
 
   return (
