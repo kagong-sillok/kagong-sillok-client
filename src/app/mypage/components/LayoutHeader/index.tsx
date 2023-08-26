@@ -22,7 +22,6 @@ const views: TabItems = {
 };
 
 function LayoutHeader() {
-  const { data: userInfoData } = useGetUserInfo({});
   const segments = useSelectedLayoutSegments();
   const router = useRouter();
   const page = segments[0].toUpperCase();
@@ -43,7 +42,7 @@ function LayoutHeader() {
           />
         }
       />
-      <Header page={page as PageType} user={userInfoData} />
+      <Header page={page as PageType} />
       <TabGroup>
         {segments.length > 0 &&
           views[page as PageType].map((el) => {

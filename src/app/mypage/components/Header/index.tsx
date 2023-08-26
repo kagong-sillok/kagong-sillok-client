@@ -1,13 +1,12 @@
 import { useMemberTotalDuration } from '@/apis/record';
-import { User } from '@/types/user';
-import { format, formatDuration } from 'date-fns';
+import { useGetUserInfo } from '@/apis/user';
+import { formatDuration } from 'date-fns';
 import { ko } from 'date-fns/locale';
 
 import type { PageType } from '@/types/mypage';
 
 interface HeaderProps {
   page: PageType;
-  user: User;
 }
 
 const getHeader = (page: PageType, time: string) => {
@@ -23,8 +22,9 @@ const getHeader = (page: PageType, time: string) => {
   }
 };
 
-function Header({ page, user }: HeaderProps) {
-  const { data: totalDutationData } = useMemberTotalDuration(user?.id || -1);
+function Header({ page }: HeaderProps) {
+  const { data: userInfoData } = useGetUserInfo({});
+  const { data: totalDutationData } = useMemberTotalDuration(userInfoData?.id || -1);
   const time = formatDuration(
     {
       hours: Math.floor((totalDutationData || 0) / 60),
@@ -38,7 +38,7 @@ function Header({ page, user }: HeaderProps) {
 
   return (
     <div className="pb-8 pl-6 pt-5 text-head3">
-      {user.nickname}의<br />
+      {userInfoData?.nickname}의<br />
       {getHeader(page, time)}
     </div>
   );
