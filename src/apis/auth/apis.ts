@@ -11,11 +11,10 @@ export const postLogin = async (payload: LoginPayload) => {
   return data;
 };
 
-export const postRefresh = async (refreshToken: string) => {
+export const postRefresh = async (payload: { refreshToken: string }) => {
   const { data } = await ky
     .post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/refresh`, {
-      json: { refreshToken },
-      mode: 'no-cors',
+      json: payload,
     })
     .json<APIResponse<LoginResponse>>();
 

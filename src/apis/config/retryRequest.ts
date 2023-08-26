@@ -10,7 +10,7 @@ export const retryRequest: AfterResponseHook = async (request, options, response
 
     if (refreshToken) {
       try {
-        const token = await postRefresh(refreshToken);
+        const token = await postRefresh({ refreshToken });
 
         setCookie('accessToken', token.accessToken, {
           expires: new Date(token.accessTokenExpireDateTime),
@@ -23,8 +23,6 @@ export const retryRequest: AfterResponseHook = async (request, options, response
         return ky(request, options);
       } catch (error) {
         console.log(error);
-        deleteCookie('accessToken');
-        deleteCookie('refreshToken');
       }
     }
   }
