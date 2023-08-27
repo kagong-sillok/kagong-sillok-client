@@ -11,10 +11,11 @@ import type { SheetRef } from 'react-modal-sheet';
 interface ReviewSheetProps {
   isOpen: boolean;
   placeId: number;
+  placeName: string;
   onClose: () => void;
 }
 
-export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetProps) {
+export default function ReviewSheet({ isOpen, placeId, placeName, onClose }: ReviewSheetProps) {
   const [snapPoints, setSnapPoints] = useState<number[]>([-70, 280]);
   const [currentSnap, setCurrentSnap] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -103,7 +104,7 @@ export default function ReviewSheet({ isOpen, placeId, onClose }: ReviewSheetPro
         <Spacing size={32} />
         <div className="h-full px-6">
           <h3 className="text-head3">
-            스타벅스 동대문점은
+            {placeName}은
             <br />
             어떠셨나요?
           </h3>
