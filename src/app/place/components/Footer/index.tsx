@@ -1,5 +1,6 @@
 'use client';
 import RecordSheet from '../RecordSheet';
+import { useGetPlace } from '@/apis/place';
 import { useGetUserInfo } from '@/apis/user';
 import { Button, LoginModal } from '@/components';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -11,6 +12,7 @@ export default function Footer() {
   const { id: placeId } = useNumberParams<['id']>();
 
   const { data: userInfoData } = useGetUserInfo({});
+  const { data: placeData } = useGetPlace(placeId);
 
   const handleRecordClick = () => {
     if (!userInfoData?.id) return setIsModalOpen(true);
@@ -31,6 +33,7 @@ export default function Footer() {
         isOpen={isRecordSheetOpen}
         onClose={() => setIsRecordSheetOpen(false)}
         placeId={placeId}
+        placeName={placeData.name}
       />
       <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>

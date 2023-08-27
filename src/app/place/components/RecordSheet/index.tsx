@@ -15,10 +15,11 @@ import type { SheetRef } from 'react-modal-sheet';
 interface RecordSheetProps {
   isOpen: boolean;
   placeId: number;
+  placeName: string;
   onClose: () => void;
 }
 
-export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetProps) {
+export default function RecordSheet({ isOpen, placeName, onClose, placeId }: RecordSheetProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [images, setImages] = useState<File[]>([]);
   const [description, setDescription] = useState('');
@@ -89,11 +90,12 @@ export default function RecordSheet({ isOpen, onClose, placeId }: RecordSheetPro
         disableDrag
       >
         <div className="h-full px-6 pb-20 pt-8">
-          <h3 className="mb-8 text-head3">
-            스타벅스 동대문점에서의
+          <h3 className="text-head3">
+            {placeName}에서의
             <br />
             카공을 기록해 보세요!
           </h3>
+          <Spacing size={32} />
           <ImageUpload images={images} onUpload={(imageFiles) => setImages(imageFiles)} />
 
           <hr className="my-6 text-bk10" />

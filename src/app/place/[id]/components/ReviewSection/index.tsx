@@ -1,11 +1,11 @@
 'use client';
 import Tooltip from './Tooltip';
+import { useGetPlace } from '@/apis/place';
 import { useGetPlaceReviews } from '@/apis/review';
 import { useGetUserInfo } from '@/apis/user';
 import { ReviewList, ReviewSheet } from '@/app/place/components';
 import { Button, LoginModal, Spacing } from '@/components';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { getMonth } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,6 +18,7 @@ export default function ReviewSection() {
   const pathname = usePathname();
   const { id: placeId } = useNumberParams<['id']>();
 
+  const { data: placeData } = useGetPlace(placeId);
   const { data: userInfoData } = useGetUserInfo({});
   const { data: reviewsData } = useGetPlaceReviews(placeId);
 
@@ -83,6 +84,7 @@ export default function ReviewSection() {
         isOpen={isReviewSheetOpen}
         onClose={() => setIsReviewSheetOpen(false)}
         placeId={placeId}
+        placeName={placeData.name}
       />
       <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
